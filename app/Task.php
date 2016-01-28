@@ -20,4 +20,12 @@ class Task extends Model
      */
     protected $fillable = ['name_task', 'available'];
 
+    /**
+     * Get the user that owns the task.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

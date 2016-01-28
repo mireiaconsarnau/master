@@ -44,4 +44,12 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany(Task::class);
     }
+
+    /**
+     * Get all of the tasks for the user.
+     */
+    public function trains()
+    {
+        return $this->hasMany(TrainUpload::class);
+    }
 }
