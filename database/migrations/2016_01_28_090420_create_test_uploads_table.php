@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTestuploadsTable extends Migration
+class CreateTestUploadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateTestuploadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('testuploads', function (Blueprint $table) {
+        Schema::create('test_uploads', function (Blueprint $table) {
             $table->increments('id_testup');
             $table->string('file_test');
             $table->string('name_test');
@@ -31,6 +31,6 @@ class CreateTestuploadsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('testuploads');
+        Schema::drop('test_uploads');
     }
 }

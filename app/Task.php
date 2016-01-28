@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class tasks extends Model
+class Task extends Model
 {
     /**
      * The database table used by the model.
@@ -19,4 +19,5 @@ class tasks extends Model
      * @var array
      */
     protected $fillable = ['name_task', 'available'];
+
 }
