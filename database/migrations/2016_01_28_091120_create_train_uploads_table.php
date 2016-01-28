@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTraintUploadsTable extends Migration
+class CreateTrainUploadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateTraintUploadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('traint_uploads', function (Blueprint $table) {
+        Schema::create('train_uploads', function (Blueprint $table) {
             $table->increments('id_trainup');
             $table->string('file_train');
             $table->string('name_train');
@@ -28,6 +28,6 @@ class CreateTraintUploadsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('traint_uploads');
+        Schema::drop('train_uploads');
     }
 }

@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9cc579c-4fe7-44ee-8acd-009e139cfd63" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/tasks.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/testuploads.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/traintuploads.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2016_01_28_083323_create_tasks_table.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2016_01_28_083423_create_testuploads_table.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2016_01_28_083432_create_traintuploads_table.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/TraintUpload.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2016_01_28_090438_create_traint_uploads_table.php" afterPath="" />
     </list>
     <ignored path="masterv1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,6 +57,8 @@
         <option value="$PROJECT_DIR$/database/migrations/2016_01_28_090420_create_test_uploads_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_01_28_090438_create_traint_uploads_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_01_28_090357_create_tasks_table.php" />
+        <option value="$PROJECT_DIR$/app/TrainUpload.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2016_01_28_091120_create_train_uploads_table.php" />
       </list>
     </option>
   </component>
@@ -558,50 +554,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/tasks.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.373599">
-          <caret line="20" column="53" selection-start-line="8" selection-start-column="3" selection-end-line="20" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/TestUpload.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.373599">
           <caret line="20" column="65" selection-start-line="20" selection-start-column="65" selection-end-line="20" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/testuploads.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1494396">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="20" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/TraintUpload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.373599">
-          <caret line="20" column="55" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/traintuploads.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.373599">
-          <caret line="20" column="55" selection-start-line="8" selection-start-column="4" selection-end-line="20" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_01_28_083323_create_tasks_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31755915">
-          <caret line="18" column="48" selection-start-line="16" selection-start-column="12" selection-end-line="18" selection-end-column="48" />
           <folding />
         </state>
       </provider>
@@ -614,34 +570,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_01_28_083423_create_testuploads_table.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2016_01_28_090357_create_tasks_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39227894">
-          <caret line="22" column="33" selection-start-line="15" selection-start-column="12" selection-end-line="22" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.2615193">
+          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_01_28_083432_create_traintuploads_table.php">
+    <entry file="file://$PROJECT_DIR$/app/TrainUpload.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.25">
-          <caret line="19" column="33" selection-start-line="15" selection-start-column="11" selection-end-line="19" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.373599">
+          <caret line="20" column="55" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/TraintUpload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.373599">
+          <caret line="20" column="55" selection-start-line="8" selection-start-column="4" selection-end-line="20" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2016_01_28_090438_create_traint_uploads_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3362391">
-          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+        <state vertical-scroll-proportion="-11.25">
+          <caret line="19" column="33" selection-start-line="15" selection-start-column="12" selection-end-line="19" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_01_28_090357_create_tasks_table.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2016_01_28_091120_create_train_uploads_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2615193">
-          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.3362391">
+          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
           <folding />
         </state>
       </provider>

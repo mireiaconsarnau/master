@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TraintUpload extends Model
+class TrainUpload extends Model
 {
     /**
      * The database table used by the model.
