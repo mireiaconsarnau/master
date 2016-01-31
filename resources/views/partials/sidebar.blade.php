@@ -10,13 +10,13 @@
         <ul class="sidebar-menu">
             <li class="header">OPTIONS</li>
             <!-- Optionally, you can add icons to the links -->
-            <!--<li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>Home</span></a></li>-->
+           <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>Home</span></a></li>
             <!--<li><a href="#"><i class='fa fa-link'></i> <span>Tasks</span></a></li>-->
 
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Tasks</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Create New Task</a></li>
+                    <li><a href="{{ url('tasks') }}">Create New Task</a></li>
                     <li><a href="#">Management Tasks</a></li>
                 </ul>
             </li>
