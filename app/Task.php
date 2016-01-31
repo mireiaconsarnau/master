@@ -15,7 +15,7 @@ class Task extends Model
      * @var array
      */
     protected $fillable = ['name_task','available'];
-    protected $primaryKey = 'id_task';
+
 
     /**
      * Get the user that owns the task.
