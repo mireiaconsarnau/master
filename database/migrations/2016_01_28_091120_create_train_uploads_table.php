@@ -13,10 +13,10 @@ class CreateTrainUploadsTable extends Migration
     public function up()
     {
         Schema::create('train_uploads', function (Blueprint $table) {
-            $table->increments('id_trainup');
+            $table->increments('id');
             $table->string('file_train');
             $table->string('name_train');
-            $table->integer('id_user')->index();
+            $table->integer('user_id')->index();
             $table->timestamps();
         });
     }

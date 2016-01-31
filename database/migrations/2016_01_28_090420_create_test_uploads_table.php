@@ -13,12 +13,12 @@ class CreateTestUploadsTable extends Migration
     public function up()
     {
         Schema::create('test_uploads', function (Blueprint $table) {
-            $table->increments('id_testup');
+            $table->increments('id');
             $table->string('file_test');
             $table->string('name_test');
-            $table->integer('id_user')->index();
-            $table->integer('id_task')->index();
-            $table->integer('id_trainup')->index();
+            $table->integer('user_id')->index();
+            $table->integer('task_id')->index();
+            $table->integer('trainup_id')->index();
             $table->string('disabled')->default('no');
             $table->timestamps();
         });
