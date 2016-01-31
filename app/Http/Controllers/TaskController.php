@@ -54,10 +54,10 @@ class TaskController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a new task.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -107,10 +107,11 @@ class TaskController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Destroy the given task.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Task  $task
+     * @return Response
      */
     public function destroy(Request $request, Task $task)
     {

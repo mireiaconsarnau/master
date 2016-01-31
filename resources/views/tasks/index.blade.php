@@ -1,12 +1,7 @@
-
-
-
-
-
 @extends('app')
 
 @section('htmlheader_title')
-    Home
+    Tasks
 @endsection
 
 
@@ -19,16 +14,19 @@
 				</div>
 
 				<div class="panel-body">
+					<!-- Display Validation Errors -->
+					@include('common.errors')
+
 							<!-- New Task Form -->
 					<form action="/task" method="POST" class="form-horizontal">
 						{{ csrf_field() }}
 
 								<!-- Task Name -->
 						<div class="form-group">
-							<label for="task-name" class="col-sm-3 control-label">Task</label>
+							<label for="name_task" class="col-sm-3 control-label">Task</label>
 
 							<div class="col-sm-6">
-								<input type="text" name="name" id="task-name" class="form-control" value="{{ old('task') }}">
+								<input type="text" name="name_task" id="name_task" class="form-control" value="{{ old('task') }}">
 							</div>
 						</div>
 
@@ -60,7 +58,7 @@
 							<tbody>
 							@foreach ($tasks as $task)
 								<tr>
-									<td class="table-text"><div>{{ $task->name_task }}</div></td>
+									<td class="table-text"><div>{{ $task->name_task }} ({{ $task->available }})</div></td>
 
 									<!-- Task Delete Button -->
 									<td>
