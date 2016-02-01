@@ -16,10 +16,11 @@ Route::get('/', function () {
 })->middleware('guest');;
 
 
-Route::get('/tasks/{opt}', 'TaskController@index');
+Route::get('/tasks', 'TaskController@index');
 Route::post('/task', 'TaskController@store');
 Route::delete('/task/{task}', 'TaskController@destroy');
-Route::get('/tasks/{opt}', 'TaskController@index');
+Route::delete('/task/update/{task}', 'TaskController@edit');
+
 
 Route::get('/trains', 'TrainUploadController@index');
 Route::post('/train', 'TrainUploadController@store');

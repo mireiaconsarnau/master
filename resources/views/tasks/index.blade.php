@@ -48,7 +48,7 @@
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-sm-6">
 								<button type="submit" class="btn btn-default">
-									<i class="fa fa-btn fa-plus"></i>Add Task
+									<i class="fa fa-btn fa-plus"></i> Add Task
 								</button>
 							</div>
 						</div>
@@ -72,8 +72,33 @@
 							<tbody>
 							@foreach ($tasks as $task)
 								<tr>
-									<td class="table-text"><div>{{ $task->name_task }} ({{ $task->available }})</div></td>
+									<td class="table-text"><div><input type="text" name="name_task" id="name_task" class="form-control" value="{{$task->name_task }}"> </div></td>
+									<td class="table-text"><div>
+											<select name="available_task" id="available_task">
+												<option value="On"
+														@if ($task->available=="On")
+														selected
+														@endif
+												>On</option>
+												<option value="Off"
+														@if ($task->available=="Off")
+														selected
+														@endif
+												>Off</option>
+											</select>
 
+										</div></td>
+									<!-- Task Update Button -->
+									<td>
+										<form action="/task/update/{{ $task->id }}" method="POST">
+											{{ csrf_field() }}
+											{{ method_field('UPDATE') }}
+											<button type="submit" id="update-task-{{ $task->id }}" class="btn btn-danger">
+												<i class="fa fa-pencil-square-o"></i> Update
+											</button>
+										</form>
+
+									</td>
 									<!-- Task Delete Button -->
 									<td>
 										<form action="/task/{{ $task->id }}" method="POST">

@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\TaskRepository;
+use Illuminate\Support\Facades\Gate;
 use PhpParser\Node\Expr\Cast\String_;
 
 class TaskController extends Controller
@@ -37,16 +38,16 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $opt)
+    public function index(Request $request)
     {
-        if ($opt=="new"){
+        if (Gate::denies('see-admin-menu')) {
+            abort(403);
+        }
+
             return view('tasks.index', [
                 'tasks' => $this->tasks->forUser($request->user()),
-        ]);}
-        elseif ($opt=="list"){
-            return view('tasks.list', [
-                'tasks' => $this->tasks->forUser($request->user()),
-            ]);}
+        ]);
+
 
     }
 
@@ -68,6 +69,10 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        if (Gate::denies('see-admin-menu')) {
+            abort(403);
+        }
+
         $this->validate($request, [
             'name_task' => 'required|max:255',
             'available_task' => 'required|max:3',
@@ -78,7 +83,7 @@ class TaskController extends Controller
             'available' => $request->available_task,
         ]);
 
-        return redirect('/tasks/new');
+        return redirect('/tasks');
     }
 
     /**
@@ -124,10 +129,13 @@ class TaskController extends Controller
      */
     public function destroy(Request $request, Task $task)
     {
+        if (Gate::denies('see-admin-menu')) {
+            abort(403);
+        }
         $this->authorize('destroy', $task);
 
         $task->delete();
 
-        return redirect('/tasks/new');
+        return redirect('/tasks');
     }
 }

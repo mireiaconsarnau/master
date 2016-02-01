@@ -32,5 +32,18 @@ class AuthServiceProvider extends ServiceProvider
         parent::registerPolicies($gate);
 
         //
+
+        $gate->define('see-admin-menu', function ($user) {
+            if ($user->type==1) {
+                return true;
+            }
+            return false;
+        });
+        $gate->define('see-user-menu', function ($user) {
+            if ($user->type==2) {
+                return true;
+            }
+            return false;
+        });
     }
 }
