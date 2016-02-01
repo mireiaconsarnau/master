@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\TaskRepository;
+use Illuminate\Support\Facades\Gate;
 use PhpParser\Node\Expr\Cast\String_;
 
 class TaskController extends Controller
@@ -39,6 +40,9 @@ class TaskController extends Controller
      */
     public function index(Request $request, $opt)
     {
+        if (Gate::denies('see-admin-menu')) {
+            abort(403);
+        }
         if ($opt=="new"){
             return view('tasks.index', [
                 'tasks' => $this->tasks->forUser($request->user()),
