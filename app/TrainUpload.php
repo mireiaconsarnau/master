@@ -12,17 +12,17 @@ class TrainUpload extends Model
      *
      * @var string
      */
-    protected $table = 'traintuploads';
+    protected $table = 'train_uploads';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['file_train', 'name_train'];
+    protected $fillable = ['name_train'];
 
     /**
-     * Get the user that owns the task.
+     * Get the user that owns the train.
      */
     public function user()
     {

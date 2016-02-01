@@ -23,7 +23,7 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Train Files</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Upload New Train File</a></li>
+                    <li><a href="{{ url('trains') }}">Upload New Train File</a></li>
                     <li><a href="#">Management Train Files</a></li>
                 </ul>
             </li>

@@ -2,21 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
+
+use App\Repositories\TrainRepository;
+use App\TrainUpload;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\TrainRepositoryRepository;
 
 class TrainUploadController extends Controller
 {
+    /**
+     * The train repository instance.
+     *
+     * @var TrainRepository
+     */
+    protected $trains;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(TrainRepository $trains)
     {
         $this->middleware('auth');
+
+        $this->trains = $trains;
     }
 
     /**
@@ -24,10 +37,13 @@ class TrainUploadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return view('trains.index', [
+            'trains' => $this->trains->forUser($request->user()),
+        ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -40,15 +56,27 @@ class TrainUploadController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a new task.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return Response
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'file_train' => 'required',
+
+        ]);
+
+        $request->user()->trains()->create([
+            'file_train' => $request->file_train,
+
+        ]);
+
+
+        return redirect('/trains');
     }
+
 
     /**
      * Display the specified resource.
@@ -85,13 +113,18 @@ class TrainUploadController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Destroy the given train.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  TrainUpload  $train
+     * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, TrainUpload $train)
     {
-        //
+        $this->authorize('destroy', $train);
+
+        $train->delete();
+
+        return redirect('/trains');
     }
 }
