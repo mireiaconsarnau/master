@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\TaskRepository;
+use PhpParser\Node\Expr\Cast\String_;
 
 class TaskController extends Controller
 {
@@ -36,11 +37,17 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $opt)
     {
-        return view('tasks.index', [
-            'tasks' => $this->tasks->forUser($request->user()),
-        ]);
+        if ($opt=="new"){
+            return view('tasks.index', [
+                'tasks' => $this->tasks->forUser($request->user()),
+        ]);}
+        elseif ($opt=="list"){
+            return view('tasks.list', [
+                'tasks' => $this->tasks->forUser($request->user()),
+            ]);}
+
     }
 
     /**
@@ -71,7 +78,7 @@ class TaskController extends Controller
             'available' => $request->available_task,
         ]);
 
-        return redirect('/tasks');
+        return redirect('/tasks/new');
     }
 
     /**
@@ -121,6 +128,6 @@ class TaskController extends Controller
 
         $task->delete();
 
-        return redirect('/tasks');
+        return redirect('/tasks/new');
     }
 }
