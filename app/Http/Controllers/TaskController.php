@@ -50,7 +50,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -63,10 +63,12 @@ class TaskController extends Controller
     {
         $this->validate($request, [
             'name_task' => 'required|max:255',
+            'available_task' => 'required|max:3',
         ]);
 
         $request->user()->tasks()->create([
             'name_task' => $request->name_task,
+            'available' => $request->available_task,
         ]);
 
         return redirect('/tasks');
