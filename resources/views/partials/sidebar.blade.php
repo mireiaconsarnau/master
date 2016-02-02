@@ -14,21 +14,15 @@
             <!--<li><a href="#"><i class='fa fa-link'></i> <span>Tasks</span></a></li>-->
 
             @can('see-admin-menu')
-            <li class="active"><a href="{{ url('tasks') }}"><i class='fa fa-link'></i> <span>Tasks</span></a></li>
+            <li class="active"><a href="{{ url('tasks') }}"><i class='fa fa-tasks'></i> <span>Tasks</span></a></li>
 
 
-            <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>Train Files</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ url('trains') }}">Upload New Train File</a></li>
-                    <li><a href="{{ url('ltrains') }}">Management Train Files</a></li>
-                </ul>
-            </li>
-            <li> <a href="#"><i class='fa fa-link'></i> <span>Test Files / Analysis</span></a></li>
+            <li><a href="{{ url('trains') }}"><i class='fa fa-file-text'></i> <span>Train Files</span></a></li>
+            <li> <a href="#"><i class='fa fa-bar-chart'></i> <span>Test Files / Analysis</span></a></li>
             @endcan
             @can('see-user-menu')
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>Test Files</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='fa fa-file-text'></i> <span>Test Files</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="#">Upload New Test File</a></li>
                     <li><a href="#">Management Test Files</a></li>
