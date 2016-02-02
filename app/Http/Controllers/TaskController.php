@@ -119,12 +119,12 @@ class TaskController extends Controller
             abort(403);
         }
         $this->validate($request, [
-            'name_tasku' => 'required|max:255',
-            'available_tasku' => 'required|max:3',
+            'name_task' => 'required|max:255',
+            'available_task' => 'required|max:3',
         ]);
 
-        $task->name_task = $request['name_tasku'];
-        $task->available = $request['available_tasku'];
+        $task->name_task = $request['name_task'];
+        $task->available = $request['available_task'];
 
         $this->authorize('update', $task);
 
