@@ -63,7 +63,7 @@
 						</table>
 					</div>
 				</div>
+				{!! $tasks->render() !!}
 			@endif
-		</div>
-	</div>
+
 
