@@ -21,12 +21,8 @@ Route::post('/task', 'TaskController@store');
 Route::delete('/task/{task}', 'TaskController@destroy');
 Route::put('/task/{task}', 'TaskController@update');
 
-
-
 Route::get('/trains', 'TrainUploadController@index');
 Route::post('/train', 'TrainUploadController@store');
 Route::delete('/train/{train}', 'TrainUploadController@destroy');
+Route::put('/train/{train}', 'TrainUploadController@update');
 
-Route::get('/tests', 'TestUploadController@index');
-Route::post('/test', 'TestUploadController@store');
-Route::delete('/test/{test}', 'TestUploadController@destroy');
