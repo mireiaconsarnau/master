@@ -46,7 +46,7 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
-     * Get all of the tasks for the user.
+     * Get all of the trains for the user.
      */
     public function trains()
     {

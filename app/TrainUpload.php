@@ -19,7 +19,7 @@ class TrainUpload extends Model
      *
      * @var array
      */
-    protected $fillable = ['name_train'];
+    protected $fillable = ['file_train','name_train'];
 
     /**
      * Get the user that owns the train.

@@ -9,7 +9,7 @@
 
 						<table class="table table-striped task-table">
 							<thead>
-							<th>Train File</th>
+							<th>Train File Name</th>
 							<th>&nbsp;</th>
 							</thead>
 							<tbody>
@@ -18,8 +18,8 @@
 									{{ csrf_field() }}
 									{{ method_field('PUT') }}
 								<tr>
-									<td class="table-text"><div><input type="text" name="file_train" id="file_train" class="form-control" value="{{$train->file_train }}"> </div></td>
-									<td class="table-text"><div>
+									<td class="table-text"><div><a href="/storage/uploads/trainfiles/{{$train->name_train }}">{{$train->name_train }}</a> </div></td>
+									<td class="table-text"><input type="file" name="file_train" id="file_train" value="{{ old('train') }}"><div>
 
 
 

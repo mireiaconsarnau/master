@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use App\Repositories\TrainRepository;
 use Illuminate\Support\Facades\Gate;
 use PhpParser\Node\Expr\Cast\String_;
+use Input;
+use Validator;
 
 
 class TrainUploadController extends Controller
@@ -80,11 +82,23 @@ class TrainUploadController extends Controller
             'file_train' => 'required',
         ]);
 
-        $request->user()->trains()->create([
-            'file_train' => $request->file_train,
+        $file = Input::file('file_train');
+        $destinationPath = storage_path() . '/uploads/trainfiles';
+
+        if(!$file->move($destinationPath, $file->getClientOriginalName())) {
+            return $this->errors(['message' => 'Error saving the file.', 'code' => 400]);
+        }
+
+       $request->user()->trains()->create([
+            'file_train' => storage_path().'/uploads/trainfiles'.$file->getClientOriginalName(),
+            'name_train' => $file->getClientOriginalName(),
         ]);
 
         return redirect('/trains');
+
+
+
+
     }
 
     /**
@@ -116,11 +130,22 @@ class TrainUploadController extends Controller
         if (Gate::denies('see-admin-menu')) {
             abort(403);
         }
+
+
         $this->validate($request, [
             'file_train' => 'required',
         ]);
 
-        $train->file_train = $request['file_train'];
+
+        $file = Input::file($request['file_train']);
+        $destinationPath = storage_path() . '/uploads/trainfiles';
+
+        if(!$file->move($destinationPath, $file->getClientOriginalName())) {
+            return $this->errors(['message' => 'Error saving the file.', 'code' => 400]);
+        }
+
+        $train->file_train=storage_path().'/uploads/trainfiles'.$file->getClientOriginalName();
+        $train->name_train = $file->getClientOriginalName();
 
 
         $this->authorize('update', $train);

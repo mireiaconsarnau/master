@@ -20,7 +20,7 @@
 
 
 							<!-- New Train Form -->
-					<form action="/train" method="POST" class="form-horizontal">
+					<form action="/train" method="POST" class="form-horizontal" enctype="multipart/form-data">
 						{{ csrf_field() }}
 
 								<!-- Train Name -->
@@ -28,7 +28,9 @@
 							<label for="file_train" class="col-sm-3 control-label">Train File Name</label>
 
 							<div class="col-sm-6">
-								<input type="text" name="file_train" id="file_train" class="form-control" value="{{ old('train') }}">
+
+								<input type="file" name="file_train" id="file_train" value="{{ old('train') }}">
+
 							</div>
 
 						</div>

@@ -76,6 +76,7 @@ class TaskController extends Controller
             abort(403);
         }
 
+
         $this->validate($request, [
             'name_task' => 'required|max:255',
             'available_task' => 'required|max:3',
