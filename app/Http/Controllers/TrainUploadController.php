@@ -10,6 +10,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\TrainRepositoryRepository;
+USE Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class TrainUploadController extends Controller
 {
@@ -68,11 +69,14 @@ class TrainUploadController extends Controller
 
         ]);
 
-        $request->user()->trains()->create([
-            'file_train' => $request->file_train,
-
-        ]);
-
+        $file = $request->file('file_train');
+        if ($request->hasFile('file_train')) {
+            //
+        }
+        if ($request->file('file_train')->isValid()) {
+            //
+        }
+        $request->file('photo')->move($destinationPath, $fileName);
 
         return redirect('/trains');
     }

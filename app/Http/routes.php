@@ -19,7 +19,8 @@ Route::get('/', function () {
 Route::get('/tasks', 'TaskController@index');
 Route::post('/task', 'TaskController@store');
 Route::delete('/task/{task}', 'TaskController@destroy');
-Route::delete('/task/update/{task}', 'TaskController@edit');
+Route::put('/task/{task}', 'TaskController@update');
+
 
 
 Route::get('/trains', 'TrainUploadController@index');
