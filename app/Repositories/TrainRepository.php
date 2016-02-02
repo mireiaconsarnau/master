@@ -23,6 +23,6 @@ class TrainRepository
     {
         return TrainUpload::where('user_id', $user->id)
             ->orderBy('created_at', 'asc')
-            ->get();
+            ->paginate(10);
     }
 }

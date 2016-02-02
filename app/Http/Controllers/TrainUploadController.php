@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 
 
-use App\Repositories\TrainRepository;
 use App\TrainUpload;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\TrainRepositoryRepository;
-USE Symfony\Component\HttpFoundation\File\UploadedFile;
+use App\Repositories\TrainRepository;
+use Illuminate\Support\Facades\Gate;
+use PhpParser\Node\Expr\Cast\String_;
+
 
 class TrainUploadController extends Controller
 {
@@ -40,10 +41,17 @@ class TrainUploadController extends Controller
      */
     public function index(Request $request)
     {
+        if (Gate::denies('see-admin-menu')) {
+            abort(403);
+        }
+
         return view('trains.index', [
             'trains' => $this->trains->forUser($request->user()),
         ]);
+
+
     }
+
 
 
     /**
@@ -53,34 +61,31 @@ class TrainUploadController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
-     * Create a new task.
+     * Create a new train.
      *
      * @param  Request  $request
      * @return Response
      */
     public function store(Request $request)
     {
+        if (Gate::denies('see-admin-menu')) {
+            abort(403);
+        }
+
         $this->validate($request, [
             'file_train' => 'required',
-
         ]);
 
-        $file = $request->file('file_train');
-        if ($request->hasFile('file_train')) {
-            //
-        }
-        if ($request->file('file_train')->isValid()) {
-            //
-        }
-        $request->file('photo')->move($destinationPath, $fileName);
+        $request->user()->trains()->create([
+            'file_train' => $request->file_train,
+        ]);
 
         return redirect('/trains');
     }
-
 
     /**
      * Display the specified resource.
@@ -104,16 +109,27 @@ class TrainUploadController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+
+    public function update(Request $request, $train)
     {
-        //
+        if (Gate::denies('see-admin-menu')) {
+            abort(403);
+        }
+        $this->validate($request, [
+            'file_train' => 'required',
+        ]);
+
+        $train->file_train = $request['file_train'];
+
+
+        $this->authorize('update', $train);
+
+        $train->update();
+
+
+        return redirect('/trains');
+
     }
 
     /**
@@ -125,6 +141,9 @@ class TrainUploadController extends Controller
      */
     public function destroy(Request $request, TrainUpload $train)
     {
+        if (Gate::denies('see-admin-menu')) {
+            abort(403);
+        }
         $this->authorize('destroy', $train);
 
         $train->delete();

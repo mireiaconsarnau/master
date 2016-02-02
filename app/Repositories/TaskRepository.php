@@ -26,11 +26,6 @@ class TaskRepository
             ->paginate(10);
     }
 
-   /* public function update($id)
-    {
-        return Task::where('user_id', $user->id)
-            ->orderBy('created_at', 'asc')
-            ->get();
-    }*/
+
 
 }

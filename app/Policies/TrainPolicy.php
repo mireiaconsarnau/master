@@ -22,4 +22,9 @@ class TrainPolicy
     {
         return $user->id === $train->user_id;
     }
+
+    public function update(User $user, TrainUpload $train)
+    {
+        return $user->id === $train->user_id;
+    }
 }
