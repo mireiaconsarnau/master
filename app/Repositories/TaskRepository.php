@@ -23,7 +23,7 @@ class TaskRepository
     {
         return Task::where('user_id', $user->id)
             ->orderBy('created_at', 'asc')
-            ->paginate(3);
+            ->paginate(10);
     }
 
    /* public function update($id)
