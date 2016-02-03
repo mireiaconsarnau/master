@@ -27,3 +27,8 @@ Route::delete('/train/{train}', 'TrainUploadController@destroy');
 Route::put('/train/{train}', 'TrainUploadController@update');
 Route::get('/train/view/{file}', 'TrainUploadController@download');
 
+Route::get('/tests', 'TestUploadController@index');
+Route::post('/test', 'TestUploadController@store');
+Route::delete('/test/{test}', 'TestUploadController@destroy');
+Route::put('/test/{test}', 'TestUploadController@update');
+Route::get('/test/view/{file}', 'TestUploadController@download');

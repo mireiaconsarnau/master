@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
+use App\TrainUpload;
+use App\Task;
 
 class TestUpload extends Model
 {
@@ -11,12 +14,36 @@ class TestUpload extends Model
      *
      * @var string
      */
-    protected $table = 'testuploads';
+    protected $table = 'test_uploads';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name_test', 'file_test', 'disabled'];
+    protected $fillable = ['file_test','name_test','disabled'];
+
+    /**
+     * Get the user that owns the test.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the train that owns the test.
+     */
+    public function train()
+    {
+        return $this->belongsTo(TrainUpload::class);
+    }
+
+    /**
+     * Get the task that owns the test.
+     */
+    public function task()
+    {
+        return $this->belongsTo(Task::class);
+    }
 }

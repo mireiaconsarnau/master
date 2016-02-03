@@ -22,10 +22,12 @@ class TrainUpload extends Model
     protected $fillable = ['file_train','name_train'];
 
     /**
-     * Get the user that owns the train.
+     * Get the user that owns the test.
      */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+
 }

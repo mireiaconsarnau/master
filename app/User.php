@@ -53,5 +53,15 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany(TrainUpload::class);
     }
 
+    /**
+     * Get all of the tests for the user.
+     */
+    public function tests()
+    {
+        return $this->hasMany(TestUpload::class);
+    }
+
+
+
 
 }

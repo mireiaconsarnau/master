@@ -17,7 +17,7 @@
             @endcan
 
             @can('see-user-menu').
-            <li> <a href="#"><i class='fa fa-file-text'></i> <span>Test Files / Analysis</span></a></li>
+            <li class="active"> <a href="{{ url('tests') }}"><i class='fa fa-file-text'></i> <span>Test Files</span></a></li>
             @endcan
 
         </ul><!-- /.sidebar
