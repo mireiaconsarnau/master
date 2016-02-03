@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use App\TestUpload;
 use Illuminate\Database\Eloquent\Model;
 
 class TrainUpload extends Model
@@ -29,5 +30,11 @@ class TrainUpload extends Model
         return $this->belongsTo(User::class);
     }
 
-
+    /**
+     * Get all of the tests for the task.
+     */
+    public function tests()
+    {
+        return $this->hasMany(TestUpload::class);
+    }
 }

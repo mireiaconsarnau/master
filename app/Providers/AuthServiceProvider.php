@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Task;
 use App\TrainUpload;
-use App\TestUploadUpload;
+use App\TestUpload;
 use App\Policies\TaskPolicy;
 use App\Policies\TrainPolicy;
 use App\Policies\TestPolicy;
