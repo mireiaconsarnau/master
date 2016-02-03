@@ -138,6 +138,7 @@ class TrainUploadController extends Controller
 
 
         $file = Input::file('file_train');
+
         $destinationPath = storage_path() . '/uploads/trainfiles';
 
         if(!$file->move($destinationPath, $file->getClientOriginalName())) {
@@ -151,6 +152,8 @@ class TrainUploadController extends Controller
         $this->authorize('update', $train);
 
         $train->update();
+
+
 
         return redirect('/trains');
 
@@ -173,5 +176,11 @@ class TrainUploadController extends Controller
         $train->delete();
 
         return redirect('/trains');
+    }
+
+    public function download($fileId){
+        $entry = TrainUpload::where('id', '=', $fileId)->firstOrFail();
+        $pathToFile=storage_path()."/uploads/trainfiles/".$entry->name_train;
+        return response()->download($pathToFile);
     }
 }

@@ -25,4 +25,5 @@ Route::get('/trains', 'TrainUploadController@index');
 Route::post('/train', 'TrainUploadController@store');
 Route::delete('/train/{train}', 'TrainUploadController@destroy');
 Route::put('/train/{train}', 'TrainUploadController@update');
+Route::get('/train/view/{file}', 'TrainUploadController@download');
 

@@ -18,7 +18,7 @@
 									{{ csrf_field() }}
 									{{ method_field('PUT') }}
 								<tr>
-									<td class="table-text"><div><a href="/storage/uploads/trainfiles/{{$train->name_train }}">{{$train->name_train }}</a> </div></td>
+									<td class="table-text"><div><a href="/train/view/{{$train->id }}">{{$train->name_train }}</a> </div></td>
 									<td class="table-text"><input type="file" name="file_train" id="file_train" value="{{$train->file_train }}"><div>
 
 
