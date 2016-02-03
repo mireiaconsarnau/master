@@ -19,11 +19,21 @@
 				<div class="panel-body">
 
 
-							<!-- New Train Form -->
+							<!-- New Test Form -->
 					<form action="/test" method="POST" class="form-horizontal" enctype="multipart/form-data">
 						{{ csrf_field() }}
+								<!-- Available Task-->
+						<div class="form-group">
+							<label for="task_id" class="col-sm-3 control-label">Select Task</label>
 
-								<!-- Train Name -->
+							<div class="col-sm-6">
+								<select name="task_id" id="task_id">
+									<option value="1">Primera</option>
+									<option value="3">Tercera</option>
+								</select>
+							</div>
+						</div>
+								<!-- Test Name -->
 						<div class="form-group">
 							<label for="file_test" class="col-sm-3 control-label">Test File Name</label>
 

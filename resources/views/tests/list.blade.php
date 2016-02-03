@@ -9,33 +9,31 @@
 
 						<table class="table table-striped task-table">
 							<thead>
+							<th>Associated Task </th>
 							<th>Test File Name</th>
-							<th>&nbsp;</th>
 							</thead>
+
 							<tbody>
 							@foreach ($tests as $test)
 								<form action="/test/{{ $test->id }}" method="POST" enctype="multipart/form-data">
 									{{ csrf_field() }}
 									{{ method_field('PUT') }}
 								<tr>
+									<td class="table-text"><div>
+
+										Task Primera
+
+										</div></td>
 									<td class="table-text"><div><a href="/test/view/{{$test->id }}">{{$test->name_test }}</a> </div></td>
-									<td class="table-text"><input type="file" name="file_test" id="file_test" value="{{$test->file_trest }}"><div>
+
 
 
 
 										</div></td>
 
 
-									<!-- Train Update Button -->
-									<td>
 
-
-											<button type="submit" id="update-test-{{ $test->id }}" class="btn btn-success">
-												<i class="fa fa-pencil-square-o"></i> Update
-											</button>
-										</form>
-									</td>
-									<!-- Train Delete Button -->
+									<!-- Test Delete Button -->
 									<td>
 										<form action="/test/{{ $test->id }}" method="POST">
 											{{ csrf_field() }}

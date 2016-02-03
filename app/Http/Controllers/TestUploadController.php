@@ -77,6 +77,7 @@ class TestUploadController extends Controller
 
         $this->validate($request, [
             'file_test' => 'required',
+            'task_id' => 'required',
         ]);
 
         $file = Input::file('file_test');
@@ -89,6 +90,7 @@ class TestUploadController extends Controller
         $request->user()->tests()->create([
             'file_test' => storage_path().'/uploads/testfiles'.$file->getClientOriginalName(),
             'name_test' => $file->getClientOriginalName(),
+            'task_id' => $request->task_id,
         ]);
 
         return redirect('/tests');
@@ -131,6 +133,7 @@ class TestUploadController extends Controller
 
         $this->validate($request, [
             'file_test' => 'required',
+            'task_id' => 'required',
         ]);
 
 
@@ -144,6 +147,7 @@ class TestUploadController extends Controller
 
         $test->file_test=storage_path().'/uploads/testfiles'.$file->getClientOriginalName();
         $test->name_test = $file->getClientOriginalName();
+        $test->task_id= $request->task_id;
 
 
         $this->authorize('update', $test);
