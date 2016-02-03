@@ -137,7 +137,7 @@ class TrainUploadController extends Controller
         ]);
 
 
-        $file = Input::file($request['file_train']);
+        $file = Input::file('file_train');
         $destinationPath = storage_path() . '/uploads/trainfiles';
 
         if(!$file->move($destinationPath, $file->getClientOriginalName())) {
@@ -151,7 +151,6 @@ class TrainUploadController extends Controller
         $this->authorize('update', $train);
 
         $train->update();
-
 
         return redirect('/trains');
 
