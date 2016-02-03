@@ -1,5 +1,5 @@
 			<!-- List Tasks -->
-			@if (count($trains) > 0)
+			@if (count($tests) > 0)
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						List Test Files
@@ -52,7 +52,7 @@
 						</table>
 					</div>
 				</div>
-				{!! $test->render() !!}
+				{!! $tests->render() !!}
 			@endif
 
 

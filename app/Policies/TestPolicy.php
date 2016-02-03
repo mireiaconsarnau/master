@@ -7,7 +7,7 @@ use App\User;
 use App\TestUpload;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class TrainPolicy
+class TestPolicy
 {
     use HandlesAuthorization;
 

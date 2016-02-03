@@ -148,7 +148,7 @@ class TestUploadController extends Controller
 
         $this->authorize('update', $test);
 
-        $train->update();
+        $test->update();
 
 
 
