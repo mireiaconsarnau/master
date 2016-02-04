@@ -5,6 +5,9 @@ namespace App;
 use App\User;
 use App\TestUpload;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+
+
 
 class Task extends Model
 {
@@ -38,5 +41,16 @@ class Task extends Model
     public function tests()
     {
         return $this->hasMany(TestUpload::class);
+    }
+
+
+    /**
+     * Scope a query to only include available tasks.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAvailable($query)
+    {
+        return $query->where('available', 'On');
     }
 }

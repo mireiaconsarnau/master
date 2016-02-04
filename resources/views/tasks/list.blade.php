@@ -13,7 +13,8 @@
 							<th>&nbsp;</th>
 							</thead>
 							<tbody>
-							@foreach ($tasks as $task)
+
+
 								<form action="/task/{{ $task->id }}" method="POST">
 									{{ csrf_field() }}
 									{{ method_field('PUT') }}
