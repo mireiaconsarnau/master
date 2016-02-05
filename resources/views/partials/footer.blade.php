@@ -5,5 +5,5 @@
         
     </div>
     <!-- Default to the left -->
-    Pending footer...
+    coursejar.com
 </footer>

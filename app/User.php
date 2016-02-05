@@ -9,6 +9,10 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use App\TrainUpload;
+use App\TestUpload;
+use App\Task;
+
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -46,12 +50,22 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
-     * Get all of the tasks for the user.
+     * Get all of the trains for the user.
      */
     public function trains()
     {
         return $this->hasMany(TrainUpload::class);
     }
+
+    /**
+     * Get all of the tests for the user.
+     */
+    public function tests()
+    {
+        return $this->hasMany(TestUpload::class);
+    }
+
+
 
 
 }

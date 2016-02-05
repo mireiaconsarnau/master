@@ -4,10 +4,10 @@ namespace App\Policies;
 
 
 use App\User;
-use App\TrainUpload;
+use App\TestUpload;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class TrainPolicy
+class TestPolicy
 {
     use HandlesAuthorization;
 
@@ -15,16 +15,16 @@ class TrainPolicy
      * Determine if the given user can delete the given train.
      *
      * @param  User  $user
-     * @param  Task  $train
+     * @param  Test  $test
      * @return bool
      */
-    public function destroy(User $user, TrainUpload $train)
+    public function destroy(User $user, TestUpload $test)
     {
-        return $user->id === $train->user_id;
+        return $user->id === $test->user_id;
     }
 
-    public function update(User $user, TrainUpload $train)
+    public function update(User $user, TestUpload $test)
     {
-        return $user->id === $train->user_id;
+        return $user->id === $test->user_id;
     }
 }

@@ -16,15 +16,19 @@ Route::get('/', function () {
 })->middleware('guest');;
 
 
-Route::get('/tasks/{opt}', 'TaskController@index');
+Route::get('/tasks', 'TaskController@index');
 Route::post('/task', 'TaskController@store');
 Route::delete('/task/{task}', 'TaskController@destroy');
-Route::get('/tasks/{opt}', 'TaskController@index');
+Route::put('/task/{task}', 'TaskController@update');
 
 Route::get('/trains', 'TrainUploadController@index');
 Route::post('/train', 'TrainUploadController@store');
 Route::delete('/train/{train}', 'TrainUploadController@destroy');
+Route::put('/train/{train}', 'TrainUploadController@update');
+Route::get('/train/view/{file}', 'TrainUploadController@download');
 
 Route::get('/tests', 'TestUploadController@index');
 Route::post('/test', 'TestUploadController@store');
 Route::delete('/test/{test}', 'TestUploadController@destroy');
+Route::put('/test/{test}', 'TestUploadController@update');
+Route::get('/test/view/{file}', 'TestUploadController@download');

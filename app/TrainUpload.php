@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use App\TestUpload;
 use Illuminate\Database\Eloquent\Model;
 
 class TrainUpload extends Model
@@ -19,13 +20,21 @@ class TrainUpload extends Model
      *
      * @var array
      */
-    protected $fillable = ['name_train'];
+    protected $fillable = ['file_train','name_train'];
 
     /**
-     * Get the user that owns the train.
+     * Get the user that owns the test.
      */
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get all of the tests for the task.
+     */
+    public function tests()
+    {
+        return $this->hasMany(TestUpload::class);
     }
 }

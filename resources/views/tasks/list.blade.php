@@ -1,21 +1,12 @@
-@extends('app')
-
-@section('htmlheader_title')
-    Tasks
-@endsection
-
-
-@section('main-content')
-	<div class="container">
-		<div class="col-sm-offset-2 col-sm-8">
-						<!-- List Tasks -->
+			<!-- List Tasks -->
 			@if (count($tasks) > 0)
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Management Tasks
+						List Tasks
 					</div>
 
 					<div class="panel-body">
+
 						<table class="table table-striped task-table">
 							<thead>
 							<th>Task Name</th>
@@ -23,13 +14,17 @@
 							</thead>
 							<tbody>
 							@foreach ($tasks as $task)
+								<form action="/task/{{ $task->id }}" method="POST">
+									{{ csrf_field() }}
+									{{ method_field('PUT') }}
 								<tr>
 									<td class="table-text"><div><input type="text" name="name_task" id="name_task" class="form-control" value="{{$task->name_task }}"> </div></td>
 									<td class="table-text"><div>
+
 											<select name="available_task" id="available_task">
 												<option value="On"
 														@if ($task->available=="On")
-															selected
+														selected
 														@endif
 												>On</option>
 												<option value="Off"
@@ -41,27 +36,26 @@
 
 										</div></td>
 
+
 									<!-- Task Update Button -->
 									<td>
-										<form action="/task/{{ $task->id }}" method="POST">
-											{{ csrf_field() }}
-											{{ method_field('UPDATE') }}
-											<button type="submit" id="update-task-{{ $task->id }}" class="btn btn-danger">
-												<i class="fa fa-btn fa-trash"></i> Update
+
+
+											<button type="submit" id="update-task-{{ $task->id }}" class="btn btn-success">
+												<i class="fa fa-pencil-square-o"></i> Update
 											</button>
 										</form>
-
 									</td>
 									<!-- Task Delete Button -->
 									<td>
 										<form action="/task/{{ $task->id }}" method="POST">
 											{{ csrf_field() }}
 											{{ method_field('DELETE') }}
+
 											<button type="submit" id="delete-task-{{ $task->id }}" class="btn btn-danger">
 												<i class="fa fa-btn fa-trash"></i> Delete
 											</button>
 										</form>
-
 									</td>
 								</tr>
 							@endforeach
@@ -69,7 +63,7 @@
 						</table>
 					</div>
 				</div>
+				{!! $tasks->render() !!}
 			@endif
-		</div>
-	</div>
-@endsection
+
+

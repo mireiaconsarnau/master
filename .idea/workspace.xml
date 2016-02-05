@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="d9cc579c-4fe7-44ee-8acd-009e139cfd63" name="Default" comment="" />
+=======
+<<<<<<< HEAD
+    <list default="true" id="d9cc579c-4fe7-44ee-8acd-009e139cfd63" name="Default" comment="" />
+=======
+    <list default="true" id="d9cc579c-4fe7-44ee-8acd-009e139cfd63" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/errors/403.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/TaskController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/TaskController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Policies/TaskPolicy.php" afterPath="$PROJECT_DIR$/app/Policies/TaskPolicy.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Policies/TrainPolicy.php" afterPath="$PROJECT_DIR$/app/Policies/TrainPolicy.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/TaskRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/TaskRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/TrainRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/TrainRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/common/errors.blade.php" afterPath="$PROJECT_DIR$/resources/views/common/errors.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/partials/sidebar.blade.php" afterPath="$PROJECT_DIR$/resources/views/partials/sidebar.blade.php" />
+    </list>
+>>>>>>> 31b270afeb79f62f295fae15537eceea7276ba15
+>>>>>>> 3b53f3ae2a35ed71187c20791c72dd6a131ae9c4
     <ignored path="masterv1.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -511,7 +530,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
+    <frame x="88" y="97" width="1068" height="855" extended-state="0" />
+=======
     <frame x="65" y="52" width="1044" height="923" extended-state="4" />
+>>>>>>> 31b270afeb79f62f295fae15537eceea7276ba15
     <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />

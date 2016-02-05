@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Task;
 use App\TrainUpload;
+use App\TestUpload;
 use App\Policies\TaskPolicy;
 use App\Policies\TrainPolicy;
+use App\Policies\TestPolicy;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -19,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Task::class => TaskPolicy::class,
         TrainUpload::class => TrainPolicy::class,
+        TestUpload::class => TestPolicy::class,
     ];
 
     /**
@@ -35,6 +38,12 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('see-admin-menu', function ($user) {
             if ($user->type==1) {
+                return true;
+            }
+            return false;
+        });
+        $gate->define('see-user-menu', function ($user) {
+            if ($user->type==2) {
                 return true;
             }
             return false;

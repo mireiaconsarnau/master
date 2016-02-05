@@ -12,6 +12,7 @@ use App\Repositories\TaskRepository;
 use Illuminate\Support\Facades\Gate;
 use PhpParser\Node\Expr\Cast\String_;
 
+
 class TaskController extends Controller
 {
     /**
@@ -38,21 +39,20 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $opt)
+    public function index(Request $request)
     {
         if (Gate::denies('see-admin-menu')) {
             abort(403);
         }
-        if ($opt=="new"){
-            return view('tasks.index', [
-                'tasks' => $this->tasks->forUser($request->user()),
-        ]);}
-        elseif ($opt=="list"){
-            return view('tasks.list', [
-                'tasks' => $this->tasks->forUser($request->user()),
-            ]);}
+
+        return view('tasks.index', [
+            'tasks' => $this->tasks->forUser($request->user()),
+        ]);
+
 
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -72,6 +72,11 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        if (Gate::denies('see-admin-menu')) {
+            abort(403);
+        }
+
+
         $this->validate($request, [
             'name_task' => 'required|max:255',
             'available_task' => 'required|max:3',
@@ -82,7 +87,7 @@ class TaskController extends Controller
             'available' => $request->available_task,
         ]);
 
-        return redirect('/tasks/new');
+        return redirect('/tasks');
     }
 
     /**
@@ -107,16 +112,28 @@ class TaskController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+
+    public function update(Request $request, $task)
     {
-        //
+        if (Gate::denies('see-admin-menu')) {
+            abort(403);
+        }
+        $this->validate($request, [
+            'name_task' => 'required|max:255',
+            'available_task' => 'required|max:3',
+        ]);
+
+        $task->name_task = $request['name_task'];
+        $task->available = $request['available_task'];
+
+        $this->authorize('update', $task);
+
+        $task->update();
+
+
+        return redirect('/tasks');
+
     }
 
     /**
@@ -128,10 +145,13 @@ class TaskController extends Controller
      */
     public function destroy(Request $request, Task $task)
     {
+        if (Gate::denies('see-admin-menu')) {
+            abort(403);
+        }
         $this->authorize('destroy', $task);
 
         $task->delete();
 
-        return redirect('/tasks/new');
+        return redirect('/tasks');
     }
 }
