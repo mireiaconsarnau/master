@@ -21,13 +21,9 @@
 								<tr>
 									<td class="table-text"><div>
 
-
-
-											{{$test->task_id}}
-											{{$name_task = App\Task::name($test->task_id)->get()}}
-											
-
-
+											@foreach (App\Task::name($test->task_id)->get() as $nt)
+												{{$nt->name_task}}
+											@endforeach
 
 										</div></td>
 									<td class="table-text"><div><a href="/test/view/{{$test->id }}">{{$test->name_test }}</a> </div></td>
