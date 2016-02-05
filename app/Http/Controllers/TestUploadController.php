@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TestUpload;
+use App\Task;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -46,10 +47,13 @@ class TestUploadController extends Controller
 
         return view('tests.index', [
             'tests' => $this->tests->forUser($request->user()),
+            'available_tasks' => Task::available()->orderBy('created_at')->get(),
+
         ]);
 
 
     }
+
 
 
 
@@ -126,37 +130,7 @@ class TestUploadController extends Controller
 
     public function update(Request $request, $test)
     {
-        if (Gate::denies('see-user-menu')) {
-            abort(403);
-        }
-
-
-        $this->validate($request, [
-            'file_test' => 'required',
-            'task_id' => 'required',
-        ]);
-
-
-        $file = Input::file('file_test');
-
-        $destinationPath = storage_path() . '/uploads/testfiles';
-
-        if(!$file->move($destinationPath, $file->getClientOriginalName())) {
-            return $this->errors(['message' => 'Error saving the file.', 'code' => 400]);
-        }
-
-        $test->file_test=storage_path().'/uploads/testfiles'.$file->getClientOriginalName();
-        $test->name_test = $file->getClientOriginalName();
-        $test->task_id= $request->task_id;
-
-
-        $this->authorize('update', $test);
-
-        $test->update();
-
-
-
-        return redirect('/tests');
+        //
 
     }
 

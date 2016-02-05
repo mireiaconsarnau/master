@@ -21,7 +21,13 @@
 								<tr>
 									<td class="table-text"><div>
 
-										Task Primera
+
+
+											{{$test->task_id}}
+											{{$name_task = App\Task::name($test->task_id)->get()}}
+											
+
+
 
 										</div></td>
 									<td class="table-text"><div><a href="/test/view/{{$test->id }}">{{$test->name_test }}</a> </div></td>

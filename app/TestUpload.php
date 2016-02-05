@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\TrainUpload;
 use App\Task;
+use Illuminate\Support\Facades\DB;
 
 class TestUpload extends Model
 {
@@ -46,4 +47,6 @@ class TestUpload extends Model
     {
         return $this->belongsTo(Task::class);
     }
+
+
 }
