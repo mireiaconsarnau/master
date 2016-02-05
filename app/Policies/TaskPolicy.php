@@ -5,6 +5,7 @@ namespace App\Policies;
 
 use App\User;
 use App\Task;
+use App\TestUpload;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TaskPolicy
@@ -27,4 +28,6 @@ class TaskPolicy
     {
         return $user->id === $task->user_id;
     }
+
+
 }

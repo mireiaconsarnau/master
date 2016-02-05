@@ -10,6 +10,7 @@ namespace App\Repositories;
 
 use App\User;
 use App\TestUpload;
+use App\Task;
 
 class TestRepository
 {
