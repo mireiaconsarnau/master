@@ -6,7 +6,7 @@ use App\User;
 use App\TestUpload;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-
+use Illuminate\Support\Facades\DB;
 
 
 class Task extends Model
@@ -52,7 +52,8 @@ class Task extends Model
      */
     public function scopeAvailable($query)
     {
-        return $query->where('available', 'On');
+//        return $query->where('available', 'On');
+        return DB::table('tasks')->where('available', '=','On' );
 
     }
 

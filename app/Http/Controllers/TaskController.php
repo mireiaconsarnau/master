@@ -150,6 +150,7 @@ class TaskController extends Controller
         }
         $this->authorize('destroy', $task);
 
+
         $task->tests()->delete();
 
         $task->delete();
