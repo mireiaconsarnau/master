@@ -53,20 +53,11 @@ class Task extends Model
     public function scopeAvailable($query)
     {
 //        return $query->where('available', 'On');
+        //$users = DB::select('select * from users where active = ?', [1]);
         return DB::table('tasks')->where('available', '=','On' );
 
     }
 
-    /**
-     * Scope a query to only include name tasks.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeName($query,$id)
-    {
-        return $query->where('id', $id);
-
-    }
 
 
 }

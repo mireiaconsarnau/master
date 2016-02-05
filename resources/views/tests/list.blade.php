@@ -20,10 +20,9 @@
 									{{ method_field('PUT') }}
 								<tr>
 									<td class="table-text"><div>
+											<?php $tasca=\App\Task::find($test->task_id);?>
+											{{$tasca->name_task}}
 
-											@foreach (App\Task::name($test->task_id)->get() as $nt)
-												{{$nt->name_task}}
-											@endforeach
 
 										</div></td>
 									<td class="table-text"><div><a href="/test/view/{{$test->id }}">{{$test->name_test }}</a> </div></td>
