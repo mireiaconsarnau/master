@@ -47,7 +47,8 @@ class TestUploadController extends Controller
 
         return view('tests.index', [
             'tests' => $this->tests->forUser($request->user()),
-            'available_tasks' => Task::available()->orderBy('created_at')->get(),
+            'available_tasks' => Task::available($request->user())->orderBy('created_at')->get(),
+            //'available_tasks' => Task::available(),
 
         ]);
 

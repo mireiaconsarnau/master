@@ -50,22 +50,30 @@ class Task extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeAvailable($query)
+    public function scopeAvailable($query,$user)
     {
 
 
         $select2= DB::table('tasks')
             ->join('test_uploads','tasks.id','=','test_uploads.task_id')
-            ->select('tasks.*')
-            ->where('test_uploads.user_id', '=','2' );
+            ->select('tasks.id')
+            ->where('test_uploads.user_id', '=',$user->id);
 
-        $select1= DB::table('tasks')->select('tasks.*')
-            //->whereNotIn('id',$select2)
-            ->where('available', '=','On' );
+        $numbers=$select2->get();
+        $seq[]=0;
+        foreach ($numbers as $number) {
+            $seq[]=$number->id;
+        }
+
+        $select1= DB::table('tasks')
+            ->select('tasks.*')
+            ->where('available', 'On' )
+            ->whereNotIn('id',$seq);
+            //->toSql();
+
+       // dd($select1);
 
         return $select1;
-
-
 
 
     }
