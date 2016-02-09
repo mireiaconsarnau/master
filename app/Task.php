@@ -52,9 +52,21 @@ class Task extends Model
      */
     public function scopeAvailable($query)
     {
-//        return $query->where('available', 'On');
-        //$users = DB::select('select * from users where active = ?', [1]);
-        return DB::table('tasks')->where('available', '=','On' );
+
+
+        $select2= DB::table('tasks')
+            ->join('test_uploads','tasks.id','=','test_uploads.task_id')
+            ->select('tasks.*')
+            ->where('test_uploads.user_id', '=','2' );
+
+        $select1= DB::table('tasks')->select('tasks.*')
+            //->whereNotIn('id',$select2)
+            ->where('available', '=','On' );
+
+        return $select1;
+
+
+
 
     }
 
