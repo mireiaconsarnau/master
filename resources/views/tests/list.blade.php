@@ -15,13 +15,16 @@
 
 							<tbody>
 							@foreach ($tests as $test)
+								<?php $tasca=\App\Task::find($test->task_id);?>
+								<?php if ($tasca->available=='On'){?>
 								<form action="/test/{{ $test->id }}" method="POST" enctype="multipart/form-data">
 									{{ csrf_field() }}
 									{{ method_field('PUT') }}
 								<tr>
 									<td class="table-text"><div>
-											<?php $tasca=\App\Task::find($test->task_id);?>
-											{{$tasca->name_task}}
+
+
+												{{$tasca->name_task}}
 
 
 										</div></td>
@@ -46,6 +49,7 @@
 										</form>
 									</td>
 								</tr>
+					<?php } ?>
 							@endforeach
 							</tbody>
 						</table>
