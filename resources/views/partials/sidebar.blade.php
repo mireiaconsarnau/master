@@ -16,7 +16,7 @@
             <li> <a href="#"><i class='fa fa-bar-chart'></i> <span>Test Files / Analysis</span></a></li>
             @endcan
 
-            @can('see-user-menu').
+            @can('see-user-menu')
             <li class="active"> <a href="{{ url('tests') }}"><i class='fa fa-file-text'></i> <span>Test Files</span></a></li>
             @endcan
 

@@ -10,6 +10,7 @@
 	<section class="content">
 
 		<div class="row">
+			@can('see-admin-menu')
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<a href="/tasks" style="color:#333333">
 				<div class="info-box">
@@ -53,6 +54,22 @@
 					</a>
 				<!-- /.info-box -->
 			</div>
+			@endcan
+			@can('see-user-menu')
+			<div class="col-md-3 col-sm-6 col-xs-12">
+				<a href="/tests"  style="color:#333333">
+					<div class="info-box">
+						<span class="info-box-icon bg-green"><i class="fa fa-file-text"></i></span>
 
+						<div class="info-box-content">
+							<span class="info-box-text">Test Files</span>
+							<span class="info-box-number">Upload test files for a task</span>
+						</div>
+						<!-- /.info-box-content -->
+					</div>
+				</a>
+				<!-- /.info-box -->
+			</div>
+			@endcan
 		</div>
 @endsection
