@@ -24,4 +24,16 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+
+        function confirmDelete()
+        {
+            var x = confirm("Are you sure you want to delete the task and associated test files?");
+            if (x)
+                return true;
+            else
+                return false;
+        }
+
+    </script>
 </head>

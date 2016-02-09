@@ -10,7 +10,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\TaskRepository;
 use Illuminate\Support\Facades\Gate;
+
+use Illuminate\Support\Facades\Session;
 use PhpParser\Node\Expr\Cast\String_;
+
 
 
 class TaskController extends Controller
@@ -149,12 +152,10 @@ class TaskController extends Controller
             abort(403);
         }
         $this->authorize('destroy', $task);
-
-
         $task->tests()->delete();
 
         $task->delete();
 
-        return redirect('/tasks');
+       return redirect('/tasks');
     }
 }

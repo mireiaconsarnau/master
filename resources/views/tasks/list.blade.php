@@ -49,7 +49,7 @@
 									</td>
 									<!-- Task Delete Button -->
 									<td>
-										<form action="/task/{{ $task->id }}" method="POST">
+										<form action="/task/{{ $task->id }}" method="POST" onsubmit=" return confirmDelete()">
 											{{ csrf_field() }}
 											{{ method_field('DELETE') }}
 
