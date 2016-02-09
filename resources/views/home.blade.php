@@ -6,25 +6,53 @@
 
 
 @section('main-content')
-<div class="container">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-			<div class="panel panel-default">
+		<!-- Main content -->
+	<section class="content">
 
-
-
-
-				<div class="panel-heading">Home</div>
-
-				<div class="panel-body">
-					You are logged in!
+		<div class="row">
+			<div class="col-md-3 col-sm-6 col-xs-12">
+				<a href="/tasks" style="color:#333333">
+				<div class="info-box">
+					<span class="info-box-icon bg-aqua"><i class="fa fa-tasks"></i></span>
+					<div class="info-box-content">
+						<span class="info-box-text">Tasks</span>
+						<span class="info-box-number">Create and management tasks</span>
+					</div>
+					<!-- /.info-box-content -->
 				</div>
-
-
-
-
+				</a>
+				<!-- /.info-box -->
 			</div>
+			<!-- /.col -->
+			<div class="col-md-3 col-sm-6 col-xs-12">
+				<a href="/trains"  style="color:#333333">
+				<div class="info-box">
+					<span class="info-box-icon bg-green"><i class="fa fa-file-text"></i></span>
+
+					<div class="info-box-content">
+						<span class="info-box-text">Train Files</span>
+						<span class="info-box-number">Upload train files for use later</span>
+					</div>
+					<!-- /.info-box-content -->
+				</div>
+				</a>
+				<!-- /.info-box -->
+			</div>
+			<!-- /.col -->
+			<div class="col-md-3 col-sm-6 col-xs-12">
+				<a href="#"  style="color:#333333">
+				<div class="info-box">
+					<span class="info-box-icon bg-yellow"><i class="fa fa-bar-chart"></i></span>
+
+					<div class="info-box-content">
+						<span class="info-box-text">Test Files / Analysis</span>
+						<span class="info-box-number">Associated test files with train files</span>
+					</div>
+					<!-- /.info-box-content -->
+				</div>
+					</a>
+				<!-- /.info-box -->
+			</div>
+
 		</div>
-	</div>
-</div>
 @endsection
