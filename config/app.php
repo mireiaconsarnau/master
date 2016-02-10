@@ -147,6 +147,12 @@ return [
 
 	// AdminLTE template provider         
 	Acacha\AdminLTETemplateLaravel\app\Providers\AdminLTETemplateServiceProvider::class,
+        Stevebauman\Location\LocationServiceProvider::class,
+        Torann\GeoIP\GeoIPServiceProvider::class,
+
+
+
+
 
     ],
 
@@ -196,6 +202,11 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        'Location' =>  Stevebauman\Location\Facades\Location::class,
+        'GeoIP'     => Torann\GeoIP\GeoIPFacade::class,
+
+
+
 
     ],
 

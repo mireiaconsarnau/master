@@ -11,6 +11,12 @@
 
 		<div class="row">
 			@can('see-admin-menu')
+
+			<?php $location = GeoIP::getLocation('');?>
+			{{$location['city']}}
+
+
+
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<a href="/tasks" style="color:#333333">
 				<div class="info-box">
