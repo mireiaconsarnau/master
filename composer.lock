@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7da580be66ad15719be8fa1805a9190c",
-    "content-hash": "c04eb0d1903abc924e40ba694b3b4c7d",
+    "hash": "6930cd92074c4dadc2b98dc0ca528d9e",
+    "content-hash": "c989e6470dffaef8a26f9cb0496bf771",
     "packages": [
         {
             "name": "acacha/admin-lte-template-laravel",
@@ -2126,64 +2126,6 @@
             "time": "2016-01-07 11:12:32"
         },
         {
-            "name": "torann/geoip",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Torann/laravel-geoip.git",
-                "reference": "f16f839160b1ab1fe41382e18ec9a32dd09b10fd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Torann/laravel-geoip/zipball/f16f839160b1ab1fe41382e18ec9a32dd09b10fd",
-                "reference": "f16f839160b1ab1fe41382e18ec9a32dd09b10fd",
-                "shasum": ""
-            },
-            "require": {
-                "geoip2/geoip2": "~2.1",
-                "illuminate/config": "~5.0",
-                "illuminate/console": "~5.0",
-                "illuminate/session": "~5.0",
-                "illuminate/support": "~5.0",
-                "monolog/monolog": "~1.11",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpspec/phpspec": "~2.1",
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Torann\\GeoIP\\": "src/Torann/GeoIP"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD 2-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Daniel Stainback",
-                    "email": "daniel@lyften.com"
-                }
-            ],
-            "description": "Supports the two main GeoIP services (infoDB and Maxmind).",
-            "keywords": [
-                "geoip",
-                "geolocation",
-                "laravel",
-                "laravel 5",
-                "location"
-            ],
-            "time": "2015-06-30 16:13:35"
-        },
-        {
             "name": "vlucas/phpdotenv",
             "version": "v1.1.1",
             "source": {
@@ -3459,9 +3401,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "torann/geoip": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

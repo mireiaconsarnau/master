@@ -145,10 +145,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-	// AdminLTE template provider         
-	Acacha\AdminLTETemplateLaravel\app\Providers\AdminLTETemplateServiceProvider::class,
+	    // AdminLTE template provider
+	    Acacha\AdminLTETemplateLaravel\app\Providers\AdminLTETemplateServiceProvider::class,
         Stevebauman\Location\LocationServiceProvider::class,
-        Torann\GeoIP\GeoIPServiceProvider::class,
+
 
 
 
@@ -203,7 +203,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Location' =>  Stevebauman\Location\Facades\Location::class,
-        'GeoIP'     => Torann\GeoIP\GeoIPFacade::class,
+
 
 
 
