@@ -92,10 +92,15 @@ class TestUploadController extends Controller
             return $this->errors(['message' => 'Error saving the file.', 'code' => 400]);
         }
 
+        $location = Location::get($_SERVER["REMOTE_ADDR"]);
         $request->user()->tests()->create([
             'file_test' => storage_path().'/uploads/testfiles'.$file->getClientOriginalName(),
             'name_test' => $file->getClientOriginalName(),
             'task_id' => $request->task_id,
+            'ip' => $location->ip,
+            'countryCode' => $location->countryCode,
+            'countryName' => $location->countryName,
+            'cityName' => $location->cityName,
         ]);
 
         return redirect('/tests');

@@ -22,7 +22,7 @@ class TestUpload extends Model
      *
      * @var array
      */
-    protected $fillable = ['file_test','name_test','task_id'];
+    protected $fillable = ['file_test','name_test','task_id','ip','countryCode','countryName','cityName'];
 
     /**
      * Get the user that owns the test.

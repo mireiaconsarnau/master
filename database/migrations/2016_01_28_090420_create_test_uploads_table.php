@@ -21,6 +21,10 @@ class CreateTestUploadsTable extends Migration
             $table->integer('trainupload_id')->index();
             $table->string('disabled')->default('no');
             $table->timestamps();
+            $table->string('ip');
+            $table->string('countryCode');
+            $table->string('countryName');
+            $table->string('cityName');
         });
     }
 
