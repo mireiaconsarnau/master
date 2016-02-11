@@ -12,24 +12,7 @@
 		<div class="row">
 			@can('see-admin-menu')
 
-			<div class="col-md-3 col-sm-6 col-xs-12">
-				<a href="/tasks" style="color:#333333">
-				<div class="info-box">
-					<span class="info-box-icon bg-aqua"><i class="fa fa-tasks"></i></span>
-					<div class="info-box-content">
-						<span class="info-box-text">GEOIP</span>
-						<span class="info-box-number">Testing GEOIP</span>
-						<?php $location = Location::get($_SERVER["REMOTE_ADDR"]);?>
-						{{$location->countryCode}}
-						{{$location->countryName}}
-						{{$location->cityName}}
-						{{$location->ip}}
-					</div>
-					<!-- /.info-box-content -->
-				</div>
-				</a>
-				<!-- /.info-box -->
-			</div>
+
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<a href="/tasks" style="color:#333333">
 					<div class="info-box">
