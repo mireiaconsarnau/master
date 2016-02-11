@@ -11,6 +11,9 @@ use App\Repositories\TestRepository;
 use Illuminate\Support\Facades\Gate;
 use PhpParser\Node\Expr\Cast\String_;
 use Input;
+
+use Stevebauman\Location\Facades\Location;
+
 use Validator;
 
 class TestUploadController extends Controller
