@@ -164,7 +164,7 @@ class TestUploadAdminController extends Controller
     }
 
     public function download($fileId){
-        $entry = TestUpload::where('id', '=', $fileId)->firstOrFail();
+        $entry = TestUploadAdmin::where('id', '=', $fileId)->firstOrFail();
         $pathToFile=storage_path()."/uploads/testfiles/".$entry->name_test;
         return response()->download($pathToFile);
     }
