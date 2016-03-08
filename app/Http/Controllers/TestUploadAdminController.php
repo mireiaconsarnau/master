@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\TestAdminRepository;
 use App\TestUploadAdmin;
 use App\Task;
+use App\TrainUpload;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -52,6 +53,7 @@ class TestUploadAdminController extends Controller
         return view('testsadmin.index', [
             'testsadmin' => $this->testsadmin->forUser(),
             'available_tasks' => Task::available($request->user())->orderBy('created_at')->get(),
+            'trainupload_files' => TrainUpload::trainfiles($request->user())->orderBy('name_train')->get(),
             //'available_tasks' => Task::available(),
 
         ]);

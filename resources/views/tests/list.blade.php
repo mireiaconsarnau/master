@@ -2,7 +2,7 @@
 			@if (count($tests) > 0)
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						List Test Files
+						List Test Files2
 					</div>
 
 					<div class="panel-body">
