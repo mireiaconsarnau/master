@@ -24,7 +24,7 @@ class AuthServiceProvider extends ServiceProvider
         Task::class => TaskPolicy::class,
         TrainUpload::class => TrainPolicy::class,
         TestUpload::class => TestPolicy::class,
-        TestAdminUpload::class => TestAdminPolicy::class,
+        TestUploadAdmin::class => TestAdminPolicy::class,
     ];
 
     /**

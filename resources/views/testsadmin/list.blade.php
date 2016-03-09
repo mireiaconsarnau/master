@@ -25,7 +25,9 @@
 								<?php $tasca=\App\Task::find($testadmin->task_id);?>
 								<?php $user=\App\User::find($testadmin->user_id);?>
 								<?php $train=\App\TrainUpload::find($testadmin->trainupload_id);?>
-								<?php if($tasca->available=='On'){?>
+
+								@if ($tasca->available=="Off")
+
 								<form action="/testadmin/{{ $testadmin->id }}" method="POST" enctype="multipart/form-data">
 									{{ csrf_field() }}
 									{{ method_field('PUT') }}
@@ -69,11 +71,11 @@
 								</td>
 				<td class="table-text"><div>
 							@if ($testadmin->trainupload_id==0)
-								Not associated train file
+								-
 							@endif
 							@if ($testadmin->trainupload_id!=0)
 									<a href="/train/view/{{$testadmin->trainupload_id }}">{{$train->name_train }}</a>
-								@endif
+							@endif
 
 						 </div></td>
 
@@ -82,9 +84,13 @@
 
 					<div class="col-sm-6">
 						<select name="trainupload_id" id="trainupload_id">
+							<option value="0">Not associated train file</option>
 							@foreach ($trainupload_files as $trainupload_file)
-								<option value="{{$trainupload_file->id}}">{{$trainupload_file->name_train}}</option>
-
+								<option value="{{$trainupload_file->id}}"
+								@if ($testadmin->trainupload_id==$trainupload_file->id)
+									selected
+								@endif
+								>{{$trainupload_file->name_train}}</option>
 							@endforeach
 						</select>
 					</div>
@@ -100,10 +106,20 @@
 					</button>
 
 					</form>
+
+					@endif
+
+
+
+
+
+
+
+
 				</td>
 
 								</tr>
-							<?php }?>
+
 							@endforeach
 							</tbody>
 						</table>

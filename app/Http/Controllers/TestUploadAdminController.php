@@ -82,34 +82,6 @@ class TestUploadAdminController extends Controller
      */
     public function store(Request $request)
     {
-        if (Gate::denies('see-admin-menu')) {
-            abort(403);
-        }
-
-        $this->validate($request, [
-            'file_test' => 'required',
-            'task_id' => 'required',
-        ]);
-
-        $file = Input::file('file_test');
-        $destinationPath = storage_path() . '/uploads/testfiles';
-
-        if(!$file->move($destinationPath, $file->getClientOriginalName())) {
-            return $this->errors(['message' => 'Error saving the file.', 'code' => 400]);
-        }
-
-        $location = Location::get($_SERVER["REMOTE_ADDR"]);
-        $request->user()->tests()->create([
-            'file_test' => storage_path().'/uploads/testfiles'.$file->getClientOriginalName(),
-            'name_test' => $file->getClientOriginalName(),
-            'task_id' => $request->task_id,
-            'ip' => $location->ip,
-            'countryCode' => $location->countryCode,
-            'countryName' => $location->countryName,
-            'cityName' => $location->cityName,
-        ]);
-
-        return redirect('/testsadmin');
 
 
 
@@ -140,9 +112,22 @@ class TestUploadAdminController extends Controller
 
 
 
-    public function update(Request $request, $test)
+    public function update(Request $request, $testadmin)
     {
-        //
+        if (Gate::denies('see-admin-menu')) {
+            abort(403);
+        }
+
+        $testadmin->disabled = $request['disabled'];
+        $testadmin->trainupload_id = $request['trainupload_id'];
+
+        //$this->authorize('update', $testadmin);
+
+        $testadmin->update();
+
+
+
+        return redirect('/testsadmin');
 
     }
 
@@ -155,14 +140,7 @@ class TestUploadAdminController extends Controller
      */
     public function destroy(Request $request, TestUpload $test)
     {
-        if (Gate::denies('see-user-menu')) {
-            abort(403);
-        }
-        $this->authorize('destroy', $test);
 
-        $test->delete();
-
-        return redirect('/tests');
     }
 
     public function download($fileId){

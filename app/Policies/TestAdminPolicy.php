@@ -25,6 +25,6 @@ class TestAdminPolicy
 
     public function update(User $user, TestUploadAdmin $testadmin)
     {
-        return $user->id === $testadmin->user_id;
+        //return $user->id === $testadmin->user_id;
     }
 }
