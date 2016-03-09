@@ -2,7 +2,7 @@
 			@if (count($testsadmin) > 0)
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						List All Test Files
+						List All Test Files (Tasks Off)
 					</div>
 
 					<div class="panel-body">
@@ -107,17 +107,26 @@
 
 					</form>
 
-					@endif
-
-
-
-
-
-
 
 
 				</td>
+				<td>
+					<form action="/testadmin/analysis/{{ $testadmin->id }}" method="POST">
+						{{ csrf_field() }}
 
+
+						<button type="submit" id="analysis-task-{{ $testadmin->id }}" class="btn btn-warning"
+								@if ($testadmin->trainupload_id=="0")
+									disabled
+								@endif
+
+						>
+							<i class="fa fa-bar-chart"></i> Analysis
+						</button>
+					</form>
+
+				</td>
+				@endif
 								</tr>
 
 							@endforeach

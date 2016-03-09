@@ -131,6 +131,21 @@ class TestUploadAdminController extends Controller
 
     }
 
+    public function analysis(TestUploadAdmin $testadmin)
+    {
+        if (Gate::denies('see-admin-menu')) {
+            abort(403);
+        }
+
+       echo "id=".$testadmin->id;
+
+
+
+
+        //return redirect('/testsadmin');
+
+    }
+
     /**
      * Destroy the given train.
      *
