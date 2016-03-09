@@ -7,7 +7,7 @@
 
 @section('main-content')
 	<div class="container">
-		<div class="col-sm-offset-2 col-sm-8">
+		<div class="col-sm-offset-22 col-sm-82">
 			<!-- Display Validation Errors -->
 			@include('common.errors')
 
