@@ -22,7 +22,9 @@ class TestAdminRepository
      */
     public function forUser()
     {
-        return TestUploadAdmin::orderBy('created_at', 'desc')
+        return TestUploadAdmin::orderBy('task_id', 'asc')
+            ->orderBy('user_id', 'asc')
+            ->orderBy('created_at', 'desc')
             ->paginate(10);
     }
 }

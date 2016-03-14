@@ -2,12 +2,13 @@
 			@if (count($testsadmin) > 0)
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						List All Test Files (Tasks Off)
+						List All Test Files
 					</div>
 
 					<div class="panel-body">
 
 						<table class="table table-striped task-table">
+
 							<thead>
 							<th>Associated Task </th>
 							<th>Test File Name</th>
@@ -26,7 +27,7 @@
 								<?php $user=\App\User::find($testadmin->user_id);?>
 								<?php $train=\App\TrainUpload::find($testadmin->trainupload_id);?>
 
-								@if ($tasca->available=="Off")
+
 
 								<form action="/testadmin/{{ $testadmin->id }}" method="POST" enctype="multipart/form-data">
 									{{ csrf_field() }}
@@ -126,7 +127,7 @@
 					</form>
 
 				</td>
-				@endif
+
 								</tr>
 
 							@endforeach
