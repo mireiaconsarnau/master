@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 use App\TrainUpload;
 use App\TestUpload;
 use App\Task;
@@ -65,6 +67,39 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany(TestUpload::class);
     }
 
+    /**
+     * Scope a query to only include available tasks.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAvailable($query,$user)
+    {
+
+
+
+        $select2= DB::table('users')
+            ->join('train_uploads','users.id','=','train_uploads.associated_user_id')
+            ->select('users.id');
+            //->where('train_uploads.associated_user_id', '=',$user->id);
+
+        $numbers=$select2->get();
+        $seq[]=0;
+        foreach ($numbers as $number) {
+            $seq[]=$number->id;
+        }
+
+        $select1= DB::table('users')
+            ->select('users.*')
+            ->where('type', 2 )
+            ->whereNotIn('id',$seq);
+        //->toSql();
+
+        // dd($select1);
+
+        return $select1;
+
+
+    }
 
 
 

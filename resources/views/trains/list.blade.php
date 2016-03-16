@@ -11,9 +11,11 @@
 							<thead>
 							<th>Train File Name</th>
 							<th>&nbsp;</th>
+							<th>Associated User</th>
 							</thead>
 							<tbody>
 							@foreach ($trains as $train)
+								<?php $user=\App\User::find($train->associated_user_id);?>
 								<form action="/train/{{ $train->id }}" method="POST" enctype="multipart/form-data">
 									{{ csrf_field() }}
 									{{ method_field('PUT') }}
@@ -25,6 +27,7 @@
 
 										</div></td>
 
+									<td class="table-text"><div>						{{$user->name}}</div></td>
 
 									<!-- Train Update Button -->
 									<td>

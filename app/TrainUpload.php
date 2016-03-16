@@ -21,7 +21,7 @@ class TrainUpload extends Model
      *
      * @var array
      */
-    protected $fillable = ['file_train','name_train'];
+    protected $fillable = ['file_train','name_train','associated_user_id'];
 
     /**
      * Get the user that owns the test.
@@ -57,6 +57,23 @@ class TrainUpload extends Model
         // dd($select1);
 
         return $select1;
+
+
+    }
+    public function scopeTrainid($query,$associated_user_id)
+    {
+
+
+      /* $select1= DB::table('train_uploads')
+            ->select('train_uploads.*')
+            ->whereAssociated_user_id($associated_user_id)
+
+
+        ->toSql();*/
+        //echo $select1;
+        // dd($select1);
+
+        return $query->whereAssociated_user_id($associated_user_id);
 
 
     }

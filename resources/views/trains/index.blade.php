@@ -35,6 +35,21 @@
 
 						</div>
 
+						<!-- Users -->
+						<div class="form-group">
+							<label for="associated_user_id" class="col-sm-3 control-label">Select Associated User</label>
+
+							<div class="col-sm-6">
+								<select name="associated_user_id" id="associated_user_id">
+
+									@foreach ($available_users as $available_user)
+										<option value="{{$available_user->id}}">{{$available_user->name}}</option>
+
+									@endforeach
+								</select>
+							</div>
+						</div>
+
 
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\TestUpload;
 use App\Task;
+use App\TrainUpload;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -96,7 +97,17 @@ class TestUploadController extends Controller
         }
 
         $location = Location::get($_SERVER["REMOTE_ADDR"]);
-        $request->user()->tests()->create([
+
+
+       $associated_trains= TrainUpload::trainid($request->user()->id)->orderBy('id')->get();
+        $train_as=0;
+        foreach ($associated_trains as $associated_train) {
+            $train_as = $associated_train->id;
+        }
+
+
+
+       $request->user()->tests()->create([
             'file_test' => storage_path().'/uploads/testfiles'.$file->getClientOriginalName(),
             'name_test' => $file->getClientOriginalName(),
             'task_id' => $request->task_id,
@@ -104,6 +115,7 @@ class TestUploadController extends Controller
             'countryCode' => $location->countryCode,
             'countryName' => $location->countryName,
             'cityName' => $location->cityName,
+            'trainupload_id' => $train_as,
         ]);
 
         return redirect('/tests');
