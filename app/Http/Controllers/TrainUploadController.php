@@ -82,6 +82,7 @@ class TrainUploadController extends Controller
 
         $this->validate($request, [
             'file_train' => 'required',
+            'associated_user_id' => 'required',
         ]);
 
         $file = Input::file('file_train');
@@ -155,7 +156,7 @@ class TrainUploadController extends Controller
 
 
 
-        $train->associated_user_id = $request->associated_user_id;
+        //$train->associated_user_id = $request->associated_user_id;
 
 
         $this->authorize('update', $train);

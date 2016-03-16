@@ -11,6 +11,7 @@
 							<thead>
 							<th>Train File Name</th>
 							<th>&nbsp;</th>
+							<th>Associated User</th>
 							</thead>
 							<tbody>
 							@foreach ($trains as $train)
@@ -26,23 +27,7 @@
 
 										</div></td>
 
-									<td><div class="form-group">
-
-
-											<div class="col-sm-6">
-												<select name="associated_user_id" id="associated_user_id">
-													<option value="0">Not associated user</option>
-													@foreach ($available_users as $available_user)
-														<option value="{{$available_user->id}}"
-																@if ($train->associated_user_id==$available_user->id)
-																selected
-																@endif
-														>{{$available_user->name}}</option>
-													@endforeach
-												</select>
-											</div>
-										</div>
-									</td>
+									<td class="table-text"><div>						{{$user->name}}</div></td>
 
 									<!-- Train Update Button -->
 									<td>

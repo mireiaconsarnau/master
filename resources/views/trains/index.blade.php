@@ -7,7 +7,7 @@
 
 @section('main-content')
 	<div class="container">
-		<div class="col-sm-offset-2 col-sm-83">
+		<div class="col-sm-offset-2 col-sm-8">
 			<!-- Display Validation Errors -->
 			@include('common.errors')
 			<div class="panel panel-default">
@@ -41,7 +41,7 @@
 
 							<div class="col-sm-6">
 								<select name="associated_user_id" id="associated_user_id">
-									<option value="0">Select associated user</option>
+
 									@foreach ($available_users as $available_user)
 										<option value="{{$available_user->id}}">{{$available_user->name}}</option>
 
