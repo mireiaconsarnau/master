@@ -182,6 +182,7 @@ class TrainUploadController extends Controller
             abort(403);
         }
         $this->authorize('destroy', $train);
+        $train->tests()->delete();
 
         $train->delete();
 

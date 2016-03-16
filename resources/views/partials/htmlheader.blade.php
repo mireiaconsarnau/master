@@ -35,5 +35,14 @@
                 return false;
         }
 
+        function confirmDeleteTrain()
+        {
+            var x = confirm("Are you sure you want to delete the train file and associated test files?");
+            if (x)
+                return true;
+            else
+                return false;
+        }
+
     </script>
 </head>

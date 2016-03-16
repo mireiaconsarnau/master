@@ -111,7 +111,22 @@
 
 
 	</td>
+	<td>
+		<form action="/testadmin/analysis/{{ $testadmin->id }}" method="POST">
+			{{ csrf_field() }}
 
+
+			<button type="submit" id="analysis-task-{{ $testadmin->id }}" class="btn btn-warning"
+					@if ($testadmin->trainupload_id=="0")
+					disabled
+					@endif
+
+			>
+				<i class="fa fa-bar-chart"></i> Analysis
+			</button>
+		</form>
+
+	</td>
 
 	</tr>
 

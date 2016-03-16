@@ -44,7 +44,7 @@
 											{{ csrf_field() }}
 											{{ method_field('DELETE') }}
 
-											<button type="submit" id="delete-train-{{ $train->id }}" class="btn btn-danger">
+											<button type="submit" id="delete-train-{{ $train->id }}" class="btn btn-danger"  onsubmit=" return confirmDeleteTrain()">
 												<i class="fa fa-btn fa-trash"></i> Delete
 											</button>
 										</form>
