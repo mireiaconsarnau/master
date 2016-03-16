@@ -7,7 +7,7 @@
 
 @section('main-content')
 	<div class="container">
-		<div class="col-sm-offset-2 col-sm-8">
+		<div class="col-sm-offset-2 col-sm-83">
 			<!-- Display Validation Errors -->
 			@include('common.errors')
 			<div class="panel panel-default">
@@ -33,6 +33,21 @@
 
 							</div>
 
+						</div>
+
+						<!-- Users -->
+						<div class="form-group">
+							<label for="associated_user_id" class="col-sm-3 control-label">Select Associated User</label>
+
+							<div class="col-sm-6">
+								<select name="associated_user_id" id="associated_user_id">
+									<option value="0">Select associated user</option>
+									@foreach ($available_users as $available_user)
+										<option value="{{$available_user->id}}">{{$available_user->name}}</option>
+
+									@endforeach
+								</select>
+							</div>
 						</div>
 
 

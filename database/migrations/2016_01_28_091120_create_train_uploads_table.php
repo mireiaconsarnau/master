@@ -17,6 +17,7 @@ class CreateTrainUploadsTable extends Migration
             $table->string('file_train');
             $table->string('name_train');
             $table->integer('user_id')->index();
+            $table->integer('associated_user_id')->default(0);
             $table->timestamps();
         });
     }

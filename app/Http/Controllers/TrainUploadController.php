@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\TrainUpload;
 use App\Http\Requests;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\TrainRepository;
@@ -49,6 +50,7 @@ class TrainUploadController extends Controller
 
         return view('trains.index', [
             'trains' => $this->trains->forUser($request->user()),
+            'available_users' => User::available($request->user())->orderBy('name')->get(),
         ]);
 
 
@@ -92,6 +94,7 @@ class TrainUploadController extends Controller
        $request->user()->trains()->create([
             'file_train' => storage_path().'/uploads/trainfiles'.$file->getClientOriginalName(),
             'name_train' => $file->getClientOriginalName(),
+            'associated_user_id' => $request->associated_user_id,
         ]);
 
         return redirect('/trains');
@@ -132,21 +135,27 @@ class TrainUploadController extends Controller
         }
 
 
-        $this->validate($request, [
+        /*$this->validate($request, [
             'file_train' => 'required',
-        ]);
+        ]);*/
 
 
         $file = Input::file('file_train');
 
-        $destinationPath = storage_path() . '/uploads/trainfiles';
+        if ($file) {
+            $destinationPath = storage_path() . '/uploads/trainfiles';
 
-        if(!$file->move($destinationPath, $file->getClientOriginalName())) {
-            return $this->errors(['message' => 'Error saving the file.', 'code' => 400]);
+            if (!$file->move($destinationPath, $file->getClientOriginalName())) {
+                return $this->errors(['message' => 'Error saving the file.', 'code' => 400]);
+            }
+
+            $train->file_train = storage_path() . '/uploads/trainfiles' . $file->getClientOriginalName();
+            $train->name_train = $file->getClientOriginalName();
         }
 
-        $train->file_train=storage_path().'/uploads/trainfiles'.$file->getClientOriginalName();
-        $train->name_train = $file->getClientOriginalName();
+
+
+        $train->associated_user_id = $request->associated_user_id;
 
 
         $this->authorize('update', $train);
