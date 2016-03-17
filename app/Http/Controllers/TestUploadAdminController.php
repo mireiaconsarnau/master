@@ -119,7 +119,7 @@ class TestUploadAdminController extends Controller
         }
 
         $testadmin->disabled = $request['disabled'];
-        $testadmin->trainupload_id = $request['trainupload_id'];
+        $testadmin->train_upload_id = $request['train_upload_id'];
 
         //$this->authorize('update', $testadmin);
 

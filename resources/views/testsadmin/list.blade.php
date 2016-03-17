@@ -1,16 +1,26 @@
 <!-- List Tasks -->
-@if (count($testsadmin) > 0)
+
+	<?php $tasques=\App\Task::tasques();?>
+
+	@foreach ($tasques as $tasque)
+
+
+
 	<div class="panel panel-default">
+
 		<div class="panel-heading">
-			List All Test Files
+
+			{{$tasque->name_task}}
+
 		</div>
+
 
 		<div class="panel-body">
 
 			<table class="table table-striped task-table">
 
 				<thead>
-				<th>Associated Task </th>
+
 				<th>Test File Name</th>
 				<th>User</th>
 				<th>IP</th>
@@ -22,46 +32,46 @@
 				</thead>
 
 				<tbody>
-				@foreach ($testsadmin as $testadmin)
-					<?php $tasca=\App\Task::find($testadmin->task_id);?>
-					<?php $user=\App\User::find($testadmin->user_id);?>
-					<?php $train=\App\TrainUpload::find($testadmin->trainupload_id);?>
+				<?php $testsfortask=\App\TestUploadAdmin::testsfortask($tasque->id)->get();?>
+
+				@if (count($testsfortask) > 0)
+				@foreach ($testsfortask as $testfortask)
+					<?php $tasca=\App\Task::find($testfortask->task_id);?>
+					<?php $user=\App\User::find($testfortask->user_id);?>
+					<?php $train=\App\TrainUpload::find($testfortask->train_upload_id);?>
 
 
 
-					<form action="/testadmin/{{ $testadmin->id }}" method="POST" enctype="multipart/form-data">
+					<form action="/testadmin/{{ $testfortask->id }}" method="POST" enctype="multipart/form-data">
 						{{ csrf_field() }}
 						{{ method_field('PUT') }}
 						<tr>
-							<td class="table-text"><div>
-									{{$tasca->name_task}}
-								</div>
-							</td>
-							<td class="table-text"><div><a href="/testadmin/view/{{$testadmin->id }}">{{$testadmin->name_test }}</a> </div></td>
+
+							<td class="table-text"><div><a href="/testadmin/view/{{$testfortask->id }}">{{$testfortask->name_test }}</a> </div></td>
 		</div>
 		</td>
 		<td class="table-text"><div>{{$user->name}} </div></td>
 	</div>
 	</td>
-	<td class="table-text"><div>{{$testadmin->ip }} </div></td>
+	<td class="table-text"><div>{{$testfortask->ip }} </div></td>
 	</div>
 	</td>
-	<td class="table-text"><div>{{$testadmin->countryName }} </div></td>
+	<td class="table-text"><div>{{$testfortask->countryName }} </div></td>
 	</div>
 	</td>
-	<td class="table-text"><div>{{$testadmin->cityName }} </div></td>
+	<td class="table-text"><div>{{$testfortask->cityName }} </div></td>
 	</div>
 	</td>
 	<td class="table-text"><div>
 
 			<select name="disabled" id="disabled">
 				<option value="no"
-						@if ($testadmin->disabled=="no")
+						@if ($testfortask->disabled=="no")
 						selected
 						@endif
 				>No</option>
 				<option value="yes"
-						@if ($testadmin->disabled=="yes")
+						@if ($testfortask->disabled=="yes")
 						selected
 						@endif
 				>Yes</option>
@@ -71,11 +81,11 @@
 	</div>
 	</td>
 	<td class="table-text"><div>
-			@if ($testadmin->trainupload_id==0)
+			@if ($testfortask->train_upload_id==0)
 				-
 			@endif
-			@if ($testadmin->trainupload_id!=0)
-				<a href="/train/view/{{$testadmin->trainupload_id }}">{{$train->name_train }}</a>
+			@if ($testfortask->train_upload_id!=0)
+				<a href="/train/view/{{$testfortask->train_upload_id }}">{{$train->name_train }}</a>
 			@endif
 
 		</div></td>
@@ -84,11 +94,11 @@
 
 
 			<div class="col-sm-6">
-				<select name="trainupload_id" id="trainupload_id">
-					<option value="0">Not associated train file</option>
+				<select name="train_upload_id" id="train_upload_id">
+
 					@foreach ($trainupload_files as $trainupload_file)
 						<option value="{{$trainupload_file->id}}"
-								@if ($testadmin->trainupload_id==$trainupload_file->id)
+								@if ($testfortask->train_upload_id==$trainupload_file->id)
 								selected
 								@endif
 						>{{$trainupload_file->name_train}}</option>
@@ -102,7 +112,7 @@
 	<td>
 
 
-		<button type="submit" id="update-testadmin-{{ $testadmin->id }}" class="btn btn-success">
+		<button type="submit" id="update-testadmin-{{ $testfortask->id }}" class="btn btn-success">
 			<i class="fa fa-pencil-square-o"></i> Update
 		</button>
 
@@ -114,11 +124,44 @@
 
 
 	</tr>
+		@endforeach
 
-	@endforeach
+
+	<tr>
+
+
+		<td class="table-text" style="background-color: #FFFFFF;"></td>
+		<td class="table-text" style="background-color: #FFFFFF;"></td>
+		<td class="table-text" style="background-color: #FFFFFF;"></td>
+		<td class="table-text" style="background-color: #FFFFFF;"></td>
+		<td class="table-text" style="background-color: #FFFFFF;"></td>
+		<td class="table-text" style="background-color: #FFFFFF;"></td>
+		<td class="table-text" style="background-color: #FFFFFF;"></td>
+		<td class="table-text" style="background-color: #FFFFFF;"></td>
+		<td class="table-text"  style="background-color: #FFFFFF;">
+				<form action="/testadmin/analysis/{{ $testfortask->id }}" method="POST">
+					{{ csrf_field() }}
+
+
+					<button type="submit" id="analysis-task-{{ $testfortask->id }}" class="btn btn-warning"
+							@if ($testfortask->train_upload_id=="0")
+							disabled
+							@endif
+
+					>
+						<i class="fa fa-bar-chart"></i> Analysis
+					</button>
+				</form>
+
+		</td>
+
+	</tr>
+@endif
 	</tbody>
 	</table>
 	</div>
 	</div>
-	{!! $testsadmin->render() !!}
-@endif
+	@endforeach
+
+
+	{!! $tasques->render() !!}

@@ -40,11 +40,11 @@
 									</td>
 									<!-- Train Delete Button -->
 									<td>
-										<form action="/train/{{ $train->id }}" method="POST">
+										<form action="/train/{{ $train->id }}" method="POST"  onsubmit=" return confirmDeleteTrain()">
 											{{ csrf_field() }}
 											{{ method_field('DELETE') }}
 
-											<button type="submit" id="delete-train-{{ $train->id }}" class="btn btn-danger"  onsubmit=" return confirmDeleteTrain()">
+											<button type="submit" id="delete-train-{{ $train->id }}" class="btn btn-danger">
 												<i class="fa fa-btn fa-trash"></i> Delete
 											</button>
 										</form>

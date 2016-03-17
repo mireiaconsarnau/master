@@ -18,7 +18,7 @@ class CreateTestUploadsTable extends Migration
             $table->string('name_test');
             $table->integer('user_id')->index();
             $table->integer('task_id')->index();
-            $table->integer('trainupload_id')->index();
+            $table->integer('train_upload_id')->index();
             $table->string('disabled')->default('no');
             $table->timestamps();
             $table->string('ip');

@@ -115,7 +115,7 @@ class TestUploadController extends Controller
             'countryCode' => $location->countryCode,
             'countryName' => $location->countryName,
             'cityName' => $location->cityName,
-            'trainupload_id' => $train_as,
+            'train_upload_id' => $train_as,
         ]);
 
         return redirect('/tests');

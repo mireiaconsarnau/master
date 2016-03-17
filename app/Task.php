@@ -78,6 +78,19 @@ class Task extends Model
 
     }
 
+    public function scopeTasques($query)
+    {
+
+
+        $select1= DB::table('tasks')
+            ->select('tasks.*')
+            ->orderBy('created_at', 'desc')
+            ->paginate(1);
+        return $select1;
+
+
+    }
+
 
 
 }

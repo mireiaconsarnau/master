@@ -22,7 +22,7 @@ class TestUploadAdmin extends Model
      *
      * @var array
      */
-    protected $fillable = ['file_test','name_test','task_id','ip','countryCode','countryName','cityName','disabled','trainupload_id'];
+    protected $fillable = ['file_test','name_test','task_id','ip','countryCode','countryName','cityName','disabled','train_upload_id'];
 
     /**
      * Get the user that owns the test.
@@ -46,6 +46,22 @@ class TestUploadAdmin extends Model
     public function task()
     {
         return $this->belongsTo(Task::class);
+    }
+    public function scopeTestsfortask($query,$task_id)
+    {
+
+
+
+        $select1= DB::table('test_uploads')
+            ->select('test_uploads.*')
+            ->where('task_id', $task_id );
+        //->toSql();
+
+        // dd($select1);
+
+        return $select1;
+
+
     }
 
 
