@@ -84,7 +84,7 @@ class Task extends Model
 
         $select1= DB::table('tasks')
             ->select('tasks.*')
-            ->orderBy('created_at', 'desc')
+            ->orderBy('created_at', 'asc')
             ->paginate(1);
         return $select1;
 
