@@ -139,7 +139,7 @@ class TestUploadAdminController extends Controller
 
        echo "id=".$testadmin->id;
         $output=array();
-        exec("python /var/www/html/masterv1/storage/python/script1.py",$output);
+        exec("python /var/www/html/masterv1/storage/python/script2.py",$output);
         echo $output[0];
 
 

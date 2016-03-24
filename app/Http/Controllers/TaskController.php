@@ -90,6 +90,13 @@ class TaskController extends Controller
             'available' => $request->available_task,
         ]);
 
+        mkdir(storage_path().'/uploads/'.$request->name_task, 0777);
+        chmod(storage_path().'/uploads/'.$request->name_task, 0777);
+        mkdir(storage_path().'/uploads/'.$request->name_task.'/testing', 0777);
+        chmod(storage_path().'/uploads/'.$request->name_task.'/testing', 0777);
+        mkdir(storage_path().'/uploads/'.$request->name_task.'/training', 0777);
+        chmod(storage_path().'/uploads/'.$request->name_task.'/training', 0777);
+
         return redirect('/tasks');
     }
 
@@ -127,10 +134,14 @@ class TaskController extends Controller
             'available_task' => 'required|max:3',
         ]);
 
+        rename(storage_path().'/uploads/'.$task->name_task,storage_path().'/uploads/'.$request['name_task']);
+
         $task->name_task = $request['name_task'];
         $task->available = $request['available_task'];
 
         $this->authorize('update', $task);
+
+
 
         $task->update();
 
@@ -156,6 +167,14 @@ class TaskController extends Controller
 
         $task->delete();
 
+
+        $path=storage_path().'/uploads/'.$task->name_task;
+        exec("rm -r {$path}");
+
        return redirect('/tasks');
     }
+
+
+
+
 }
