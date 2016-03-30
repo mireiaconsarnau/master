@@ -1,17 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Mar 29 09:50:32 2016
-
-@author: mireiaw
-"""
-##### SVM 1 to many
-#%pylab inline
-#pylab.rcParams['figure.figsize'] = (10.0, 8.0)
-#from matplotlib import pyplot as plt
-
-%pylab inline
-pylab.rcParams['figure.figsize'] = (10.0, 8.0)
-
+#! /usr/bin/env python
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
@@ -26,7 +13,7 @@ from sklearn.feature_extraction import DictVectorizer
 from sklearn import svm
 
 
-data = load_files('/home/mireia/anaconda3/exp4/train/',categories=None)
+data = load_files('C:/ML/exp4/train',categories=None)
 
 
 #test_path='C:/ML/music/testing'
@@ -34,7 +21,7 @@ data = load_files('/home/mireia/anaconda3/exp4/train/',categories=None)
 
 #with open(test_path) as f:
 #    test_data = [f.read()]
-data_test = load_files('/home/mireia/anaconda3/exp4/test/',categories=None)
+data_test = load_files('C:/ML/exp4/test',categories=None)
 test_data = [open(f).read() for f in data_test.filenames]
 
 
