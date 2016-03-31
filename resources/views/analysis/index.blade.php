@@ -8,11 +8,18 @@
 @section('main-content')
 	<div class="container">
 		<div class="col-sm-offset-22 col-sm-82">
-			<!-- Display Validation Errors -->
-			@include('common.errors')
-
-			<img src="../../../img.png">
-
+			<div class="panel panel-default">
+				<div class="panel-body">
+					@foreach ($inf as $line)
+						{{$line}}<br>
+					@endforeach
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<img src="../../../img.png">
+				</div>
+			</div>
 
 		</div>
 	</div>

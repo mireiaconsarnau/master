@@ -137,19 +137,20 @@ class TestUploadAdminController extends Controller
             abort(403);
         }
 
-       //echo "id=".$testadmin->id;
+
+               //echo "id=".$testadmin->id;
         $output=array();
         exec("python /var/www/html/masterv1/storage/python/hello.py",$output);
         //foreach ($output as $line) print "$line<br/>";
 
-
-
-       exec("python /var/www/html/masterv1/storage/python/hello3.py");
+        /*exec("python /var/www/html/masterv1/storage/python/hello3.py");
 
         $im = imagecreatefrompng("img.png");
-        header('Content-Type: image/png');
+        header('Content-Type: image/png');*/
         //imagepng($im);
         //imagedestroy($im);
+
+
 
 //
 
