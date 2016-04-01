@@ -143,10 +143,10 @@ class TestUploadAdminController extends Controller
         exec("python /var/www/html/masterv1/storage/python/hello.py",$output);
         //foreach ($output as $line) print "$line<br/>";
 
-        /*exec("python /var/www/html/masterv1/storage/python/hello3.py");
+        exec("python /var/www/html/masterv1/storage/python/hello3.py");
 
         $im = imagecreatefrompng("img.png");
-        header('Content-Type: image/png');*/
+        header('Content-Type: image/png');
         //imagepng($im);
         //imagedestroy($im);
 

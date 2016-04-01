@@ -29,14 +29,14 @@ vectorized_test=vectorizer.transform(test_data)
 vectorized_test_clean=vectorizer.fit_transform(test_data)# [:, :2]only 2 features are considere
 
 #### loaded training set stats
-print('%%%%'*20,'train \n')
+print('%%%%'*10,'train \n')
 print('train target length',len(data.target))
 print('train target_names',data.target_names)
 print('train matrix',vectorized_data.shape)
 
 
 #### loaded test set stats
-print('%%%%'*20,'test \n')
+print('%%%%'*10,'test \n')
 ### display matrix before normalization
 print('test target length',len(data_test.target))
 print('test target_names',data_test.target_names)

@@ -139,19 +139,21 @@
 		<td class="table-text" style="background-color: #FFFFFF;"></td>
 		<td class="table-text" style="background-color: #FFFFFF;"></td>
 		<td class="table-text"  style="background-color: #FFFFFF;">
-				<form action="/testadmin/analysis/{{ $testfortask->id }}" method="POST">
+				<form action="/testadmin/analysis/{{ $testfortask->id }}" method="POST" target="_blank">
 					{{ csrf_field() }}
-
-
 					<button type="submit" id="analysis-task-{{ $testfortask->id }}" class="btn btn-warning"
 							@if ($testfortask->train_upload_id=="0")
 							disabled
 							@endif
 
-					>
-						<i class="fa fa-bar-chart"></i> Analysis
+							>
+						<i class="fa fa-bar-chart"> Analysis</i>
 					</button>
+
+
 				</form>
+
+
 
 		</td>
 
