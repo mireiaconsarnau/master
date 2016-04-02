@@ -85,15 +85,26 @@ class TrainUploadController extends Controller
             'associated_user_id' => 'required',
         ]);
 
+
+        $user=\App\User::find($request->associated_user_id);
+        $portions=explode(" ", $user->name);
+        $folder="";
+        foreach ($portions as $portion)
+            $folder.=$portion;
+
+        mkdir(storage_path().'/uploads/train/'.$folder, 0777);
+        chmod(storage_path().'/uploads/train/'.$folder, 0777);
+
+
         $file = Input::file('file_train');
-        $destinationPath = storage_path() . '/uploads/trainfiles';
+        $destinationPath = storage_path() . '/uploads/train/'.$folder;
 
         if(!$file->move($destinationPath, $file->getClientOriginalName())) {
             return $this->errors(['message' => 'Error saving the file.', 'code' => 400]);
         }
 
        $request->user()->trains()->create([
-            'file_train' => storage_path().'/uploads/trainfiles'.$file->getClientOriginalName(),
+            'file_train' => storage_path().'/uploads/train/'.$folder."/".$file->getClientOriginalName(),
             'name_train' => $file->getClientOriginalName(),
             'associated_user_id' => $request->associated_user_id,
         ]);
@@ -143,14 +154,21 @@ class TrainUploadController extends Controller
 
         $file = Input::file('file_train');
 
+        $user=\App\User::find($train->associated_user_id);
+        $portions=explode(" ", $user->name);
+        $folder="";
+        foreach ($portions as $portion)
+            $folder.=$portion;
+
         if ($file) {
-            $destinationPath = storage_path() . '/uploads/trainfiles';
+            $destinationPath = storage_path() . '/uploads/train/'.$folder;
+            exec("rm -r {$destinationPath}");
 
             if (!$file->move($destinationPath, $file->getClientOriginalName())) {
                 return $this->errors(['message' => 'Error saving the file.', 'code' => 400]);
             }
 
-            $train->file_train = storage_path() . '/uploads/trainfiles' . $file->getClientOriginalName();
+            $train->file_train = storage_path() . '/uploads/train/'.$folder."/" . $file->getClientOriginalName();
             $train->name_train = $file->getClientOriginalName();
         }
 
@@ -186,12 +204,30 @@ class TrainUploadController extends Controller
 
         $train->delete();
 
+        $user=\App\User::find($train->associated_user_id);
+        $portions_user=explode(" ", $user->name);
+        $name="";
+        foreach ($portions_user as $portion_user)
+            $name.=$portion_user;
+
+        $path=storage_path().'/uploads/train/'.$name;
+        exec("rm -r {$path}");
+
+
         return redirect('/trains');
     }
 
     public function download($fileId){
         $entry = TrainUpload::where('id', '=', $fileId)->firstOrFail();
-        $pathToFile=storage_path()."/uploads/trainfiles/".$entry->name_train;
+
+        $user=\App\User::find($entry->associated_user_id);
+        $portions_user=explode(" ", $user->name);
+        $name="";
+        foreach ($portions_user as $portion_user)
+            $name.=$portion_user;
+
+
+        $pathToFile=storage_path()."/uploads/train/".$name."/".$entry->name_train;
         return response()->download($pathToFile);
     }
 }
