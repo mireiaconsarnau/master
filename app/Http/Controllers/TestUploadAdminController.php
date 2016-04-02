@@ -141,7 +141,7 @@ class TestUploadAdminController extends Controller
         //echo "id=".$testadmin->id;
         $tasca=\App\Task::find($testadmin->task_id);
         //echo "tasca=".$tasca->name_task;
-        
+
         $portions=explode(" ", $tasca->name_task);
         $folder="";
         foreach ($portions as $portion)
@@ -183,7 +183,21 @@ class TestUploadAdminController extends Controller
 
     public function download($fileId){
         $entry = TestUploadAdmin::where('id', '=', $fileId)->firstOrFail();
-        $pathToFile=storage_path()."/uploads/testfiles/".$entry->name_test;
+
+        $tasca=\App\Task::find($entry->task_id);
+        $portions=explode(" ", $tasca->name_task);
+        $folder="";
+        foreach ($portions as $portion)
+            $folder.=$portion;
+
+        $user=\App\User::find($entry->user_id);
+        $portions_user=explode(" ", $user->name);
+        $name="";
+        foreach ($portions_user as $portion_user)
+            $name.=$portion_user;
+
+
+        $pathToFile=storage_path()."/uploads/".$folder."/test/".$name."/".$entry->name_test;
         return response()->download($pathToFile);
     }
 }

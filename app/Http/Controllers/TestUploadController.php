@@ -89,8 +89,20 @@ class TestUploadController extends Controller
             'task_id' => 'required',
         ]);
 
+        $tasca=\App\Task::find($request->task_id);
+        $portions=explode(" ", $tasca->name_task);
+        $folder="";
+        foreach ($portions as $portion)
+            $folder.=$portion;
+
+        $user=\App\User::find($request->user()->id);
+        $portions_user=explode(" ", $user->name);
+        $name="";
+        foreach ($portions_user as $portion_user)
+            $name.=$portion_user;
+
         $file = Input::file('file_test');
-        $destinationPath = storage_path() . '/uploads/testfiles';
+        $destinationPath = storage_path() . '/uploads/'.$folder.'/test/'.$name;
 
         if(!$file->move($destinationPath, $file->getClientOriginalName())) {
             return $this->errors(['message' => 'Error saving the file.', 'code' => 400]);
@@ -108,8 +120,8 @@ class TestUploadController extends Controller
 
 
        $request->user()->tests()->create([
-            'file_test' => storage_path().'/uploads/testfiles'.$file->getClientOriginalName(),
-            'name_test' => $file->getClientOriginalName(),
+           'file_test' => storage_path().'/uploads/'.$folder.'/test/'.$name.'/'.$file->getClientOriginalName(),
+           'name_test' => $file->getClientOriginalName(),
             'task_id' => $request->task_id,
             'ip' => $location->ip,
             'countryCode' => $location->countryCode,
@@ -171,12 +183,42 @@ class TestUploadController extends Controller
 
         $test->delete();
 
+        $tasca=\App\Task::find($test->task_id);
+        $portions=explode(" ", $tasca->name_task);
+        $folder="";
+        foreach ($portions as $portion)
+            $folder.=$portion;
+
+        $user=\App\User::find($request->user()->id);
+        $portions_user=explode(" ", $user->name);
+        $name="";
+        foreach ($portions_user as $portion_user)
+            $name.=$portion_user;
+
+        $path=storage_path().'/uploads/'.$folder.'/test/'.$name.'/'.$test->name_test;
+        exec("rm {$path}");
+
         return redirect('/tests');
     }
 
     public function download($fileId){
+
         $entry = TestUpload::where('id', '=', $fileId)->firstOrFail();
-        $pathToFile=storage_path()."/uploads/testfiles/".$entry->name_test;
+
+        $tasca=\App\Task::find($entry->task_id);
+        $portions=explode(" ", $tasca->name_task);
+        $folder="";
+        foreach ($portions as $portion)
+            $folder.=$portion;
+
+        $user=\App\User::find($entry->user_id);
+        $portions_user=explode(" ", $user->name);
+        $name="";
+        foreach ($portions_user as $portion_user)
+            $name.=$portion_user;
+
+
+        $pathToFile=storage_path()."/uploads/".$folder."/test/".$name."/".$entry->name_test;
         return response()->download($pathToFile);
     }
 }

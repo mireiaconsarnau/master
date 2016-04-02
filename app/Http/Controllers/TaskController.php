@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Task;
+use App\User;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -100,6 +101,17 @@ class TaskController extends Controller
         mkdir(storage_path().'/uploads/'.$folder.'/test', 0777);
         chmod(storage_path().'/uploads/'.$folder.'/test', 0777);
 
+        $usersNoAdmin=User::usersNoAdmin()->orderBy('name')->get();
+        foreach ($usersNoAdmin as $userNoAdmin) {
+            $portions = explode(" ", $userNoAdmin->name);
+            $name = "";
+            foreach ($portions as $portion) {
+                $name .= $portion;
+
+            }
+            mkdir(storage_path() . '/uploads/' . $folder . '/test/' . $name, 0777);
+            chmod(storage_path() . '/uploads/' . $folder . '/test/' . $name, 0777);
+        }
 
         return redirect('/tasks');
     }

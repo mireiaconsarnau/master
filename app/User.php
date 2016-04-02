@@ -100,6 +100,17 @@ class User extends Model implements AuthenticatableContract,
 
 
     }
+    public function scopeUsersNoAdmin($query)
+    {
+
+
+        $select1= DB::table('users')
+            ->select('users.*')
+            ->where('type', 2 );
+        return $select1;
+
+
+    }
 
 
 
