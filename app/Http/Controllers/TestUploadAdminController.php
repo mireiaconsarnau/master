@@ -138,12 +138,20 @@ class TestUploadAdminController extends Controller
         }
 
 
-               //echo "id=".$testadmin->id;
+        //echo "id=".$testadmin->id;
+        $tasca=\App\Task::find($testadmin->task_id);
+        //echo "tasca=".$tasca->name_task;
+        
+        $portions=explode(" ", $tasca->name_task);
+        $folder="";
+        foreach ($portions as $portion)
+            $folder.=$portion;
+
         $output=array();
-        exec("python /var/www/html/masterv1/storage/python/hello.py",$output);
+        exec("python /var/www/html/masterv1/storage/python/SVM_part1.py ".$folder,$output);
         //foreach ($output as $line) print "$line<br/>";
 
-        exec("python /var/www/html/masterv1/storage/python/hello3.py");
+        exec("python /var/www/html/masterv1/storage/python/SVM_part2.py ".$folder);
 
         $im = imagecreatefrompng("img.png");
         header('Content-Type: image/png');

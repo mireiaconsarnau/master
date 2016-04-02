@@ -90,12 +90,16 @@ class TaskController extends Controller
             'available' => $request->available_task,
         ]);
 
-        mkdir(storage_path().'/uploads/'.$request->name_task, 0777);
-        chmod(storage_path().'/uploads/'.$request->name_task, 0777);
-        mkdir(storage_path().'/uploads/'.$request->name_task.'/testing', 0777);
-        chmod(storage_path().'/uploads/'.$request->name_task.'/testing', 0777);
-        mkdir(storage_path().'/uploads/'.$request->name_task.'/training', 0777);
-        chmod(storage_path().'/uploads/'.$request->name_task.'/training', 0777);
+        $portions=explode(" ", $request->name_task);
+        $folder="";
+        foreach ($portions as $portion)
+            $folder.=$portion;
+
+        mkdir(storage_path().'/uploads/'.$folder, 0777);
+        chmod(storage_path().'/uploads/'.$folder, 0777);
+        mkdir(storage_path().'/uploads/'.$folder.'/test', 0777);
+        chmod(storage_path().'/uploads/'.$folder.'/test', 0777);
+
 
         return redirect('/tasks');
     }
@@ -134,7 +138,17 @@ class TaskController extends Controller
             'available_task' => 'required|max:3',
         ]);
 
-        rename(storage_path().'/uploads/'.$task->name_task,storage_path().'/uploads/'.$request['name_task']);
+        $portions=explode(" ", $task->name_task);
+        $folder="";
+        foreach ($portions as $portion)
+            $folder.=$portion;
+
+        $portions_new=explode(" ", $request['name_task']);
+        $folder_new="";
+        foreach ($portions_new as $portion_new)
+            $folder_new.=$portion_new;
+
+        rename(storage_path().'/uploads/'.$folder,storage_path().'/uploads/'.$folder_new);
 
         $task->name_task = $request['name_task'];
         $task->available = $request['available_task'];
@@ -167,8 +181,12 @@ class TaskController extends Controller
 
         $task->delete();
 
+        $portions=explode(" ", $task->name_task);
+        $folder="";
+        foreach ($portions as $portion)
+            $folder.=$portion;
 
-        $path=storage_path().'/uploads/'.$task->name_task;
+        $path=storage_path().'/uploads/'.$folder;
         exec("rm -r {$path}");
 
        return redirect('/tasks');
