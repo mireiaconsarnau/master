@@ -26,7 +26,6 @@
 				<th>IP</th>
 				<th>Country Name</th>
 				<th>City Name</th>
-				<th>Disabled</th>
 				<th>Associated Train File</th>
 				<th>Select Other Train File</th>
 				</thead>
@@ -62,23 +61,7 @@
 	<td class="table-text"><div>{{$testfortask->cityName }} </div></td>
 	</div>
 	</td>
-	<td class="table-text"><div>
-
-			<select name="disabled" id="disabled">
-				<option value="no"
-						@if ($testfortask->disabled=="no")
-						selected
-						@endif
-				>No</option>
-				<option value="yes"
-						@if ($testfortask->disabled=="yes")
-						selected
-						@endif
-				>Yes</option>
-			</select>
-
-		</div></td>
-	</div>
+		</div>
 	</td>
 	<td class="table-text"><div>
 			@if ($testfortask->train_upload_id==0)
@@ -120,6 +103,17 @@
 
 
 
+	</td>
+
+	<td>
+		<form action="/testadmin/{{ $testfortask->id }}" method="POST">
+			{{ csrf_field() }}
+			{{ method_field('DELETE') }}
+
+			<button type="submit" id="delete-test-{{ $testfortask->id }}" class="btn btn-danger">
+				<i class="fa fa-btn fa-trash"></i> Delete
+			</button>
+		</form>
 	</td>
 
 

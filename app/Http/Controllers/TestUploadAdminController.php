@@ -119,7 +119,6 @@ class TestUploadAdminController extends Controller
             abort(403);
         }
 
-        $testadmin->disabled = $request['disabled'];
         $testadmin->train_upload_id = $request['train_upload_id'];
 
         //$this->authorize('update', $testadmin);
@@ -177,9 +176,31 @@ class TestUploadAdminController extends Controller
      * @param  TrainUpload  $train
      * @return Response
      */
-    public function destroy(Request $request, TestUpload $test)
+    public function destroy(Request $request, TestUploadAdmin $test)
     {
+        /*if (Gate::denies('see-admin-menu')) {
+            abort(403);
+        }*/
+        //$this->authorize('destroy', $test);
 
+        $test->delete();
+
+        $tasca=\App\Task::find($test->task_id);
+        $portions=explode(" ", $tasca->name_task);
+        $folder="";
+        foreach ($portions as $portion)
+            $folder.=$portion;
+
+        $user=\App\User::find($test->user_id);
+        $portions_user=explode(" ", $user->name);
+        $name="";
+        foreach ($portions_user as $portion_user)
+            $name.=$portion_user;
+
+        $path=storage_path().'/uploads/'.$folder.'/test/'.$name.'/'.$test->name_test;
+        exec("rm {$path}");
+
+        return redirect('/testsadmin');
     }
 
     public function download($fileId){
