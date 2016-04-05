@@ -104,7 +104,14 @@ class TestUploadController extends Controller
         $file = Input::file('file_test');
         $destinationPath = storage_path() . '/uploads/'.$folder.'/test/'.$name;
 
-        if(!$file->move($destinationPath, $file->getClientOriginalName())) {
+
+        $portions_file=explode(" ", $file->getClientOriginalName());
+        $file_upload="";
+        foreach ($portions_file as $portion_file)
+            $file_upload.=$portion_file;
+
+
+        if(!$file->move($destinationPath, $file_upload)) {
             return $this->errors(['message' => 'Error saving the file.', 'code' => 400]);
         }
 
@@ -120,8 +127,8 @@ class TestUploadController extends Controller
 
 
        $request->user()->tests()->create([
-           'file_test' => storage_path().'/uploads/'.$folder.'/test/'.$name.'/'.$file->getClientOriginalName(),
-           'name_test' => $file->getClientOriginalName(),
+           'file_test' => storage_path().'/uploads/'.$folder.'/test/'.$name.'/'.$file_upload,
+           'name_test' => $file_upload,
             'task_id' => $request->task_id,
             'ip' => $location->ip,
             'countryCode' => $location->countryCode,

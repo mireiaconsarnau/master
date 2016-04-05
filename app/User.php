@@ -77,7 +77,7 @@ class User extends Model implements AuthenticatableContract,
 
 
 
-        $select2= DB::table('users')
+        /*$select2= DB::table('users')
             ->join('train_uploads','users.id','=','train_uploads.associated_user_id')
             ->select('users.id');
             //->where('train_uploads.associated_user_id', '=',$user->id);
@@ -86,12 +86,12 @@ class User extends Model implements AuthenticatableContract,
         $seq[]=0;
         foreach ($numbers as $number) {
             $seq[]=$number->id;
-        }
+        }*/
 
         $select1= DB::table('users')
             ->select('users.*')
-            ->where('type', 2 )
-            ->whereNotIn('id',$seq);
+            ->where('type', 2 );
+            //->whereNotIn('id',$seq);
         //->toSql();
 
         // dd($select1);
