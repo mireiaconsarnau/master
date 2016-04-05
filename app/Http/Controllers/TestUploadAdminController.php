@@ -148,10 +148,10 @@ class TestUploadAdminController extends Controller
             $folder.=$portion;
 
         $output=array();
-        exec("python /var/www/html/masterv1/storage/python/SVM_part1.py ".$folder,$output);
+        exec("python /var/www/masterv1/storage/python/SVM_part1.py ".$folder,$output);
         //foreach ($output as $line) print "$line<br/>";
 
-        exec("python /var/www/html/masterv1/storage/python/SVM_part2.py ".$folder);
+        exec("python /var/www/masterv1/storage/python/SVM_part2.py ".$folder);
 
         $im = imagecreatefrompng("img.png");
         header('Content-Type: image/png');
