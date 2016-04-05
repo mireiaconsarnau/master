@@ -77,4 +77,21 @@ class TrainUpload extends Model
 
 
     }
+
+    public function scopeTrainsforassociateduser($query,$associated_user_id)
+    {
+
+
+
+        $select1= DB::table('train_uploads')
+            ->select('train_uploads.*')
+            ->where('associated_user_id', $associated_user_id );
+        //->toSql();
+
+        // dd($select1);
+
+        return $select1;
+
+
+    }
 }

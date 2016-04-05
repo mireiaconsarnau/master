@@ -22,7 +22,9 @@ class TrainRepository
     public function forUser(User $user)
     {
         return TrainUpload::where('user_id', $user->id)
-            ->orderBy('created_at', 'asc')
-            ->paginate(10);
+            ->groupBy('associated_user_id')
+            ->orderBy('associated_user_id', 'asc')
+            ->paginate(5);
     }
+
 }
