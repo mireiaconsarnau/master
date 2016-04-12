@@ -216,6 +216,8 @@ class TrainUploadController extends Controller
         $this->authorize('destroy', $train);
         $train->tests()->delete();
 
+        $numbertrain=\App\TrainUpload::Numbertrainsforassociateduser($train->associated_user_id);
+
         $train->delete();
 
         $user=\App\User::find($train->associated_user_id);
@@ -224,8 +226,17 @@ class TrainUploadController extends Controller
         foreach ($portions_user as $portion_user)
             $name.=$portion_user;
 
-        $path=storage_path().'/uploads/train/'.$name.'/'.$train->name_train;
-        exec("rm {$path}");
+
+        //echo  $numbertrain;
+        if($numbertrain==1) {
+            $path = storage_path() . '/uploads/train/' . $name;
+            exec("rm -r {$path}");
+        }else{
+
+            $path = storage_path() . '/uploads/train/' . $name . '/' . $train->name_train;
+            exec("rm {$path}");
+        }
+
 
 
         return redirect('/trains');
