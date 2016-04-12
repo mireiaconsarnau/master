@@ -26,8 +26,8 @@
 				<th>IP</th>
 				<th>Country Name</th>
 				<th>City Name</th>
-				<th>Associated Train File</th>
-				<th>Select Other Train File</th>
+				<th>Train Files</th>
+
 				</thead>
 
 				<tbody>
@@ -64,46 +64,13 @@
 		</div>
 	</td>
 	<td class="table-text"><div>
-			@if ($testfortask->train_upload_id==0)
-				-
-			@endif
-			@if ($testfortask->train_upload_id!=0)
-				<a href="/train/view/{{$testfortask->train_upload_id }}">{{$train->name_train }}</a>
-			@endif
-
+			<?php $numbertrain=\App\TrainUpload::Numbertrainsforassociateduser($testfortask->user_id);?>
+				{{$numbertrain}}
 		</div></td>
 
-	<td><div class="form-group">
-
-
-			<div class="col-sm-6">
-				<select name="train_upload_id" id="train_upload_id">
-
-					@foreach ($trainupload_files as $trainupload_file)
-						<option value="{{$trainupload_file->id}}"
-								@if ($testfortask->train_upload_id==$trainupload_file->id)
-								selected
-								@endif
-						>{{$trainupload_file->name_train}}</option>
-					@endforeach
-				</select>
-			</div>
-		</div>
-	</td>
-
-	<!-- Task Update Button -->
-	<td>
-
-
-		<button type="submit" id="update-testadmin-{{ $testfortask->id }}" class="btn btn-success">
-			<i class="fa fa-pencil-square-o"></i> Update
-		</button>
-
-		</form>
 
 
 
-	</td>
 
 	<td>
 		<form action="/testadmin/{{ $testfortask->id }}" method="POST">
@@ -130,8 +97,8 @@
 		<td class="table-text" style="background-color: #FFFFFF;"></td>
 		<td class="table-text" style="background-color: #FFFFFF;"></td>
 		<td class="table-text" style="background-color: #FFFFFF;"></td>
-		<td class="table-text" style="background-color: #FFFFFF;"></td>
-		<td class="table-text" style="background-color: #FFFFFF;"></td>
+
+
 		<td class="table-text"  style="background-color: #FFFFFF;">
 				<form action="/testadmin/analysis/{{ $testfortask->id }}" method="POST" target="_blank">
 					{{ csrf_field() }}

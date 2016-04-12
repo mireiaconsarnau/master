@@ -14,9 +14,9 @@ from sklearn.datasets import load_files
 from sklearn.feature_extraction import DictVectorizer
 from sklearn import svm
 
-data = load_files("/var/www/masterv1/storage/uploads/train/",categories=None)
+data = load_files("/var/www/html/masterv1/storage/uploads/train/",categories=None)
 
-data_test = load_files("/var/www/masterv1/storage/uploads/%s/test/" % (sys.argv[1]),categories=None)
+data_test = load_files("/var/www/html/masterv1/storage/uploads/%s/test/" % (sys.argv[1]),categories=None)
 test_data = [open(f).read() for f in data_test.filenames]
 
 filez=[]
