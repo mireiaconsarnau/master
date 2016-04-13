@@ -146,6 +146,7 @@ class TestUploadAdminController extends Controller
         $folder="";
         foreach ($portions as $portion)
             $folder.=$portion;
+        $folder=strtolower($folder);
 
         $output=array();
         exec("python /var/www/html/masterv1/storage/python/SVM_part1.py ".$folder,$output);
@@ -190,12 +191,14 @@ class TestUploadAdminController extends Controller
         $folder="";
         foreach ($portions as $portion)
             $folder.=$portion;
+        $folder=strtolower($folder);
 
         $user=\App\User::find($test->user_id);
         $portions_user=explode(" ", $user->name);
         $name="";
         foreach ($portions_user as $portion_user)
             $name.=$portion_user;
+        $name=strtolower($name);
 
         $path=storage_path().'/uploads/'.$folder.'/test/'.$name.'/'.$test->name_test;
         exec("rm {$path}");
@@ -211,13 +214,14 @@ class TestUploadAdminController extends Controller
         $folder="";
         foreach ($portions as $portion)
             $folder.=$portion;
+        $folder=strtolower($folder);
 
         $user=\App\User::find($entry->user_id);
         $portions_user=explode(" ", $user->name);
         $name="";
         foreach ($portions_user as $portion_user)
             $name.=$portion_user;
-
+        $name=strtolower($name);
 
         $pathToFile=storage_path()."/uploads/".$folder."/test/".$name."/".$entry->name_test;
         return response()->download($pathToFile);

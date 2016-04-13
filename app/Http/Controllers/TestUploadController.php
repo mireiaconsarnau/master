@@ -94,12 +94,14 @@ class TestUploadController extends Controller
         $folder="";
         foreach ($portions as $portion)
             $folder.=$portion;
+        $folder=strtolower($folder);
 
         $user=\App\User::find($request->user()->id);
         $portions_user=explode(" ", $user->name);
         $name="";
         foreach ($portions_user as $portion_user)
             $name.=$portion_user;
+        $name=strtolower($name);
 
         $file = Input::file('file_test');
         $destinationPath = storage_path() . '/uploads/'.$folder.'/test/'.$name;
@@ -109,6 +111,7 @@ class TestUploadController extends Controller
         $file_upload="";
         foreach ($portions_file as $portion_file)
             $file_upload.=$portion_file;
+        $file_upload=strtolower($file_upload);
 
 
         if(!$file->move($destinationPath, $file_upload)) {
@@ -195,12 +198,14 @@ class TestUploadController extends Controller
         $folder="";
         foreach ($portions as $portion)
             $folder.=$portion;
+        $folder=strtolower($folder);
 
         $user=\App\User::find($request->user()->id);
         $portions_user=explode(" ", $user->name);
         $name="";
         foreach ($portions_user as $portion_user)
             $name.=$portion_user;
+        $name=strtolower($name);
 
         $path=storage_path().'/uploads/'.$folder.'/test/'.$name.'/'.$test->name_test;
         exec("rm {$path}");
@@ -217,13 +222,14 @@ class TestUploadController extends Controller
         $folder="";
         foreach ($portions as $portion)
             $folder.=$portion;
+        $folder=strtolower($folder);
 
         $user=\App\User::find($entry->user_id);
         $portions_user=explode(" ", $user->name);
         $name="";
         foreach ($portions_user as $portion_user)
             $name.=$portion_user;
-
+        $name=strtolower($name);
 
         $pathToFile=storage_path()."/uploads/".$folder."/test/".$name."/".$entry->name_test;
         return response()->download($pathToFile);

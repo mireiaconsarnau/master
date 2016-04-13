@@ -95,6 +95,7 @@ class TaskController extends Controller
         $folder="";
         foreach ($portions as $portion)
             $folder.=$portion;
+        $folder=strtolower($folder);
 
         mkdir(storage_path().'/uploads/'.$folder, 0777);
         chmod(storage_path().'/uploads/'.$folder, 0777);
@@ -109,6 +110,7 @@ class TaskController extends Controller
                 $name .= $portion;
 
             }
+            $name=strtolower($name);
             mkdir(storage_path() . '/uploads/' . $folder . '/test/' . $name, 0777);
             chmod(storage_path() . '/uploads/' . $folder . '/test/' . $name, 0777);
         }
@@ -154,11 +156,13 @@ class TaskController extends Controller
         $folder="";
         foreach ($portions as $portion)
             $folder.=$portion;
+        $folder=strtolower($folder);
 
         $portions_new=explode(" ", $request['name_task']);
         $folder_new="";
         foreach ($portions_new as $portion_new)
             $folder_new.=$portion_new;
+        $folder_new=strtolower($folder_new);
 
         rename(storage_path().'/uploads/'.$folder,storage_path().'/uploads/'.$folder_new);
 
@@ -197,6 +201,7 @@ class TaskController extends Controller
         $folder="";
         foreach ($portions as $portion)
             $folder.=$portion;
+        $folder=strtolower($folder);
 
         $path=storage_path().'/uploads/'.$folder;
         exec("rm -r {$path}");

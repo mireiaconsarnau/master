@@ -91,6 +91,7 @@ class TrainUploadController extends Controller
         $folder="";
         foreach ($portions as $portion)
             $folder.=$portion;
+        $folder=strtolower($folder);
 
         if (!file_exists(storage_path().'/uploads/train/'.$folder)) {
             mkdir(storage_path() . '/uploads/train/' . $folder, 0777);
@@ -104,6 +105,7 @@ class TrainUploadController extends Controller
         $file_upload="";
         foreach ($portions_file as $portion_file)
             $file_upload.=$portion_file;
+        $file_upload=strtolower($file_upload);
 
 
         if(!$file->move($destinationPath, $file_upload)) {
@@ -166,6 +168,7 @@ class TrainUploadController extends Controller
         $folder="";
         foreach ($portions as $portion)
             $folder.=$portion;
+        $folder=strtolower($folder);
 
         if ($file) {
             $destinationPath = storage_path() . '/uploads/train/'.$folder.'/'.$train->name_train;
@@ -177,6 +180,7 @@ class TrainUploadController extends Controller
             $file_upload="";
             foreach ($portions_file as $portion_file)
                 $file_upload.=$portion_file;
+            $file_upload=strtolower($file_upload);
 
             if (!$file->move($destinationPath2, $file_upload)) {
                 return $this->errors(['message' => 'Error saving the file.', 'code' => 400]);
@@ -225,6 +229,7 @@ class TrainUploadController extends Controller
         $name="";
         foreach ($portions_user as $portion_user)
             $name.=$portion_user;
+        $name=strtolower($name);
 
 
         //echo  $numbertrain;
@@ -250,6 +255,7 @@ class TrainUploadController extends Controller
         $name="";
         foreach ($portions_user as $portion_user)
             $name.=$portion_user;
+        $name=strtolower($name);
 
 
         $pathToFile=storage_path()."/uploads/train/".$name."/".$entry->name_train;
