@@ -115,19 +115,19 @@ class TestUploadAdminController extends Controller
 
     public function update(Request $request, $testadmin)
     {
-        if (Gate::denies('see-admin-menu')) {
-            abort(403);
-        }
+       // if (Gate::denies('see-admin-menu')) {
+       //     abort(403);
+       // }
 
-        $testadmin->train_upload_id = $request['train_upload_id'];
+        //$testadmin->train_upload_id = $request['train_upload_id'];
 
         //$this->authorize('update', $testadmin);
 
-        $testadmin->update();
+       // $testadmin->update();
 
 
 
-        return redirect('/testsadmin');
+        //return redirect('/testsadmin');
 
     }
 

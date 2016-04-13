@@ -31,13 +31,7 @@ class TrainUpload extends Model
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Get all of the tests for the task.
-     */
-    public function tests()
-    {
-        return $this->hasMany(TestUpload::class);
-    }
+
 
     /**
      * Scope a query to only include available tasks.
@@ -100,14 +94,14 @@ class TrainUpload extends Model
 
 
 
-        $select1= DB::table('train_uploads')
-            ->where('associated_user_id', $associated_user_id )
-            ->count();
-        //->toSql();
-
-        // dd($select1);
-
-        return $select1;
+        //$select1= DB::table('train_uploads')
+            //->where('associated_user_id', $associated_user_id )
+            //->count()
+            //->toSql();
+            //echo $query->whereAssociated_user_id($associated_user_id)->count();
+         //dd($select1);
+        return $query->whereAssociated_user_id($associated_user_id);
+        //return $select1;
 
 
     }

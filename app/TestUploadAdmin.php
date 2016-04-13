@@ -22,7 +22,7 @@ class TestUploadAdmin extends Model
      *
      * @var array
      */
-    protected $fillable = ['file_test','name_test','task_id','ip','countryCode','countryName','cityName','train_upload_id'];
+    protected $fillable = ['file_test','name_test','task_id','ip','countryCode','countryName','cityName'];
 
     /**
      * Get the user that owns the test.
@@ -32,13 +32,7 @@ class TestUploadAdmin extends Model
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Get the train that owns the test.
-     */
-    public function train()
-    {
-        return $this->belongsTo(TrainUpload::class);
-    }
+
 
     /**
      * Get the task that owns the test.

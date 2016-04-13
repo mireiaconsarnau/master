@@ -37,7 +37,7 @@
 				@foreach ($testsfortask as $testfortask)
 					<?php $tasca=\App\Task::find($testfortask->task_id);?>
 					<?php $user=\App\User::find($testfortask->user_id);?>
-					<?php $train=\App\TrainUpload::find($testfortask->train_upload_id);?>
+
 
 
 
@@ -64,8 +64,14 @@
 		</div>
 	</td>
 	<td class="table-text"><div>
-			<?php $numbertrain=\App\TrainUpload::Numbertrainsforassociateduser($testfortask->user_id);?>
-				{{$numbertrain}}
+
+			<?php $numbertrain=\App\TrainUpload::Numbertrainsforassociateduser($testfortask->user_id)->count();?>
+				@if ($numbertrain==0)
+					Any associated train files
+				@else
+					{{$numbertrain}}
+				@endif
+
 		</div></td>
 
 
@@ -103,14 +109,14 @@
 				<form action="/testadmin/analysis/{{ $testfortask->id }}" method="POST" target="_blank">
 					{{ csrf_field() }}
 					<button type="submit" id="analysis-task-{{ $testfortask->id }}" class="btn btn-warning"
-							@if ($testfortask->train_upload_id=="0")
-							disabled
+							@if ($numbertrain==0)
+							Disabled
+
 							@endif
 
 							>
 						<i class="fa fa-bar-chart"> Analysis</i>
 					</button>
-
 
 				</form>
 

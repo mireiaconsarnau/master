@@ -218,9 +218,9 @@ class TrainUploadController extends Controller
             abort(403);
         }
         $this->authorize('destroy', $train);
-        $train->tests()->delete();
+        //$train->tests()->delete();
 
-        $numbertrain=\App\TrainUpload::Numbertrainsforassociateduser($train->associated_user_id);
+        $numbertrain=\App\TrainUpload::Numbertrainsforassociateduser($train->associated_user_id)->count();
 
         $train->delete();
 

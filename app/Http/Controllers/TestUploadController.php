@@ -121,11 +121,11 @@ class TestUploadController extends Controller
         $location = Location::get($_SERVER["REMOTE_ADDR"]);
 
 
-       $associated_trains= TrainUpload::trainid($request->user()->id)->orderBy('id')->get();
+       /*$associated_trains= TrainUpload::trainid($request->user()->id)->orderBy('id')->get();
         $train_as=0;
         foreach ($associated_trains as $associated_train) {
             $train_as = $associated_train->id;
-        }
+        }*/
 
 
 
@@ -137,7 +137,7 @@ class TestUploadController extends Controller
             'countryCode' => $location->countryCode,
             'countryName' => $location->countryName,
             'cityName' => $location->cityName,
-            'train_upload_id' => $train_as,
+            //'train_upload_id' => $train_as,
         ]);
 
         return redirect('/tests');
