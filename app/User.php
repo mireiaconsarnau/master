@@ -58,6 +58,13 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany(TrainUpload::class);
     }
+    /**
+     * Get all of the trains for the user.
+     */
+    public function trains2()
+    {
+        return $this->hasMany(TrainUpload::class,'associated_user_id');
+    }
 
     /**
      * Get all of the tests for the user.
