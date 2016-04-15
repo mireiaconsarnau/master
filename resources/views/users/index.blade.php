@@ -32,6 +32,41 @@
 							</div>
 
 						</div>
+						<div class="form-group">
+							<label for="email" class="col-sm-3 control-label">Email</label>
+
+							<div class="col-sm-6">
+								<input type="text" name="email" id="email" class="form-control" value="{{ old('user') }}">
+							</div>
+
+						</div>
+						<div class="form-group">
+							<label for="password" class="col-sm-3 control-label">Password</label>
+
+							<div class="col-sm-6">
+								<input type="password" name="password" id="password" class="form-control" value="{{ old('user') }}">
+							</div>
+
+						</div>
+						<div class="form-group">
+							<label for="password" class="col-sm-3 control-label">Retype Password</label>
+
+							<div class="col-sm-6">
+								<input type="password" name="password_confirmation" id="password_confirmation" class="form-control" value="{{ old('user') }}">
+							</div>
+
+						</div>
+
+						<div class="form-group">
+							<label for="type" class="col-sm-3 control-label">Type</label>
+
+							<div class="col-sm-6">
+								<select name="type" id="type">
+									<option value="1">Admin User</option>
+									<option value="2" selected>Standard User</option>
+								</select>
+							</div>
+						</div>
 
 
 

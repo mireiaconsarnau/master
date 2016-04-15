@@ -87,10 +87,11 @@ class UserController extends Controller
             'password' => 'required|confirmed|min:6',
         ]);
 
-        $request->user()->users()->create([
+        $request->user()->create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
+            'type' => $request['type'],
         ]);
 
 
@@ -155,22 +156,38 @@ class UserController extends Controller
      */
     public function destroy(Request $request, User $user)
     {
-        if (Gate::denies('see-admin-menu')) {
+        /*if (Gate::denies('see-admin-menu')) {
             abort(403);
         }
-        $this->authorize('destroy', $user);
+        $this->authorize('destroy', $user);*/
         //$task->tests()->delete();
 
         $user->delete();
 
-       /* $portions=explode(" ", $task->name_task);
+        $portions=explode(" ", $user->name);
         $folder="";
         foreach ($portions as $portion)
             $folder.=$portion;
         $folder=strtolower($folder);
 
-        $path=storage_path().'/uploads/'.$folder;
-        exec("rm -r {$path}");*/
+        $path=storage_path().'/uploads/train/'.$folder;
+        exec("rm -r {$path}");
+
+        $tasques=\App\Task::tasques();
+        foreach ($tasques as $tasque){
+            $portions_t=explode(" ", $tasque->name_task);
+            $folder_t="";
+            foreach ($portions_t as $portion_t)
+                $folder_t.=$portion_t;
+            $folder_t=strtolower($folder_t);
+            $path_t=storage_path().'/uploads/'.$folder_t.'/test/'.$folder;
+            exec("rm -r {$path_t}");
+
+        }
+
+        //PENDENT ESBORRAR TESTS AND TRINS DE LA BASE DE DADES
+
+
 
        return redirect('/users');
     }

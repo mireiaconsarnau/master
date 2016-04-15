@@ -43,7 +43,7 @@
             else
                 return false;
         }
-        function confirmDeleteTrain()
+        function confirmDeleteUser()
         {
             var x = confirm("Are you sure you want to delete this user and all his test files and all his train files?");
             if (x)

@@ -19,12 +19,12 @@ class UserPolicy
      * @param  Task  $task
      * @return bool
      */
-    public function destroy(User $user, Task $task)
+    public function destroy(User $user)
     {
         //return $user->id === $task->user_id;
     }
 
-    public function update(User $user, Task $task)
+    public function update(User $user)
     {
         //return $user->id === $task->user_id;
     }

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Task;
+use App\User;
 use App\TrainUpload;
 use App\TestUpload;
 use App\TestUploadAdmin;

@@ -11,6 +11,7 @@ use App\Policies\TaskPolicy;
 use App\Policies\TrainPolicy;
 use App\Policies\TestPolicy;
 use App\Policies\TestAdminPolicy;
+use App\Policies\UserPolicy;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
