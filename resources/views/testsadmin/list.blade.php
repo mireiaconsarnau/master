@@ -109,10 +109,7 @@
 				<form action="/testadmin/analysis/{{ $testfortask->id }}" method="POST" target="_blank">
 					{{ csrf_field() }}
 					<button type="submit" id="analysis-task-{{ $testfortask->id }}" class="btn btn-warning"
-							@if ($numbertrain==0)
-							Disabled
-
-							@endif
+							
 
 							>
 						<i class="fa fa-bar-chart"> Analysis</i>
