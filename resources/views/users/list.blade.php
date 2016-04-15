@@ -10,7 +10,11 @@
 						<table class="table table-striped task-table">
 							<thead>
 							<th>User Name</th>
-							<th>&nbsp;</th>
+							<th>Email</th>
+							<th>Password</th>
+							<th>Retype password</th>
+							<th>Type</th>
+
 							</thead>
 							<tbody>
 							@foreach ($users as $user)
@@ -20,6 +24,25 @@
 									{{ method_field('PUT') }}
 								<tr>
 									<td class="table-text"><div><input type="text" name="name" id="name" class="form-control" value="{{$user->name }}"> </div></td>
+									<td class="table-text"><div><input type="text" name="email" id="email" class="form-control" value="{{$user->email }}"> </div></td>
+									<td class="table-text"><div><input type="password" name="password" id="password" class="form-control" value="{{$user->password }}"> </div></td>
+									<td class="table-text"><div><input type="password" name="password_confirmation" id="password_confirmation" class="form-control" value="{{$user->password }}"> </div></td>
+									<td class="table-text"><div>
+
+											<select name="type" id="type">
+												<option value="1"
+														@if ($user->type=="1")
+														selected
+														@endif
+												>Admin User</option>
+												<option value="2"
+														@if ($user->type=="2")
+														selected
+														@endif
+												>Standard User</option>
+											</select>
+
+										</div></td>
 									<td class="table-text"><div>
 
 

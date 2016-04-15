@@ -21,8 +21,7 @@ class UserRepository
      */
     public function forUser(User $user)
     {
-        return User::where('type', 2)
-            ->orderBy('created_at', 'asc')
+        return User::orderBy('created_at', 'asc')
             ->paginate(10);
     }
 
