@@ -39,3 +39,8 @@ Route::delete('/testadmin/{testadmin}', 'TestUploadAdminController@destroy');
 Route::put('/testadmin/{testadmin}', 'TestUploadAdminController@update');
 Route::post('/testadmin/analysis/{testadmin}', 'TestUploadAdminController@analysis');
 Route::get('/testadmin/view/{file}', 'TestUploadAdminController@download');
+
+Route::get('/users', 'UserController@index');
+Route::post('/user', 'UserController@store');
+Route::delete('/user/{user}', 'UserController@destroy');
+Route::put('/user/{user}', 'UserController@update');

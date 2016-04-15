@@ -29,6 +29,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot(Router $router)
     {
         $router->model('task', Task::class);
+        $router->model('user', User::class);
         $router->model('train', TrainUpload::class);
         $router->model('test', TestUpload::class);
         $router->model('testadmin', TestUploadAdmin::class);

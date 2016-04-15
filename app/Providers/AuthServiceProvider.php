@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Task;
+use App\User;
 use App\TrainUpload;
 use App\TestUpload;
 use App\TestUploadAdmin;
@@ -21,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+        User::class => UserPolicy::class,
         Task::class => TaskPolicy::class,
         TrainUpload::class => TrainPolicy::class,
         TestUpload::class => TestPolicy::class,
