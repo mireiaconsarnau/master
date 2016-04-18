@@ -22,7 +22,7 @@ class UserRepository
     public function forUser(User $user)
     {
         return User::orderBy('created_at', 'asc')
-            ->paginate(10);
+            ->paginate(5);
     }
 
 

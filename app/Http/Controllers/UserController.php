@@ -134,7 +134,10 @@ class UserController extends Controller
             'password' => 'required|confirmed|min:6',
         ]);
 
-
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->password = bcrypt($request['password']);
+        $user->type = $request['type'];
 
         $this->authorize('update', $user);
 
