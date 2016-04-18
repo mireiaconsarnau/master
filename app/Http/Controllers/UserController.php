@@ -128,18 +128,33 @@ class UserController extends Controller
         if (Gate::denies('see-admin-menu')) {
             abort(403);
         }
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
 
-        $user->name = $request['name'];
-        $user->email = $request['email'];
-        $user->password = bcrypt($request['password']);
-        $user->type = $request['type'];
+        if (strcmp($user->email,$request['email'])==0){
 
-        $this->authorize('update', $user);
+            $this->validate($request, [
+                'name' => 'required|max:255',
+                'password' => 'required|confirmed|min:6',
+            ]);
+
+            $user->name = $request['name'];
+            $user->password = bcrypt($request['password']);
+            $user->type = $request['type'];
+        }else{
+            $this->validate($request, [
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|confirmed|min:6',
+            ]);
+
+            $user->name = $request['name'];
+            $user->email = $request['email'];
+            $user->password = bcrypt($request['password']);
+            $user->type = $request['type'];
+        }
+
+
+
+        //$this->authorize('update', $user);
 
 
 
