@@ -130,26 +130,41 @@ class UserController extends Controller
         }
 
         if (strcmp($user->email,$request['email'])==0){
-
-            $this->validate($request, [
-                'name' => 'required|max:255',
-                'password' => 'required|confirmed|min:6',
-            ]);
-
-            $user->name = $request['name'];
-            $user->password = bcrypt($request['password']);
-            $user->type = $request['type'];
+            if (strcmp($user->password,$request['password'])==0) {
+                $this->validate($request, [
+                    'name' => 'required|max:255',
+                ]);
+                $user->name = $request['name'];
+                $user->type = $request['type'];
+            }else{
+                $this->validate($request, [
+                    'name' => 'required|max:255',
+                    'password' => 'required|confirmed|min:6',
+                ]);
+                $user->name = $request['name'];
+                $user->type = $request['type'];
+                $user->password = bcrypt($request['password']);
+            }
         }else{
-            $this->validate($request, [
-                'name' => 'required|max:255',
-                'email' => 'required|email|max:255|unique:users',
-                'password' => 'required|confirmed|min:6',
-            ]);
-
-            $user->name = $request['name'];
-            $user->email = $request['email'];
-            $user->password = bcrypt($request['password']);
-            $user->type = $request['type'];
+            if (strcmp($user->password,$request['password'])==0) {
+                $this->validate($request, [
+                    'name' => 'required|max:255',
+                    'email' => 'required|email|max:255|unique:users',
+                ]);
+                $user->name = $request['name'];
+                $user->email = $request['email'];
+                $user->type = $request['type'];
+            }else {
+                $this->validate($request, [
+                    'name' => 'required|max:255',
+                    'email' => 'required|email|max:255|unique:users',
+                    'password' => 'required|confirmed|min:6',
+                ]);
+                $user->name = $request['name'];
+                $user->email = $request['email'];
+                $user->type = $request['type'];
+                $user->password = bcrypt($request['password']);
+            }
         }
 
 
