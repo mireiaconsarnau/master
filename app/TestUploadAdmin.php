@@ -41,10 +41,9 @@ class TestUploadAdmin extends Model
     {
         return $this->belongsTo(Task::class);
     }
+
     public function scopeTestsfortask($query,$task_id)
     {
-
-
 
         $select1= DB::table('test_uploads')
             ->select('test_uploads.*')
@@ -57,6 +56,23 @@ class TestUploadAdmin extends Model
 
 
     }
+
+    public function scopeTestsfortaskandforuser($query,$task_id,$user_id)
+    {
+
+        $select1= DB::table('test_uploads')
+            ->select('test_uploads.*')
+            ->where('task_id', $task_id )
+            ->where('user_id', $user_id );
+        //->toSql();
+
+        // dd($select1);
+
+        return $select1;
+
+
+    }
+
 
 
 }
