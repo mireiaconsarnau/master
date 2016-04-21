@@ -107,4 +107,16 @@ class TrainUpload extends Model
 
 
     }
+
+    public function scopeNTrains($query)
+    {
+
+
+        $select1= DB::table('train_uploads')
+            ->select('train_uploads.*')
+            ->orderBy('created_at', 'asc');
+        return $select1;
+
+
+    }
 }

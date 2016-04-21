@@ -90,6 +90,30 @@ class Task extends Model
 
 
     }
+    public function scopeNTasksOn($query)
+    {
+
+
+        $select1= DB::table('tasks')
+            ->select('tasks.*')
+            ->where('available', 'On' )
+            ->orderBy('created_at', 'asc');
+        return $select1;
+
+
+    }
+    public function scopeNTasksOff($query)
+    {
+
+
+        $select1= DB::table('tasks')
+            ->select('tasks.*')
+            ->where('available', 'Off' )
+            ->orderBy('created_at', 'asc');
+        return $select1;
+
+
+    }
 
 
 

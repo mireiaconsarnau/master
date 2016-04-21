@@ -119,6 +119,29 @@ class User extends Model implements AuthenticatableContract,
 
     }
 
+    public function scopeNUsersStandard($query)
+    {
 
+
+        $select1= DB::table('users')
+            ->select('users.*')
+            ->where('type', 2 )
+            ->orderBy('created_at', 'asc');
+        return $select1;
+
+
+    }
+    public function scopeNUsersAdmin($query)
+    {
+
+
+        $select1= DB::table('users')
+            ->select('users.*')
+            ->where('type', 1 )
+        ->orderBy('created_at', 'asc');
+        return $select1;
+
+
+    }
 
 }

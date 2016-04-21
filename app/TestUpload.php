@@ -42,5 +42,16 @@ class TestUpload extends Model
         return $this->belongsTo(Task::class);
     }
 
+    public function scopeNTests($query)
+    {
+
+
+        $select1= DB::table('test_uploads')
+            ->select('test_uploads.*')
+            ->orderBy('created_at', 'asc');
+        return $select1;
+
+
+    }
 
 }

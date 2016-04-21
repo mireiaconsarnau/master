@@ -82,7 +82,7 @@ class TaskController extends Controller
 
 
         $this->validate($request, [
-            'name_task' => 'required|max:255',
+            'name_task' => 'required|max:255|unique:tasks',
             'available_task' => 'required|max:3',
         ]);
 
@@ -148,7 +148,7 @@ class TaskController extends Controller
             abort(403);
         }
         $this->validate($request, [
-            'name_task' => 'required|max:255',
+            'name_task' => 'required|max:255|unique:tasks',
             'available_task' => 'required|max:3',
         ]);
 
