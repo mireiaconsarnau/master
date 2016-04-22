@@ -121,6 +121,7 @@ class TestUploadController extends Controller
         $location = Location::get($_SERVER["REMOTE_ADDR"]);
 
 
+
        /*$associated_trains= TrainUpload::trainid($request->user()->id)->orderBy('id')->get();
         $train_as=0;
         foreach ($associated_trains as $associated_train) {

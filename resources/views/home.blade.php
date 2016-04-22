@@ -140,7 +140,11 @@
 											<div class="product-info">
 												<a href="javascript:void(0)" class="product-title">{{$user->name}} ({{$user->email}})</a>
 											<span class="product-description">
-											 from {{$lasttest->cityName}} ({{$lasttest->countryName}})
+											 <?php $location = Location::get($lasttest->ip)?>
+												{{$location->ip}}
+												 {{$location->latitude}}
+												 {{$location->longitude}}
+												 from {{$lasttest->cityName}} ({{$lasttest->countryName}})
 											</span>
 												<span class="product-description">
 											  {{$lasttest->name_test}} for <b>{{$tasca->name_task}}</b>
