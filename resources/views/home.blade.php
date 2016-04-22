@@ -14,6 +14,7 @@
 		<?php $nusersStandard=\App\User::nUsersStandard()->count();?>
 		<?php $ntrains=\App\TrainUpload::nTrains()->count();?>
 		<?php $ntests=\App\TestUpload::nTests()->count();?>
+		<?php $lasttests=\App\TestUpload::lastTests();?>
 
 
 			@can('see-admin-menu')
@@ -92,7 +93,7 @@
 						<!-- MAP & BOX PANE -->
 						<div class="box box-success">
 							<div class="box-header with-border">
-								<h3 class="box-title">Visitors Report</h3>
+								<h3 class="box-title">Users Report</h3>
 
 								<div class="box-tools pull-right">
 									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -126,7 +127,7 @@
 					<!-- PRODUCT LIST -->
 						<div class="box box-primary">
 							<div class="box-header with-border">
-								<h3 class="box-title">Recently Added Products</h3>
+								<h3 class="box-title">Latest Test Files Uploads</h3>
 
 								<div class="box-tools pull-right">
 									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -137,15 +138,21 @@
 							<!-- /.box-header -->
 							<div class="box-body">
 								<ul class="products-list product-list-in-box">
-									<li class="item">
-
-										<div class="product-info">
-											<a href="javascript:void(0)" class="product-title">Samsung TV</a>
-										<span class="product-description">
-										  Samsung 32" 1080p 60Hz LED Smart HDTV.
-										</span>
-										</div>
-									</li>
+									@foreach ($lasttests as $lasttest)
+										<?php $tasca=\App\Task::find($lasttest->task_id);?>
+										<?php $user=\App\User::find($lasttest->user_id);?>
+										<li class="item">
+											<div class="product-info">
+												<a href="javascript:void(0)" class="product-title">{{$user->name}} ({{$user->email}})</a>
+											<span class="product-description">
+											 from {{$lasttest->cityName}} ({{$lasttest->countryName}})
+											</span>
+												<span class="product-description">
+											  {{$lasttest->name_test}} for <b>{{$tasca->name_task}}</b>
+											</span>
+											</div>
+										</li>
+									@endforeach
 									<!-- /.item -->
 
 									<!-- /.item -->

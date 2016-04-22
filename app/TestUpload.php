@@ -53,5 +53,14 @@ class TestUpload extends Model
 
 
     }
+    public function scopeLastTests($query)
+    {
+
+
+        $select1= "SELECT * FROM test_uploads ORDER BY created_at DESC LIMIT 4";
+        return DB::select($select1);
+
+
+    }
 
 }
