@@ -103,7 +103,6 @@
 									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
 								</div>
 							</div>
-							<!-- /.box-header -->
 							<div class="box-body no-padding">
 								<div class="row">
 									<div class="col-md-9 col-sm-8">
@@ -112,15 +111,9 @@
 											<div id="world-map-markers" style="height: 325px;"></div>
 										</div>
 									</div>
-									<!-- /.col -->
-									
-									<!-- /.col -->
 								</div>
-								<!-- /.row -->
 							</div>
-							<!-- /.box-body -->
 						</div>
-
 					</div>
 
 
