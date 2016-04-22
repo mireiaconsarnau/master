@@ -19,15 +19,7 @@
 
 
 			@can('see-admin-menu')
-			<section class="content-header">
 
-				<h1>
-					<small>{{date('l jS \of F Y h:i:s A')}}
-					</small>
-				</h1>
-
-
-			</section>
 
 			<!-- Main content -->
 			<section class="content">
