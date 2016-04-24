@@ -57,10 +57,27 @@ class TestUpload extends Model
     {
 
 
-        $select1= "SELECT * FROM test_uploads ORDER BY created_at DESC LIMIT 5";
+        $select1= "SELECT * FROM test_uploads ORDER BY created_at DESC LIMIT 6";
         return DB::select($select1);
 
 
     }
+
+    public function scopeCountries($query)
+    {
+        $select1= DB::table('test_uploads')
+            ->select('test_uploads.countryName')
+            ->orderBy('countryName','ASC')
+            ->groupBy('countryName');
+        return $select1;
+    }
+    public function scopeNcountries($query,$country)
+    {
+        $select1= DB::table('test_uploads')
+            ->select('test_uploads.*')
+            ->where('countryName', $country );
+        return $select1;
+    }
+
 
 }

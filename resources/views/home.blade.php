@@ -17,6 +17,8 @@
 		<?php $ntests=\App\TestUpload::nTests()->count();?>
 		<?php $locationtests=\App\TestUpload::nTests()->get();?>
 		<?php $lasttests=\App\TestUpload::lastTests();?>
+		<?php $countries=\App\TestUpload::countries()->get();?>
+
 
 
 	@can('see-admin-menu')
@@ -64,7 +66,7 @@
 
 						<div class="info-box-content">
 							<span class="info-box-text">Train Files</span>
-							<span class="info-box-number">{{$ntrains}}</span>
+							<span class="info-box-number">{{$ntrains}} uploads</span>
 						</div>
 						<!-- /.info-box-content -->
 					</div>
@@ -77,7 +79,7 @@
 
 						<div class="info-box-content">
 							<span class="info-box-text">Test Files</span>
-							<span class="info-box-number">{{$ntests}}</span>
+							<span class="info-box-number">{{$ntests}} uploads</span>
 						</div>
 						<!-- /.info-box-content -->
 					</div>
@@ -145,23 +147,12 @@
 								<div class="col-md-3 col-sm-4">
 									<div class="pad box-pane-right bg-green" style="min-height: 420px">
 										<div class="description-block margin-bottom">
-											<div class="sparkbar pad" data-color="#fff">90,70,90,70,75,80,70</div>
-											<h5 class="description-header">8390</h5>
-											<span class="description-text">Visits</span>
+												@foreach ($countries as $country)
+													<?php $ncountries=\App\TestUpload::ncountries($country->countryName)->count();?>
+													<span>{{$ncountries}} uploaded files from {{$country->countryName}}</span><br>
+												@endforeach
 										</div>
-										<!-- /.description-block -->
-										<div class="description-block margin-bottom">
-											<div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
-											<h5 class="description-header">30%</h5>
-											<span class="description-text">Referrals</span>
-										</div>
-										<!-- /.description-block -->
-										<div class="description-block">
-											<div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
-											<h5 class="description-header">70%</h5>
-											<span class="description-text">Organic</span>
-										</div>
-										<!-- /.description-block -->
+
 									</div>
 								</div>
 							</div>
@@ -192,9 +183,7 @@
 									<li class="item">
 										<div class="product-info">
 											<a href="javascript:void(0)" class="product-title">{{$user->name}} ({{$user->email}})</a>
-											<span class="product-description">
-												from {{$lasttest->cityName}} ({{$lasttest->countryName}})
-											</span>
+
 												<span class="product-description">
 											  {{$lasttest->name_test}} for <b>{{$tasca->name_task}}</b>
 											</span>
