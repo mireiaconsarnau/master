@@ -62,7 +62,7 @@
 
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="info-box">
-						<span class="info-box-icon bg-green"><i class="a fa-file-text"></i></span>
+						<span class="info-box-icon bg-green"><i class="fa fa-file-text"></i></span>
 
 						<div class="info-box-content">
 							<span class="info-box-text">Train Files</span>
