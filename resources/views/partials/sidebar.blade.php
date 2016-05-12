@@ -15,6 +15,7 @@
             <li><a href="{{ url('tasks') }}"><i class='fa fa-tasks'></i> <span>Tasks</span></a></li>
             <li><a href="{{ url('trains') }}"><i class='fa fa-file-text'></i> <span>Train Files</span></a></li>
             <li> <a href="{{ url('testsadmin') }}"><i class='fa fa-bar-chart'></i> <span>Test Files / Analysis</span></a></li>
+            <li> <a href="{{ url('textstatistics') }}"><i class='fa fa-pie-chart'></i> <span>Text Statistics</span></a></li>
             @endcan
 
             @can('see-user-menu')

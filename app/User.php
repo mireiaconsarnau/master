@@ -126,7 +126,8 @@ class User extends Model implements AuthenticatableContract,
         $select1= DB::table('users')
             ->select('users.*')
             ->where('type', 2 )
-            ->orderBy('created_at', 'asc');
+            ->orderBy('created_at', 'asc')
+            ->paginate(10);
         return $select1;
 
 

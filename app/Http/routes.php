@@ -44,3 +44,5 @@ Route::get('/users', 'UserController@index');
 Route::post('/user', 'UserController@store');
 Route::delete('/user/{user}', 'UserController@destroy');
 Route::put('/user/{user}', 'UserController@update');
+
+Route::get('/textstatistics', 'TextController@index');
