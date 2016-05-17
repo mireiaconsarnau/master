@@ -49,6 +49,77 @@ class TextController extends Controller
 
 
     }
+    public function textforone(User $user)
+    {
+        if (Gate::denies('see-admin-menu')) {
+            abort(403);
+        }
+/*
+
+        //echo "id=".$user->id;
+        $tasca=\App\Task::find($testadmin->task_id);
+        //echo "tasca=".$tasca->name_task;
+
+        $portions=explode(" ", $tasca->name_task);
+        $folder="";
+        foreach ($portions as $portion)
+            $folder.=$portion;
+        $folder=strtolower($folder);
+*/
+        $portions = explode(" ", $user->name);
+        $name = "";
+        foreach ($portions as $portion) {
+            $name .= $portion;
+
+        }
+        $name_user=strtolower($name);
+
+        $testsforuser=\App\TestUploadAdmin::testsforuser($user->id)->get();
+        foreach ($testsforuser as $testforuser){
+            $tasca=\App\Task::find($testforuser->task_id);
+            $portions=explode(" ", $tasca->name_task);
+            $folder="";
+            foreach ($portions as $portion)
+                $folder.=$portion;
+            $name_task=strtolower($folder);
+
+            $files=scandir("/var/www/html/masterv1/storage/uploads/".$name_task."/test/".$name_user."/");
+            foreach ($files as $file){
+                $name_file=$file;
+            }
+
+            $hola=array($name_task,$name_user,$name_file);
+            $output=array();
+            exec("python /var/www/html/masterv1/storage/python/RL_part1.py $name_task $name_user $name_file",$output);
+            exec("python /var/www/html/masterv1/storage/python/RL_part2.py $name_task $name_user $name_file");
+            $im = imagecreatefrompng("img_text.png");
+            header('Content-Type: image/png');
+
+
+        }
+
+
+        //exec("python /var/www/html/masterv1/storage/python/RL_part1.py ".$folder,$output);
+        //foreach ($output as $line) print "$line<br/>";
+
+        //exec("python /var/www/html/masterv1/storage/python/SVM_part2.py ".$folder);
+
+        //$im = imagecreatefrompng("img_text.png");
+        //header('Content-Type: image/png');
+        //imagepng($im);
+        //imagedestroy($im);
+
+
+
+//
+
+        return view('textstatistics.index', [
+            'inf' => $output,
+
+        ]);
+
+
+    }
 
 
 

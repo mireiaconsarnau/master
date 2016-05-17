@@ -57,6 +57,21 @@ class TestUploadAdmin extends Model
 
     }
 
+    public function scopeTestsforuser($query,$user_id)
+    {
+
+        $select1= DB::table('test_uploads')
+            ->select('test_uploads.*')
+            ->where('user_id', $user_id );
+        //->toSql();
+
+        // dd($select1);
+
+        return $select1;
+
+
+    }
+
     public function scopeTestsfortaskandforuser($query,$task_id,$user_id)
     {
 

@@ -1,7 +1,15 @@
+#! /usr/bin/env python
+import sys
+import os
+
 from textstat import textstat
 import codecs
 
-test_data =  codecs.open('C:/ML/markov/trump.txt').read().lower()
+print ("User: "+sys.argv[2])
+print ("Task: "+sys.argv[1])
+print ("\n")
+
+test_data =  codecs.open('/var/www/html/masterv1/storage/uploads/%s/test/%s/%s' % (sys.argv[1],sys.argv[2],sys.argv[3])).read().lower()
 
 A= (textstat.flesch_reading_ease(test_data)/10)
 B= (textstat.smog_index(test_data))

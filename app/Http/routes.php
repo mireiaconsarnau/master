@@ -46,3 +46,5 @@ Route::delete('/user/{user}', 'UserController@destroy');
 Route::put('/user/{user}', 'UserController@update');
 
 Route::get('/textstatistics', 'TextController@index');
+Route::post('/textstatistics/{user}', 'TextController@textforone');
+Route::post('/textstatistics/all', 'TextController@textforall');

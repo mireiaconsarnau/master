@@ -1,7 +1,28 @@
-%pylab inline
-import numpy as np
-import pylab as pl
+#! /usr/bin/env python
+import sys
+import os
 import matplotlib
+
+matplotlib.use( 'Agg' )
+import numpy as np
+import pylab
+
+from textstat import textstat
+import codecs
+#%pylab inline
+test_data =  codecs.open('/var/www/html/masterv1/storage/uploads/%s/test/%s/%s' % (sys.argv[1],sys.argv[2],sys.argv[3])).read().lower()
+
+A= (textstat.flesch_reading_ease(test_data)/10)
+B= (textstat.smog_index(test_data))
+C= (textstat.flesch_kincaid_grade(test_data))
+D= (textstat.coleman_liau_index(test_data))
+E= (textstat.automated_readability_index(test_data))
+F= (textstat.dale_chall_readability_score(test_data))
+G= ((textstat.difficult_words(test_data))/100)
+H= (textstat.linsear_write_formula(test_data))
+I= (textstat.gunning_fog(test_data))
+J= (textstat.text_standard(test_data)[0])
+K=(textstat.text_standard(test_data))
 
 class Radar(object):
 
@@ -34,6 +55,7 @@ class Radar(object):
 
 
 
+
 fig = pylab.figure(figsize=(6, 6))
 
 titles = ["flesch", "smog", "flesch_kincaid", "coleman", "automated", "dale chall", "difficult_words","linsear_write","gunning_fog", "text_standard"]
@@ -47,5 +69,7 @@ labels = [
 radar = Radar(fig, titles, labels)
 radar.plot([A,B,C,D,E,F,G,H,I,J],  "-", lw=4, color="b", alpha=0.4, label="USER TRAIN")
 radar.plot([A+3,B+3,C+3,D+3,E+3,F+3,G+3,H+3,I,J],  "-", lw=2, color="R", alpha=0.4, label="USER TASK TEST")
-
 radar.ax.legend()
+pylab.show()
+
+

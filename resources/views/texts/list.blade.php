@@ -1,112 +1,86 @@
-<?php $nusersStandard=\App\User::nUsersStandard();?>
-@foreach ($nusersStandard as $nuserStandard)
 <div class="panel panel-default">
-	<div class="panel-heading">
-		{{$nuserStandard->name}}
-	</div>
+		<div class="panel-heading">
+			Text Statistics
+		</div>
 
-	<div class="panel-body">
 
-		<table class="table table-striped task-table">
+		<div class="panel-body">
+			<table class="table table-striped task-table">
+				<thead>
+				<th>User</th>
+				<th>Train Files</th>
+				<th>Tasks</th>
 
-			<tbody>
-			<?php $trainsforuser=\App\TrainUpload::trainsforassociateduser($nuserStandard->id)->get();?>
+				</thead>
 
-			@if (count($trainsforuser) > 0)
-				@foreach ($trainsforuser as $trainforuser)
-					<tr>
-						<td>
-					<form action="/train/{{ $trainforuser->id }}" method="POST" enctype="multipart/form-data">
-						{{ csrf_field() }}
-						{{ method_field('PUT') }}
+				<tbody>
+				<?php $nusersStandard=\App\User::nUsersStandard();?>
 
-							<td class="table-text"><div><a href="/train/view/{{$trainforuser->id }}">{{$trainforuser->name_train }}</a> </div></td>
-							<td class="table-text"><input type="file" name="file_train" id="file_train" value="{{$trainforuser->file_train }}"><div>
+				@if (count($nusersStandard) > 0)
+					@foreach ($nusersStandard as $nuserStandard)
+						<?php $ntrainsforuser=\App\TrainUpload::trainsforassociateduser($nuserStandard->id)->count();
+							$inf="";
+							if ($ntrainsforuser==0){
+								$inf="Any associated train files";
+								}
+							else{
+								$trainsforuser=\App\TrainUpload::trainsforassociateduser($nuserStandard->id)->get();
+
+								foreach ($trainsforuser as $trainforuser){
+									$inf.=$trainforuser->name_train.", ";
+								}
+								$inf=substr($inf,0, -2);
+							}
+						?>
+						<?php $ntestsforuser=\App\TestUploadAdmin::testsforuser($nuserStandard->id)->count();
+						$inf2="";
+						if ($ntestsforuser==0){
+							$inf2="Any associated test files";
+						}
+						else{
+							$testsforuser=\App\TestUploadAdmin::testsforuser($nuserStandard->id)->get();
+
+							foreach ($testsforuser as $testforuser){
+								$tasca=\App\Task::find($testforuser->task_id);
+								$inf2.=$tasca->name_task.", ";
+							}
+							$inf2=substr($inf2,0, -2);
+						}
+						?>
+							<tr>
+								<td class="table-text"><div>{{$nuserStandard->name}}</div></td>
+								<td class="table-text"><div>{{$inf}}</div></td>
+								<td class="table-text"><div>{{$inf2}}</div></td>
+								<td class="table-text"><div>
+										<form action="/textstatistics/{{$nuserStandard->id}}" method="POST"  target="_blank">
+										{{ csrf_field() }}
+											<button type="submit" id="analysis-task-" class="btn btn-info">
+												<i class="fa fa-pie-chart"> Text Statistics</i>
+											</button>
+
+										</form>
 								</div></td>
-							<!-- Train Update Button -->
-							<td>
-								<button type="submit" id="update-train-{{ $trainforuser->id }}" class="btn btn-success">
-									<i class="fa fa-pencil-square-o"></i> Update
-								</button>
-							</td>
-					</form>
 
-					<!-- Train Delete Button -->
-					<td>
-						<form action="/train/{{ $trainforuser->id }}" method="POST"  onsubmit=" return confirmDeleteTrain()">
-							{{ csrf_field() }}
-							{{ method_field('DELETE') }}
+							</tr>
 
-							<button type="submit" id="delete-train-{{ $trainforuser->id }}" class="btn btn-danger">
-								<i class="fa fa-btn fa-trash"></i> Delete
-							</button>
-						</form>
-					</td>
-					</tr>
-				@endforeach
-			@endif
-
-			</tbody>
-		</table>
-	</div>
+					@endforeach
 
 
-
-
-
-
-
-
-
-
-	<div class="panel-body">
-
-		<table class="table table-striped task-table">
-
-			<tbody>
-
-			<?php $trainsforuser=\App\TrainUpload::trainsforassociateduser($nuserStandard->id)->get();?>
-
-			@if (count($trainsforuser) > 0)
-				<tr>
-					<td class="table-text"><div>
-				@foreach ($trainsforuser as $trainforuser)
-
-							<a href="/train/view/{{$trainforuser->id }}">{{$trainforuser->name_train }}</a>
-				@endforeach
-						</div></td>
-				</tr>
-			@endif
-			@if (count($trainsforuser) == 0)
-				<tr>
-					<td class="table-text">
-						Any associated train files
-					</td>
-				</tr>
-			@endif
-
-			<tr>
-					<td class="table-text"  style="background-color: #FFFFFF;">
-					<form action="/testadmin/analysis/{{ $trainforuser->id }}" method="POST" target="_blank">
-						{{ csrf_field() }}
-						<button type="submit" id="analysis-task-{{ $trainforuser->id }}" class="btn btn-warning"
-
-
-						>
-							<i class="fa fa-pie-chart"> Text Statitics</i>
-						</button>
-
-					</form>
-
-
-
-				</td>
-
-			</tr>
-
-			</tbody>
-		</table>
-	</div>
+<tr>
+	<td class="table-text"><div></div></td>
+	<td class="table-text"><div></div></td>
+	<td class="table-text"><div></div></td>
+	<td class="table-text"  style="background-color: #FFFFFF;"><form action="/textstatistics/all/" method="POST" target="_blank">
+			{{ csrf_field() }}
+			<button type="submit" id="analysis-task-" class="btn btn-warning">
+				<i class="fa fa-pie-chart"> All Users (pdf)</i>
+			</button>
+		</form>
+	</td>
+</tr>
+@endif
+</tbody>
+</table>
 </div>
-@endforeach
-{!! $nusersStandard->render() !!}
+</div>
+
