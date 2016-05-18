@@ -11,7 +11,7 @@
             <li class="header">OPTIONS</li>
 
             @can('see-admin-menu')
-            <li class="active"><a href="{{ url('users') }}"><i class='fa fa-users'></i> <span>Users</span></a></li>
+            <li><a href="{{ url('users') }}"><i class='fa fa-users'></i> <span>Users</span></a></li>
             <li><a href="{{ url('tasks') }}"><i class='fa fa-tasks'></i> <span>Tasks</span></a></li>
             <li><a href="{{ url('trains') }}"><i class='fa fa-file-text'></i> <span>Train Files</span></a></li>
             <li> <a href="{{ url('testsadmin') }}"><i class='fa fa-bar-chart'></i> <span>Test Files / Analysis</span></a></li>

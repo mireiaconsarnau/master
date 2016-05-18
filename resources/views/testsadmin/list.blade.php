@@ -20,14 +20,12 @@
 			<table class="table table-striped task-table">
 
 				<thead>
-
 				<th>Test File Name</th>
 				<th>User</th>
 				<th>IP</th>
 				<th>Country Name</th>
 				<th>City Name</th>
 				<th>Train Files</th>
-
 				</thead>
 
 				<tbody>
@@ -37,91 +35,48 @@
 				@foreach ($testsfortask as $testfortask)
 					<?php $tasca=\App\Task::find($testfortask->task_id);?>
 					<?php $user=\App\User::find($testfortask->user_id);?>
-
-
-
-
-					<form action="/testadmin/{{ $testfortask->id }}" method="POST" enctype="multipart/form-data">
-						{{ csrf_field() }}
-						{{ method_field('PUT') }}
 						<tr>
-
 							<td class="table-text"><div><a href="/testadmin/view/{{$testfortask->id }}">{{$testfortask->name_test }}</a> </div></td>
-		</div>
-		</td>
-		<td class="table-text"><div>{{$user->name}} </div></td>
-	</div>
-	</td>
-	<td class="table-text"><div>{{$testfortask->ip }} </div></td>
-	</div>
-	</td>
-	<td class="table-text"><div>{{$testfortask->countryName }} </div></td>
-	</div>
-	</td>
-	<td class="table-text"><div>{{$testfortask->cityName }} </div></td>
-	</div>
-	</td>
-		</div>
-	</td>
-	<td class="table-text"><div>
+							<td class="table-text"><div>{{$user->name}} </div></td>
+							<td class="table-text"><div>{{$testfortask->ip }} </div></td>
+							<td class="table-text"><div>{{$testfortask->countryName }} </div></td>
+							<td class="table-text"><div>{{$testfortask->cityName }} </div></td>
+							<td class="table-text"><div>
+								<?php $numbertrain=\App\TrainUpload::Numbertrainsforassociateduser($testfortask->user_id)->count();?>
+								@if ($numbertrain==0)
+									Any associated train files
+								@else
+									{{$numbertrain}}
+								@endif
+							</div></td>
+							<td>
+								<form action="/testadmin/{{ $testfortask->id }}" method="POST">
+									{{ csrf_field() }}
+									{{ method_field('DELETE') }}
 
-			<?php $numbertrain=\App\TrainUpload::Numbertrainsforassociateduser($testfortask->user_id)->count();?>
-				@if ($numbertrain==0)
-					Any associated train files
-				@else
-					{{$numbertrain}}
-				@endif
-
-		</div></td>
-
-
-
-
-
-	<td>
-		<form action="/testadmin/{{ $testfortask->id }}" method="POST">
-			{{ csrf_field() }}
-			{{ method_field('DELETE') }}
-
-			<button type="submit" id="delete-test-{{ $testfortask->id }}" class="btn btn-danger">
-				<i class="fa fa-btn fa-trash"></i> Delete
-			</button>
-		</form>
-	</td>
-
-
-	</tr>
-		@endforeach
-
-
-	<tr>
-
-
-		<td class="table-text" style="background-color: #FFFFFF;"></td>
-		<td class="table-text" style="background-color: #FFFFFF;"></td>
-		<td class="table-text" style="background-color: #FFFFFF;"></td>
-		<td class="table-text" style="background-color: #FFFFFF;"></td>
-		<td class="table-text" style="background-color: #FFFFFF;"></td>
-		<td class="table-text" style="background-color: #FFFFFF;"></td>
-
-
-		<td class="table-text"  style="background-color: #FFFFFF;">
-				<form action="/testadmin/analysis/{{ $testfortask->id }}" method="POST" target="_blank">
-					{{ csrf_field() }}
-					<button type="submit" id="analysis-task-{{ $testfortask->id }}" class="btn btn-warning"
-
-
-							>
-						<i class="fa fa-bar-chart"> Analysis</i>
-					</button>
-
-				</form>
-
-
-
-		</td>
-
-	</tr>
+									<button type="submit" id="delete-test-{{ $testfortask->id }}" class="btn btn-danger">
+										<i class="fa fa-btn fa-trash"></i> Delete
+									</button>
+								</form>
+							</td>
+						</tr>
+				@endforeach
+					<tr>
+						<td class="table-text" style="background-color: #FFFFFF;"></td>
+						<td class="table-text" style="background-color: #FFFFFF;"></td>
+						<td class="table-text" style="background-color: #FFFFFF;"></td>
+						<td class="table-text" style="background-color: #FFFFFF;"></td>
+						<td class="table-text" style="background-color: #FFFFFF;"></td>
+						<td class="table-text" style="background-color: #FFFFFF;"></td>
+						<td class="table-text"  style="background-color: #FFFFFF;">
+								<form action="/testadmin/analysis/{{ $testfortask->id }}" method="POST" target="_blank">
+									{{ csrf_field() }}
+									<button type="submit" id="analysis-task-{{ $testfortask->id }}" class="btn btn-warning">
+										<i class="fa fa-bar-chart"> Analysis</i>
+									</button>
+								</form>
+						</td>
+					</tr>
 @endif
 	</tbody>
 	</table>

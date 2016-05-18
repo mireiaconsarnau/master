@@ -54,18 +54,7 @@ class TextController extends Controller
         if (Gate::denies('see-admin-menu')) {
             abort(403);
         }
-/*
 
-        //echo "id=".$user->id;
-        $tasca=\App\Task::find($testadmin->task_id);
-        //echo "tasca=".$tasca->name_task;
-
-        $portions=explode(" ", $tasca->name_task);
-        $folder="";
-        foreach ($portions as $portion)
-            $folder.=$portion;
-        $folder=strtolower($folder);
-*/
         $portions = explode(" ", $user->name);
         $name = "";
         foreach ($portions as $portion) {
@@ -87,41 +76,29 @@ class TextController extends Controller
             foreach ($files as $file){
                 $name_file=$file;
             }
-
             $hola=array($name_task,$name_user,$name_file);
             $output=array();
             exec("python /var/www/html/masterv1/storage/python/RL_part1.py $name_task $name_user $name_file",$output);
-            exec("python /var/www/html/masterv1/storage/python/RL_part2.py $name_task $name_user $name_file");
-            $im = imagecreatefrompng("img_text.png");
-            header('Content-Type: image/png');
+            //exec("python /var/www/html/masterv1/storage/python/RL_part2.py $name_task $name_user $name_file");
+            //$im = imagecreatefrompng("img_text.png");
+            //header('Content-Type: image/png');
+            //imagepng($im);
+            //imagedestroy($im);
 
+            $inf='<style>.page-break {page-break-after: always;}</style><h1>Page 1</h1><div class="page-break"></div><h1>Page 2</h1>';
 
         }
-
-
-        //exec("python /var/www/html/masterv1/storage/python/RL_part1.py ".$folder,$output);
-        //foreach ($output as $line) print "$line<br/>";
-
-        //exec("python /var/www/html/masterv1/storage/python/SVM_part2.py ".$folder);
-
-        //$im = imagecreatefrompng("img_text.png");
-        //header('Content-Type: image/png');
-        //imagepng($im);
-        //imagedestroy($im);
-
-
-
-//
-
-        return view('textstatistics.index', [
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML("$inf");
+        //return $pdf->download($name_user.'.pdf');
+        return $pdf->stream();
+        /* $data=["sdfsdf", "asd"];
+         $pdf = \PDF::loadView('pdf.invoice', $data);
+         return $pdf->download('invoice.pdf');*/
+        /*return view('textstatistics.index', [
             'inf' => $output,
 
-        ]);
-
-
+        ]);*/
     }
-
-
-
 
 }
