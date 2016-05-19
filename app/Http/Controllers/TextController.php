@@ -78,14 +78,17 @@ class TextController extends Controller
             }
             $hola=array($name_task,$name_user,$name_file);
             $output=array();
+            $cad="";
             exec("python /var/www/html/masterv1/storage/python/RL_part1.py $name_task $name_user $name_file",$output);
             //exec("python /var/www/html/masterv1/storage/python/RL_part2.py $name_task $name_user $name_file");
             //$im = imagecreatefrompng("img_text.png");
             //header('Content-Type: image/png');
             //imagepng($im);
             //imagedestroy($im);
+            foreach ($output as $line)
+                $cad.="$line<br/>";
 
-            $inf='<style>.page-break {page-break-after: always;}</style><h1>Page 1</h1><div class="page-break"></div><h1>Page 2</h1>';
+            $inf='<style>.page-break {page-break-after: always;}</style><h5>'.$cad.'</h5><img src="/var/www/html/masterv1/public/img_text.png"><div class="page-break"></div><h1>Page 2</h1>';
 
         }
         $pdf = \App::make('dompdf.wrapper');

@@ -17,11 +17,7 @@
 					@endforeach
 				</div>
 			</div>
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<img src="../../../img.png">
-				</div>
-			</div>
+
 
 		</div>
 	</div>

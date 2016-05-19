@@ -149,6 +149,7 @@ class TestUploadAdminController extends Controller
         $folder=strtolower($folder);
 
         $output=array();
+        $cad="";
         exec("python /var/www/html/masterv1/storage/python/SVM_part1.py ".$folder,$output);
         //foreach ($output as $line) print "$line<br/>";
 
@@ -158,15 +159,26 @@ class TestUploadAdminController extends Controller
         header('Content-Type: image/png');
         //imagepng($im);
         //imagedestroy($im);
+        foreach ($output as $line)
+            $cad.="$line<br/>";
 
+        //$inf='<html><head><meta charset="UTF-8"><title> Document Classification - Analysis</title></head>';
+       // $inf.='<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>';
+        $inf="@extends(\'appA\')@section(\'htmlheader_title\')Analysis @endsection @section(\'main-content\')";
+        $inf.='<body><div class="container"><div class="col-sm-offset-22 col-sm-82"><div class="panel panel-default"><div class="panel-body">';
+         $inf.=$cad.'<img src="/var/www/html/masterv1/public/img.png"></body></div></div></div></div>@endsection';
 
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML("$inf");
+        //return $pdf->download($name_user.'.pdf');
+        return $pdf->stream();
 
 //
 
-        return view('analysis.index', [
+        /*return view('analysis.index', [
             'inf' => $output,
 
-        ]);
+        ]);*/
 
     }
 
