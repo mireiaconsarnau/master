@@ -76,32 +76,28 @@ class TextController extends Controller
             foreach ($files as $file){
                 $name_file=$file;
             }
-            $hola=array($name_task,$name_user,$name_file);
+
             $output=array();
             $cad="";
-            exec("python /var/www/html/masterv1/storage/python/RL_part1.py $name_task $name_user $name_file",$output);
-            //exec("python /var/www/html/masterv1/storage/python/RL_part2.py $name_task $name_user $name_file");
-            //$im = imagecreatefrompng("img_text.png");
-            //header('Content-Type: image/png');
+            exec("python /var/www/html/masterv1/storage/python/TS_part1.py $name_task $name_user $name_file",$output);
+            exec("python /var/www/html/masterv1/storage/python/TS_part2.py $name_task $name_user $name_file",$output);
+            $im = imagecreatefrompng("img_text.png");
+            header('Content-Type: image/png');
             //imagepng($im);
-            //imagedestroy($im);
+           // imagedestroy($im);
             foreach ($output as $line)
                 $cad.="$line<br/>";
 
-            $inf='<style>.page-break {page-break-after: always;}</style><h5>'.$cad.'</h5><img src="/var/www/html/masterv1/public/img_text.png"><div class="page-break"></div><h1>Page 2</h1>';
+
+            $inf='<html><head><title> Document Classification - Tesxt Statistics</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head><body>';
+            $inf.='<h5>User: '.$name_user.'</h5><h6>'.$cad.'</h6><img src="/var/www/html/masterv1/public/img_text.png" width="600"></body>';
 
         }
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML("$inf");
         //return $pdf->download($name_user.'.pdf');
         return $pdf->stream();
-        /* $data=["sdfsdf", "asd"];
-         $pdf = \PDF::loadView('pdf.invoice', $data);
-         return $pdf->download('invoice.pdf');*/
-        /*return view('textstatistics.index', [
-            'inf' => $output,
 
-        ]);*/
     }
 
 }
