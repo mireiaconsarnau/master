@@ -12,6 +12,7 @@ from textstat import textstat
 import codecs
 
 data = json.loads(sys.argv[1])
+#data2 = json.loads(sys.argv[2])
 #print json.dumps(data[0])
 
 # Data to be represented
@@ -48,7 +49,7 @@ for values in data:
             [path.Path.LINETO,]*(len(values) -1) + \
             [ path.Path.CLOSEPOLY ]
     _path = path.Path(points, codes)
-    #_patch = patches.PathPatch(_path, fill=True, color='blue', linewidth=0, alpha=.1, label="User %r test" % sys.argv[1])
+    #_patch = patches.PathPatch(_path, fill=True, color='blue', linewidth=0, alpha=.1, label="User %r test" % data2[1])
     _patch = patches.PathPatch(_path, fill=True, color='blue', linewidth=0, alpha=.1)
     axes.add_patch(_patch)
     _patch = patches.PathPatch(_path, fill=False, linewidth = 2)
@@ -84,6 +85,7 @@ for i in range(len(properties)):
 
 #plt.legend(["User train", "User Task Test"])
 
-plt.legend()
+#plt.legend()
+#plt.legend(["User train", "User Task Test"])
 plt.savefig('img_text.png')
 #plt.show()

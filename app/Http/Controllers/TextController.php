@@ -69,6 +69,7 @@ class TextController extends Controller
         $inf.='<h5>User: '.$user->name.'</h5>';
 
         $data = array();
+        $data2 = array();
         foreach ($testsforuser as $testforuser){
 
             $value = array();
@@ -102,15 +103,17 @@ class TextController extends Controller
 
             }
             $data[]=$value;
+            $data2[]=$tasca->name_task;
             //unset($value);
         }
 
-        exec("python /var/www/html/masterv1/storage/python/TS_part2.py ".escapeshellarg(json_encode($data)),$output2);
-        foreach ($output2 as $line) print "$line<br/>";
+        exec("python /var/www/html/masterv1/storage/python/TS_part2.py ".escapeshellarg(json_encode($data)).escapeshellarg(json_encode($data2)),$output2);
+        //foreach ($output2 as $line) print "$line<br/>";
 
         $im = imagecreatefrompng("img_text.png");
         header('Content-Type: image/png');
         $inf.='<h6><img src="/var/www/html/masterv1/public/img_text.png" width="600"></h6>';
+
 
         $inf.='</h6></body>';
         $pdf = \App::make('dompdf.wrapper');
