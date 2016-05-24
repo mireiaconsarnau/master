@@ -12,15 +12,14 @@ from textstat import textstat
 import codecs
 
 data = json.loads(sys.argv[1])
-print json.dumps(data)
-
+#print json.dumps(data[0])
 
 # Data to be represented
 # ----------
 properties = ["flesch", "smog", "flesch_kincaid", "coleman", "automated", "dale chall", "difficult_words","linsear_write","gunning_fog"]
 
 #values = np.random.uniform(5,9,len(properties))
-values=[A,B,C,D,E,F,G,H,I]
+
 # ----------
 
 # Choose some nice colors
@@ -39,22 +38,31 @@ plt.xticks(t, [])
 # Set yticks from 0 to 10
 plt.yticks(np.linspace(0,10,11))
 
-# Draw polygon representing values user train
-points = [(x,y) for x,y in zip(t,values)]
-points.append(points[0])
-points = np.array(points)
-codes = [path.Path.MOVETO,] + \
-        [path.Path.LINETO,]*(len(values) -1) + \
-        [ path.Path.CLOSEPOLY ]
-_path = path.Path(points, codes)
-_patch = patches.PathPatch(_path, fill=True, color='blue', linewidth=0, alpha=.1, label="User %r test" % sys.argv[1])
-axes.add_patch(_patch)
-_patch = patches.PathPatch(_path, fill=False, linewidth = 2)
-axes.add_patch(_patch)
 
-# Draw circles at value points
-plt.scatter(points[:,0],points[:,1], linewidth=2,
-            s=50, color='white', edgecolor='black', zorder=10)
+for values in data:
+    # Draw polygon representing values user train
+    points = [(x,y) for x,y in zip(t,values)]
+    points.append(points[0])
+    points = np.array(points)
+    codes = [path.Path.MOVETO,] + \
+            [path.Path.LINETO,]*(len(values) -1) + \
+            [ path.Path.CLOSEPOLY ]
+    _path = path.Path(points, codes)
+    #_patch = patches.PathPatch(_path, fill=True, color='blue', linewidth=0, alpha=.1, label="User %r test" % sys.argv[1])
+    _patch = patches.PathPatch(_path, fill=True, color='blue', linewidth=0, alpha=.1)
+    axes.add_patch(_patch)
+    _patch = patches.PathPatch(_path, fill=False, linewidth = 2)
+    axes.add_patch(_patch)
+
+    # Draw circles at value points
+    plt.scatter(points[:,0],points[:,1], linewidth=2,
+                s=50, color='white', edgecolor='black', zorder=10)
+
+
+
+
+
+
 
 # Set axes limits
 plt.ylim(0,10)

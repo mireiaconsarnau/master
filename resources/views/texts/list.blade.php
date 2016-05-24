@@ -70,12 +70,7 @@
 	<td class="table-text"><div></div></td>
 	<td class="table-text"><div></div></td>
 	<td class="table-text"><div></div></td>
-	<td class="table-text"  style="background-color: #FFFFFF;"><form action="/textstatistics/all/" method="POST" target="_blank">
-			{{ csrf_field() }}
-			<button type="submit" id="analysis-task-" class="btn btn-warning">
-				<i class="fa fa-pie-chart"> All Users</i>
-			</button>
-		</form>
+	<td class="table-text"  style="background-color: #FFFFFF;">
 	</td>
 </tr>
 @endif
