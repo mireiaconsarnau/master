@@ -67,7 +67,11 @@ class TextController extends Controller
         $inf='<html><head><title> Document Classification - Tesxt Statistics</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head><body>';
         $inf.='<style>.page-break {page-break-after: always;}</style>';
         $inf.='<h5>User: '.$user->name.'</h5>';
+
+        $data = array();
         foreach ($testsforuser as $testforuser){
+            $value = array();
+
             $tasca=\App\Task::find($testforuser->task_id);
             $portions=explode(" ", $tasca->name_task);
             $folder="";
@@ -86,25 +90,42 @@ class TextController extends Controller
             foreach ($output as $line)
                 $cad.="$line<br/>";
 
-            $name_file2=substr($name_file,0,-4);
-            exec("touch ".$name_file2.".png");
-            chmod('/var/www/html/masterv1/public/'.$name_file2.'.png', 0777);
+            $inf.='<h6>'.$cad.'</h6>';
+            //$inf.='<div class="page-break"></div>';
+            exec("python /var/www/html/masterv1/storage/python/TS_part3.py $name_task $name_user $name_file",$output3);
 
-            exec("python /var/www/html/masterv1/storage/python/TS_part2.py $name_task $name_user $name_file");
+            foreach ($output3 as $line){
+               $value[]=$line+0;
+                print("Mireia".$line+0);
+            }
 
-            $im = imagecreatefrompng("file3.png");
-            header('Content-Type: image/png');
+            $data[]=$value;
+            //unset($value);
 
-            $inf.='<h6>'.$cad.'<img src="/var/www/html/masterv1/public/file3.png" width="600"></h6>';
-            $inf.='<div class="page-break"></div>';
-         }
+        }
+        /*foreach($data as $dat)
+        {
+            foreach($dat as $dt)
+            {
+                   print($dt." ");
+            }
+            print("<br>");
+        }*/
+        exec("python /var/www/html/masterv1/storage/python/TS_part2.py ".escapeshellarg(json_encode($data)),$output2);
+        foreach ($output2 as $line) print "$line<br/>";
+
+        /*$im = imagecreatefrompng("img_text.png");
+        header('Content-Type: image/png');
+        $inf.='<h6><img src="/var/www/html/masterv1/public/img_text.png" width="600"></h6>';
+
         $inf.='</h6></body>';
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML("$inf");
 
+
         imagedestroy($im);
         //return $pdf->download($name_user.'.pdf');
-        return $pdf->stream();
+        return $pdf->stream();*/
 
     }
 

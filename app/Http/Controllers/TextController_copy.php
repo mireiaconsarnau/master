@@ -64,6 +64,9 @@ class TextController extends Controller
         $name_user=strtolower($name);
 
         $testsforuser=\App\TestUploadAdmin::testsforuser($user->id)->get();
+        $inf='<html><head><title> Document Classification - Tesxt Statistics</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head><body>';
+        $inf.='<style>.page-break {page-break-after: always;}</style>';
+        $inf.='<h5>User: '.$user->name.'</h5>';
         foreach ($testsforuser as $testforuser){
             $tasca=\App\Task::find($testforuser->task_id);
             $portions=explode(" ", $tasca->name_task);
@@ -71,7 +74,7 @@ class TextController extends Controller
             foreach ($portions as $portion)
                 $folder.=$portion;
             $name_task=strtolower($folder);
-
+            $inf.='<h5>Task: '.$tasca->name_task.'</h5>';
             $files=scandir("/var/www/html/masterv1/storage/uploads/".$name_task."/test/".$name_user."/");
             foreach ($files as $file){
                 $name_file=$file;
@@ -80,21 +83,26 @@ class TextController extends Controller
             $output=array();
             $cad="";
             exec("python /var/www/html/masterv1/storage/python/TS_part1.py $name_task $name_user $name_file",$output);
-            exec("python /var/www/html/masterv1/storage/python/TS_part2.py $name_task $name_user $name_file");
-            $im = imagecreatefrompng("img_text.png");
-            header('Content-Type: image/png');
-            //imagepng($im);
-           // imagedestroy($im);
             foreach ($output as $line)
                 $cad.="$line<br/>";
 
+            $name_file2=substr($name_file,0,-4);
+            exec("touch ".$name_file2.".png");
+            chmod('/var/www/html/masterv1/public/'.$name_file2.'.png', 0777);
 
-            $inf='<html><head><title> Document Classification - Tesxt Statistics</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head><body>';
-            $inf.='<h5>User: '.$name_user.'</h5><h6>'.$cad.'</h6><img src="/var/www/html/masterv1/public/img_text.png" width="600"></body>';
+            exec("python /var/www/html/masterv1/storage/python/TS_part2.py $name_task $name_user $name_file");
 
-        }
+            $im = imagecreatefrompng("file3.png");
+            header('Content-Type: image/png');
+
+            $inf.='<h6>'.$cad.'<img src="/var/www/html/masterv1/public/file3.png" width="600"></h6>';
+            $inf.='<div class="page-break"></div>';
+         }
+        $inf.='</h6></body>';
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML("$inf");
+
+        imagedestroy($im);
         //return $pdf->download($name_user.'.pdf');
         return $pdf->stream();
 
