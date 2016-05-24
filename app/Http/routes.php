@@ -47,4 +47,3 @@ Route::put('/user/{user}', 'UserController@update');
 
 Route::get('/textstatistics', 'TextController@index');
 Route::post('/textstatistics/{user}', 'TextController@textforone');
-Route::post('/textstatisticsall', 'TextController@textforall');

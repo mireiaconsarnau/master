@@ -69,7 +69,7 @@ class TextController extends Controller
         $inf.='<h5>User: '.$user->name.'</h5>';
 
         $data = array();
-        $data2 = array();
+
         foreach ($testsforuser as $testforuser){
 
             $value = array();
@@ -107,7 +107,7 @@ class TextController extends Controller
             //unset($value);
         }
 
-        exec("python /var/www/html/masterv1/storage/python/TS_part2.py ".escapeshellarg(json_encode($data)).escapeshellarg(json_encode($data2)),$output2);
+        exec("python /var/www/html/masterv1/storage/python/TS_part2.py ".escapeshellarg(json_encode($data)),$output2);
         //foreach ($output2 as $line) print "$line<br/>";
 
         $im = imagecreatefrompng("img_text.png");

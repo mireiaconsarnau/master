@@ -54,7 +54,7 @@
 								<td class="table-text"><div>
 										<form action="/textstatistics/{{$nuserStandard->id}}" method="POST"  target="_blank">
 										{{ csrf_field() }}
-											<button type="submit" id="analysis-task-" class="btn btn-info">
+											<button type="submit" id="analysis-task-" class="btn btn-warning">
 												<i class="fa fa-pie-chart"> Text Statistics</i>
 											</button>
 
