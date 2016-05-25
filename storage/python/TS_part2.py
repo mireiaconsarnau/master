@@ -12,7 +12,7 @@ from textstat import textstat
 import codecs
 
 data = json.loads(sys.argv[1])
-#data2 = json.loads(sys.argv[2])
+data2 = json.loads(sys.argv[2])
 #print json.dumps(data[0])
 
 # Data to be represented
@@ -39,7 +39,7 @@ plt.xticks(t, [])
 # Set yticks from 0 to 10
 plt.yticks(np.linspace(0,10,11))
 
-
+i=0
 for values in data:
     # Draw polygon representing values user train
     points = [(x,y) for x,y in zip(t,values)]
@@ -50,7 +50,7 @@ for values in data:
             [ path.Path.CLOSEPOLY ]
     _path = path.Path(points, codes)
     #_patch = patches.PathPatch(_path, fill=True, color='blue', linewidth=0, alpha=.1, label="User %r test" % data2[1])
-    _patch = patches.PathPatch(_path, fill=True, color='blue', linewidth=0, alpha=.1)
+    _patch = patches.PathPatch(_path, fill=True, color='blue', linewidth=0, alpha=.1, label="User %r test" % data2[i])
     axes.add_patch(_patch)
     _patch = patches.PathPatch(_path, fill=False, linewidth = 2)
     axes.add_patch(_patch)
@@ -58,6 +58,7 @@ for values in data:
     # Draw circles at value points
     plt.scatter(points[:,0],points[:,1], linewidth=2,
                 s=50, color='white', edgecolor='black', zorder=10)
+    i=i+1
 
 
 
@@ -85,7 +86,6 @@ for i in range(len(properties)):
 
 #plt.legend(["User train", "User Task Test"])
 
-#plt.legend()
-#plt.legend(["User train", "User Task Test"])
+plt.legend()
 plt.savefig('img_text.png')
 #plt.show()

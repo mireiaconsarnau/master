@@ -106,8 +106,9 @@ class TextController extends Controller
             $data2[]=$tasca->name_task;
             //unset($value);
         }
-
-        exec("python /var/www/html/masterv1/storage/python/TS_part2.py ".escapeshellarg(json_encode($data)),$output2);
+        $values=escapeshellarg(json_encode($data));
+        $keys=escapeshellarg(json_encode($data2));
+        exec("python /var/www/html/masterv1/storage/python/TS_part2.py $values $keys",$output2);
         //foreach ($output2 as $line) print "$line<br/>";
 
         $im = imagecreatefrompng("img_text.png");
