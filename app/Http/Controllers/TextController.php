@@ -70,53 +70,101 @@ class TextController extends Controller
 
         $data = array();
 
-        foreach ($testsforuser as $testforuser){
+        if (count($testsforuser) > 0) {
+            foreach ($testsforuser as $testforuser) {
 
-            $value = array();
+                $value = array();
 
-            $tasca=\App\Task::find($testforuser->task_id);
-            $portions=explode(" ", $tasca->name_task);
-            $folder="";
-            foreach ($portions as $portion)
-                $folder.=$portion;
-            $name_task=strtolower($folder);
-            $inf.='<h5>Task: '.$tasca->name_task.'</h5>';
-            $files=scandir("/var/www/html/masterv1/storage/uploads/".$name_task."/test/".$name_user."/");
-            foreach ($files as $file){
-                $name_file=$file;
+                $tasca = \App\Task::find($testforuser->task_id);
+                $portions = explode(" ", $tasca->name_task);
+                $folder = "";
+                foreach ($portions as $portion)
+                    $folder .= $portion;
+                $name_task = strtolower($folder);
+                $inf .= '<h5>Task: ' . $tasca->name_task . '</h5>';
+                $files = scandir("/var/www/html/masterv1/storage/uploads/" . $name_task . "/test/" . $name_user . "/");
+                foreach ($files as $file) {
+                    $name_file = $file;
+                }
+
+                $output = array();
+                $cad = "";
+                exec("python /var/www/html/masterv1/storage/python/TS_part1.py $name_task $name_user $name_file", $output);
+                foreach ($output as $line) {
+                    $cad .= "$line<br/>";
+                }
+                $inf .= '<h6>' . $cad . '</h6>';
+
+                //$inf.='<div class="page-break"></div>';
+
+                $output3 = array();
+                exec("python /var/www/html/masterv1/storage/python/TS_part3.py $name_task $name_user $name_file", $output3);
+                foreach ($output3 as $line) {
+                    $value[] = $line + 0;
+
+                }
+                $data[] = $value;
+                $data2[] = $tasca->name_task;
+                //unset($value);
             }
+            $values = escapeshellarg(json_encode($data));
+            $keys = escapeshellarg(json_encode($data2));
+            exec("python /var/www/html/masterv1/storage/python/TS_part2.py $values $keys", $output2);
+            //foreach ($output2 as $line) print "$line<br/>";
 
-            $output=array();
-            $cad="";
-            exec("python /var/www/html/masterv1/storage/python/TS_part1.py $name_task $name_user $name_file",$output);
-            foreach ($output as $line) {
-                $cad .= "$line<br/>";
-            }
-            $inf.='<h6>'.$cad.'</h6>';
-
-            //$inf.='<div class="page-break"></div>';
-
-            $output3=array();
-            exec("python /var/www/html/masterv1/storage/python/TS_part3.py $name_task $name_user $name_file",$output3);
-            foreach ($output3 as $line) {
-                $value[]=$line+0;
-
-            }
-            $data[]=$value;
-            $data2[]=$tasca->name_task;
-            //unset($value);
+            $im = imagecreatefrompng("img_text.png");
+            header('Content-Type: image/png');
+            $inf .= '<h6><img src="/var/www/html/masterv1/public/img_text.png" width="600"></h6>';
+            $inf .= '<div class="page-break"></div>';
         }
-        $values=escapeshellarg(json_encode($data));
-        $keys=escapeshellarg(json_encode($data2));
-        exec("python /var/www/html/masterv1/storage/python/TS_part2.py $values $keys",$output2);
-        //foreach ($output2 as $line) print "$line<br/>";
-
-        $im = imagecreatefrompng("img_text.png");
-        header('Content-Type: image/png');
-        $inf.='<h6><img src="/var/www/html/masterv1/public/img_text.png" width="600"></h6>';
 
 
-        $inf.='</h6></body>';
+        $trainsforuser=\App\TrainUpload::trainsforassociateduser($user->id)->get();
+        $data_train = array();
+        if (count($trainsforuser) > 0) {
+            foreach ($trainsforuser as $trainforuser) {
+
+                $value = array();
+
+                $inf .= '<h5>Train: ' . $trainforuser->name_train . '</h5>';
+
+                $portions = explode(" ", $trainforuser->name_train);
+                $folder = "";
+                foreach ($portions as $portion)
+                    $folder .= $portion;
+                $name_file = strtolower($folder);
+
+                $output = array();
+                $cad = "";
+                exec("python /var/www/html/masterv1/storage/python/TS_part5.py $name_user $name_file", $output);
+                foreach ($output as $line) {
+                    $cad .= "$line<br/>";
+                }
+                $inf .= '<h6>' . $cad . '</h6>';
+
+
+                $output3 = array();
+                exec("python /var/www/html/masterv1/storage/python/TS_part6.py $name_user $name_file", $output3);
+                foreach ($output3 as $line) {
+                    $value[] = $line + 0;
+
+                }
+                $data_train[] = $value;
+                $data2_train[] = $trainforuser->name_train;
+                //unset($value);
+            }
+
+
+            $output4 = array();
+            $values_train = escapeshellarg(json_encode($data_train));
+            $keys_train = escapeshellarg(json_encode($data2_train));
+            exec("python /var/www/html/masterv1/storage/python/TS_part4.py $values_train $keys_train", $output4);
+            $im2 = imagecreatefrompng("img_train.png");
+            header('Content-Type: image/png');
+            $inf .= '<h6><img src="/var/www/html/masterv1/public/img_train.png" width="600"></h6>';
+        }
+
+        $inf.='</body>';
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML("$inf");
 
