@@ -17,7 +17,7 @@
 
 								@if (count($trainsforuser) > 0)
 									@foreach ($trainsforuser as $trainforuser)
-										<form action="/train/{{ $train->id }}" method="POST" enctype="multipart/form-data">
+										<form action="/train/{{ $trainforuser->id }}" method="POST" enctype="multipart/form-data">
 											{{ csrf_field() }}
 											{{ method_field('PUT') }}
 										<tr>

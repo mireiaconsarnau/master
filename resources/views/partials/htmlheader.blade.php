@@ -72,6 +72,10 @@
     <script src="{{ asset('/js/jquery-jvectormap-2.0.3.min.js') }}"></script>
     <script src="{{ asset('/jvectormap/tests/assets/jquery-jvectormap-world-mill-en.js') }}"></script>
 
+    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+
 
 
 </head>

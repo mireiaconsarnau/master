@@ -147,10 +147,11 @@ class TaskController extends Controller
         if (Gate::denies('see-admin-menu')) {
             abort(403);
         }
-        $this->validate($request, [
-            'name_task' => 'required|max:255|unique:tasks',
-            'available_task' => 'required|max:3',
-        ]);
+        if (strcmp($task->available,$request['available_task'])==0) {
+            $this->validate($request, [
+                'name_task' => 'required|max:255|unique:tasks',
+            ]);
+        }
 
         $portions=explode(" ", $task->name_task);
         $folder="";

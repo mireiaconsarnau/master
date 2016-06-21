@@ -16,10 +16,12 @@
             <li><a href="{{ url('trains') }}"><i class='fa fa-file-text'></i> <span>Train Files</span></a></li>
             <li> <a href="{{ url('testsadmin') }}"><i class='fa fa-bar-chart'></i> <span>Test Files / Analysis</span></a></li>
             <li> <a href="{{ url('textstatistics') }}"><i class='fa fa-pie-chart'></i> <span>Text Statistics</span></a></li>
+            <li> <a href="{{ url('messages') }}"><i class='fa fa-comment'></i> <span>Messages @include('messenger.unread-count')</span></a></li>
             @endcan
 
             @can('see-user-menu')
             <li class="active"> <a href="{{ url('tests') }}"><i class='fa fa-file-text'></i> <span>Test Files</span></a></li>
+            <li> <a href="{{ url('messages') }}"><i class='fa fa-comment'></i> <span>Messages @include('messenger.unread-count')</span></a></li>
             @endcan
 
         </ul><!-- /.sidebar

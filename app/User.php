@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use App\TrainUpload;
 use App\TestUpload;
 use App\Task;
+use Cmgmyr\Messenger\Traits\Messagable;
 
 
 class User extends Model implements AuthenticatableContract,
@@ -21,6 +22,7 @@ class User extends Model implements AuthenticatableContract,
                                     CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
+    use Messagable;
 
     /**
      * The database table used by the model.
