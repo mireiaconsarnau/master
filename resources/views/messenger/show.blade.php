@@ -26,9 +26,15 @@
 
         @if($users->count() > 0)
             <div class="checkbox">
-                @foreach($users as $user)
-                    <label title="{!! $user->name !!}"><input type="checkbox" name="recipients[]" value="{!! $user->id !!}">{!! $user->name !!}</label>
-                @endforeach
+
+                <select name="recipients[]" id="recipients[]" multiple>
+
+                    @foreach ($users as $user)
+                        <option value="{{$user->id}}">{{$user->name}}</option>
+
+                    @endforeach
+                </select>
+               
             </div>
             @endif
 

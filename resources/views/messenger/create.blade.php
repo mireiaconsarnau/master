@@ -18,12 +18,16 @@
 
         @if($users->count() > 0)
             <div class="checkbox">
-                @foreach($users as $user)
-                    <label title="{!!$user->name!!}"><input type="checkbox" name="recipients[]" value="{!!$user->id!!}">{!!$user->name!!}</label>
-                @endforeach
-            </div>
-            @endif
 
+            <select name="recipients[]" id="recipients[]" multiple>
+
+                @foreach ($users as $user)
+                    <option value="{{$user->id}}">{{$user->name}}</option>
+
+                @endforeach
+            </select>
+            @endif
+            </div>
                     <!-- Submit Form Input -->
             <div class="form-group">
                 {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
