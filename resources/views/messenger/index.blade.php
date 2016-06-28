@@ -8,7 +8,7 @@
     @endif
     @if($threads->count() > 0)
         @foreach($threads as $thread)
-            <?php $class = $thread->isUnread($currentUserId) ? 'style="float:left;background-color:#D84938; width:59%;color: #ffffff;"' : 'style="float:left;background-color:#f8f8f8; width:59%"'; ?>
+            <?php $class = $thread->isUnread($currentUserId) ? 'style="float:left;background-color:#D84938; width:51%;color: #ffffff;"' : 'style="float:left;background-color:#f8f8f8; width:51%"'; ?>
             <a href="messages/{{$thread->id}}" style="color: #000000;">
 
             <div class="media alert "{!!$class!!} >

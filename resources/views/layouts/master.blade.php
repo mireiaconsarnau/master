@@ -7,16 +7,12 @@
 
 @section('main-content')
     <div class="container">
-        <div class="col-sm-offset-2 col-sm-8">
+        <div class="col-sm-offset-2 col-sm-7">
 
             <div class="panel panel-default">
 
                 <div class="panel-heading">
-
-
-
-
-                    <div class="navbar-header">
+           <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>

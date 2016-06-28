@@ -2,6 +2,18 @@
 
 @section('content_messenger')
     <div class="col-md-6">
+        @can('see-admin-menu')
+        <div style="float: right; ";>
+            <form action="/messages/delete/{{ $thread->id }}" method="POST"  onsubmit=" return confirmDeleteThread()">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+
+                <button type="submit" id="delete-thread-{{ $thread->id }}" class="btn btn-danger">
+                    <i class="fa fa-btn fa-trash"></i> Delete
+                </button>
+            </form>
+        </div>
+        @endcan
         <h1>{!! $thread->subject !!}</h1>
 
         @foreach($thread->messages as $message)
