@@ -286,7 +286,7 @@ class UserController extends Controller
 
         }
 
-        //PENDENT ESBORRAR TRAINS DE LA BASE DE DADES
+
         $user->tests()->delete();
         $user->trains2()->delete();
 

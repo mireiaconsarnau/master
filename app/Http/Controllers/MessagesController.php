@@ -134,8 +134,15 @@ class MessagesController extends Controller
         }
         return redirect('messages/' . $id);
     }
-    public function destroy(Request $request, Message $message)
+    public function destroy(Request $request, $id)
     {
-        echo "Good morning!";
+        $thread = Thread::findOrFail($id);
+        $thread->participants()->delete();
+        $thread->messages()->delete();
+        $thread->delete();
+
+
+        return redirect('messages');
+
     }
 }
