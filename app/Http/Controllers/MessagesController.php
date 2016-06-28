@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
+use App\Http\Requests;
 class MessagesController extends Controller
 {
     /**
@@ -131,5 +133,9 @@ class MessagesController extends Controller
             $thread->addParticipants(Input::get('recipients'));
         }
         return redirect('messages/' . $id);
+    }
+    public function destroy(Request $request, Message $message)
+    {
+        echo "Good morning!";
     }
 }
